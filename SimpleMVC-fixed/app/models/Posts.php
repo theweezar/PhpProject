@@ -3,7 +3,8 @@
 class Posts extends MySQL{
     private $conn;
     private $tb_name = 'posts'; 
-
+    // 4 columns (id, title, content, created_at)
+    // (int primary,varchar(100) unique, mediumtext, timetamp current_timetamp()) -- all not null
     public function __construct(){
         $this->conn = $this->Connect();
     }

@@ -3,6 +3,8 @@
 class Users extends MySQL{ // Vào file ConnectDB.inc.php để thay đổi host,username,password,databasename
     private $conn;
     private $tb_name = 'users';
+    // 3 columns (id, username, password (md5 hash))
+    // (int primary, username unique, mediumtext)
     public function __construct(){
         $this->conn = $this->Connect();
     }
