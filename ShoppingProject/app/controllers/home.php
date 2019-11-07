@@ -2,14 +2,11 @@
 
 class Home extends Controller{
     public function default($name=''){ // dòng này là method. $name là params | test localhost/home/duc -> echo Hello duc
-        // $user = $this->model('User'); // Coi trong file Controller.php
-        // $data = $user->GetAllUser();
-        // $this->view('home/homepage',["user"=>$data]); // truyền dữ liệu kiểu dict vào view để hiện lên front-end
-        $this->view('home/homepage');
+        $this->view('home/homepage',['name'=>$name,'fuck'=>'hell']);  
     }
 
-    public function test(){ // gõ localhost/home/test để thử nghiệm
-        echo "this is a test";
+    public function test($name=''){ // gõ localhost/home/test để thử nghiệm
+        echo "this is a test ".$name." ";
     }
     
 }

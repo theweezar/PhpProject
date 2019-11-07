@@ -11,19 +11,21 @@
             if (file_exists('../app/controllers/'.$url[0].'.php')){ // kiểm tra xem file có ko, nếu có thì dòng require
                 $this->controller = $url[0];                   // ở dưới sẽ làm việc, không thì nó cứ require thằng this cũ
                 unset($url[0]);
+                if(isset($url[1])){ // kiểm tra xem trong thằng vừa required có những methods function gì
+                    if(method_exists($this->controller,$url[1])){
+                        $this->method = $url[1];
+                        unset($url[1]);
+                    }
+                }
+            }
+            else {
+                $this->controller = 'pagenotfound';
+                $this->method = 'pnf';
             }
             require_once '../app/controllers/'.$this->controller.'.php';
             // mặc định nếu không có parameter truyền vào thì sẽ require cái thằng home.php 
             // có sẵn trong folder controllers
             $this->controller = new $this->controller; // khởi tạo mới là vì trong file home.php có class Home
-
-            if(isset($url[1])){ // kiểm tra xem trong thằng vừa required có những methods function gì
-                if(method_exists($this->controller,$url[1])){
-                    $this->method = $url[1];
-                    unset($url[1]);
-                }
-            }
-
             $this->params = $url ? array_values($url) : [];
             // dòng trên có nghĩa là nếu sau dấu '/' không có gì thì nó sẽ gán lại 1 array trống
             // print_r($this->params);
