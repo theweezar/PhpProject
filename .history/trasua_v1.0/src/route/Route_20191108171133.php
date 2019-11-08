@@ -5,10 +5,7 @@ class Route extends Controller{
   
 
   public function home(){
-    if (isset($_SESSION['logged'])){
-      $giohang = $this->model("Giohang");
-      $this->view("home",["giohang" => $giohang]);
-    }
+    if (isset($_SESSION['logged'])) $this->view("home");
     else $this->view("login");
   }
 

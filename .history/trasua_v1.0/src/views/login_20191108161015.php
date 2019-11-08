@@ -4,8 +4,6 @@
   <input type="submit" value="Login">
 </form>
 
-<a href="/register">Register</a>
-
 <?php 
   if (isset($data["error"])) echo $data["error"];
 ?>

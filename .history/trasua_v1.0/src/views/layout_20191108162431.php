@@ -10,7 +10,6 @@
         </a></li>
         <li><a href="#">
         <img src="img/shopping-cart.png" alt="">
-        <div class="index">0</div>
             Giỏ hàng
         </a></li>
         <?php 

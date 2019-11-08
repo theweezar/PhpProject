@@ -29,7 +29,7 @@
         </div>
         <div class="price">30.000đ</div>
         <div class="buy">
-            <div class="check"><div id="them"><img src="img/check.png" alt=""></div></div>
+            <div class="check"><a href="#"><img id="them" src="img/check.png" alt=""></a></div>
             <div class="cancel"><a href="#"><img src="img/cancel.png" alt=""></a></div>
         </div>
     </div>
@@ -180,13 +180,18 @@
   <script>
     <?php 
       require_once "js/script.js";
+      
     ?>
     document.getElementById("them").addEventListener("click",function(){
-      <?php
-        $data["giohang"]->themHang("mgh1","ts1");
-      ?>
+      console.log(<?php print_r($data["giohang"]); ?>);
+      // <?php 
+          
+      // ?>
     });
     
   </script>
+  <?php 
+    print_r($data["giohang"]);
+  ?>
   </body>
 </html>

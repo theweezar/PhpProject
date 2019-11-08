@@ -33,13 +33,8 @@ class Users extends MySQL{
     if (mysqli_num_rows($result)==0) return false;
     else{
       $val = mysqli_fetch_assoc($result);
-      if ($password == $val['password']) return ["logged"=>true,"infor"=>$val];
-      else return ["logged"=>false];
+      if ($password == $val['password']) return ["logged"=>true,"client"=>$val['client']];
+      else return return ["logged"=>false];
     }
-  }
-
-  public function createUser($fname,$username,$password,$sdt,$email,$client){
-    mysqli_query($this->conn,"INSERT INTO ".$this->tb_name." (username,password,client,fname,sdt,email) VALUES('".$username."','".$password."',".$client.",'".$fname."','".$sdt."','".$email."') ;");
-    mysqli_commit($this->conn);
   }
 }

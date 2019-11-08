@@ -5,10 +5,7 @@ class Route extends Controller{
   
 
   public function home(){
-    if (isset($_SESSION['logged'])){
-      $giohang = $this->model("Giohang");
-      $this->view("home",["giohang" => $giohang]);
-    }
+    if (isset($_SESSION['logged'])) $this->view("home");
     else $this->view("login");
   }
 
@@ -20,8 +17,8 @@ class Route extends Controller{
         $_SESSION['logged'] = true;
         $_SESSION['username'] = $curr_user['infor']['username'];
         $_SESSION['client'] = $curr_user['infor']['client'];
-        header("Location: /home");
-        // echo $_SESSION['client'];
+        // header("Location: /home");
+        
       }
       else $this->view("login",["error"=>"Wrong password or username"]);
     }
@@ -40,21 +37,7 @@ class Route extends Controller{
   }
 
   public function register(){
-    if (!isset($_SESSION['logged'])){
-      if (isset($_POST['fullname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['sdt']) && isset($_POST['email'])){
-        $users = $this->model("Users");
-        $fname = $_POST['fullname'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $sdt = $_POST['sdt'];
-        $email = $_POST['email'];
-        $users->createUser($fname,$username,$password,$sdt,$email,true);
-        // header("Location: home");
-        echo "succesfully";
-      }
-      else $this->view("register");
-    }
-    else header("Location: home");
+
   }
 
   

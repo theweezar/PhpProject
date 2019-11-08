@@ -23,13 +23,13 @@
     <div class="extra"></div>
     <div class="productshow">
     <div class= "product" >
-        <h2>Trà sữa test</h2>
+        <h2>Trà sữa cc</h2>
         <div class="imgbox">
                 <img src="img/p1.png" alt="p1">
         </div>
         <div class="price">30.000đ</div>
         <div class="buy">
-            <div class="check"><div id="them"><img src="img/check.png" alt=""></div></div>
+            <div class="check"><a href="#"><img src="img/check.png" alt=""></a></div>
             <div class="cancel"><a href="#"><img src="img/cancel.png" alt=""></a></div>
         </div>
     </div>
@@ -181,12 +181,6 @@
     <?php 
       require_once "js/script.js";
     ?>
-    document.getElementById("them").addEventListener("click",function(){
-      <?php
-        $data["giohang"]->themHang("mgh1","ts1");
-      ?>
-    });
-    
   </script>
   </body>
 </html>

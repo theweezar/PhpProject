@@ -39,7 +39,7 @@ class Users extends MySQL{
   }
 
   public function createUser($fname,$username,$password,$sdt,$email,$client){
-    mysqli_query($this->conn,"INSERT INTO ".$this->tb_name." (username,password,client,fname,sdt,email) VALUES('".$username."','".$password."',".$client.",'".$fname."','".$sdt."','".$email."') ;");
+    mysqli_query($this->conn,"INSERT INTO ".$this->tb_name." (username,password,client,fname,sdt,email) VALUES(".$username.",'".$password."',".$client.",'".$fname."','".$sdt."','".$email."') ;");
     mysqli_commit($this->conn);
   }
 }

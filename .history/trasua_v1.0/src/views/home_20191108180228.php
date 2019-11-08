@@ -180,13 +180,20 @@
   <script>
     <?php 
       require_once "js/script.js";
+      
     ?>
     document.getElementById("them").addEventListener("click",function(){
+      console.log(
+        <?php echo " ` "; print_r($data["giohang"]); echo " ` "; ?>
+      );
       <?php
         $data["giohang"]->themHang("mgh1","ts1");
       ?>
     });
     
   </script>
+  <!-- <?php 
+    print_r($data["giohang"]);
+  ?> -->
   </body>
 </html>
