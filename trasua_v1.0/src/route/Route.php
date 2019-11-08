@@ -21,7 +21,6 @@ class Route extends Controller{
         $_SESSION['username'] = $curr_user['infor']['username'];
         $_SESSION['client'] = $curr_user['infor']['client'];
         header("Location: /home");
-        // echo $_SESSION['client'];
       }
       else $this->view("login",["error"=>"Wrong password or username"]);
     }
