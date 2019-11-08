@@ -8,7 +8,7 @@ class MySQL{
   
   protected function Connect(){
     $this->db_host = "localhost";
-    $this->db_username = "";
+    $this->db_username = "root";
     $this->db_password = "";
     $this->db_name = "test";
     return mysqli_connect($this->db_host,$this->db_username,$this->db_password,$this->db_name);
