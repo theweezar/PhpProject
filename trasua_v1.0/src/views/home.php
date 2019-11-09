@@ -1,31 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
-    <style>
-    <?php 
-      require_once "css/style.css";
-    ?>
-    </style>
-  </head>
-  <body>
-  <?php 
-    require_once "../src/views/layout.php";
-  ?>
+<!-- <h1>home</h1> -->
 
-  <script>
-    <?php 
-      require_once "js/script.js";
-    ?>
-    document.getElementById("them").addEventListener("click",function(){
-      <?php
-        $data["giohang"]->themHang("mgh1","ts1");
+<?php
+  // print_r($data["giohang"]);
+?>
+
+<div class="menu">
+  <?php 
+    foreach ($data["trasua"] as $key => $trasua) {
       ?>
-    });
-    
-  </script>
-  </body>
-</html>
+      <div class="product">
+        <div class="img">
+          <img src="img/<?php echo $trasua["hinh"] ?>" alt="" srcset="">
+        </div>
+        <div class="order">
+          <div class="ten"><?php echo $trasua["tenh"] ?></div>
+          <div class="gia"><?php echo $trasua["gia"] ?></div>
+          <button class="btn" id="btn-<?php echo $key ?>">Add</button>
+        </div>
+      </div>
+    <?php } ?>
+</div>
+
+
+
+
+<script>
+$(document).ready(function()
+{
+  <?php 
+    foreach ($data["trasua"] as $key => $trasua) {
+      ?>
+      $(`#btn-<?php echo $key ?>`).click(function()
+      {
+        var mh = "<?php echo $trasua["mh"]?>"
+
+        $.ajax({
+            url: `add/${mh}`,
+            type: 'POST',
+            data: { mh:mh },
+            success: function(data)
+            {
+                //whatever you want to do
+                console.log(data);
+            }
+        })
+      });
+    <?php } ?>
+  
+});
+
+</script>
+

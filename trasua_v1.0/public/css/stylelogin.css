@@ -1,0 +1,73 @@
+body{
+  padding: 0;
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  background: rgb(220, 173, 231);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+form{
+  position: absolute;
+  background: white;
+  width: 350px;
+  height: 350px;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%,-50%);
+  border-radius: 20px;
+  box-shadow: 0 10px 10px 1px rgba(0, 0, 0, 0.5);
+}
+form h1{
+  text-align: center;
+  width: 100%;
+  color: white;
+  word-spacing: 10px;
+  letter-spacing: 2px;
+  background: rgb(214, 106, 214);
+}
+form input{
+    display: block;
+    width: 300px;
+    height: 50px;
+    border-radius: 30px;
+    margin: 2em auto;
+    padding: 0 1em;
+    outline: none;
+    font-weight: bold;
+    border: 1px solid gray;
+    background: #f7f7f7;
+}
+form input[type = 'submit']{
+  font-weight: 500;
+  font-size: 1.5em;
+  color: black;
+  margin: 0 1em;
+  /* padding: 10px; */
+  background: white;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: 0.5s;
+  cursor: pointer;
+  /* width: ; */
+}
+form input[type = 'submit']:hover{
+  background: rgb(214, 106, 214);
+  color: white;
+  font-weight: lighter;
+}
+form div{
+  margin: .3em 0;
+  text-align: center;
+}
+form div a{
+  text-decoration: none;
+  color: rgb(214, 106, 214);
+  font-weight: bold;
+}
+form .error{
+  color: red;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+}

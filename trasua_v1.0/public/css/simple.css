@@ -1,0 +1,67 @@
+html,body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  
+  background: greenyellow;
+}
+
+.header{
+  position: relative;
+  height: 10%;
+  background: white;
+}
+
+.menu{
+  display: grid;
+  position: relative;
+  width: 100%;
+  background: lightblue;
+  height: 90%;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 50% 50%;
+  gap: 5px 5px;
+}
+
+.menu .product{
+  position: relative;
+  /* border: 1px solid black; */
+}
+
+.menu .product .img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.menu .product .img img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.menu .product .order{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 25px;
+  opacity: 0;
+  color: white;
+}
+
+.menu .product .order:hover{
+  opacity: 1;
+  background: rgba(0,0,0,0.7);
+}
+
+.ten,.gia{
+  margin: 5px 0 5px 0;
+}

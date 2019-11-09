@@ -3,13 +3,13 @@
 class Route extends Controller{
 
   
-
   public function home(){
     if (isset($_SESSION['logged'])){
-      $giohang = $this->model("Giohang");
-      $this->view("home",["giohang" => $giohang]);
+      $hanghoa = $this->model("Hanghoa");
+      $trasua = $hanghoa->getAll();
+      $this->view("home",true,["trasua"=>$trasua]);
     }
-    else $this->view("login");
+    else $this->view("login",false);
   }
 
   public function login(){
@@ -22,7 +22,7 @@ class Route extends Controller{
         $_SESSION['client'] = $curr_user['infor']['client'];
         header("Location: /home");
       }
-      else $this->view("login",["error"=>"Wrong password or username"]);
+      else $this->view("login",false,["error"=>"Wrong password or username"]);
     }
     else header("Location: home");
   }
@@ -51,12 +51,25 @@ class Route extends Controller{
         // header("Location: home");
         echo "succesfully";
       }
-      else $this->view("register");
+      else $this->view("register",false);
     }
     else header("Location: home");
   }
 
-  
+  public function add($mh=''){
+    $giohang = $this->model("Giohang");
+    $giohang->themHang("mgh1",$mh);
+  }
+
+  public function giohang(){
+    $giohang = $this->model("Giohang");
+    $cur_mgh = $giohang->getgiohangwithusername($_SESSION['username']);
+    $cur_giohang = array();
+    if ($cur_mgh != ""){
+      $cur_giohang = $giohang->getCTGHwithMGH($cur_mgh);
+    }
+    $this->view("giohang",true,["giohang"=>$cur_giohang]);
+  }
 
   public function pagenotfound(){
     echo "Page not found";

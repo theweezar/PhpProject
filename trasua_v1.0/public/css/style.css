@@ -1,13 +1,34 @@
 body{
     position: relative;
     width: 100%;
-    height: 100vh;
+
     padding :0;
     margin :0 ;
-    overflow: hidden;
+    overflow: scroll;
+    /* overflow: hidden; */
     --pp: #aa6ebd;
     /* background: #f2f2f2; */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+/* width */
+body::-webkit-scrollbar {
+    width: 5px;
+    
+}
+
+  /* Track */
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+  /* Handle */
+body::-webkit-scrollbar-thumb {
+    background: rgb(201, 75, 201);
+}
+
+  /* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+    background: rgb(138, 30, 226);
 }
 header{
     position: fixed;
@@ -48,6 +69,80 @@ header nav ul li {
     padding: 0 2.5em;
     font-size: 1.6em;
 }
+header nav ul li:nth-child(2){
+    position: relative;
+}
+header nav ul li:nth-child(2) #cart{
+    position: absolute;
+    width: 400px;
+    height: auto;
+    display: none;
+    transform: translateX(-25%);
+    background: rgb(243, 232, 169);
+    color: black;
+    padding: .5em 0;
+    border: 2px solid gray;
+}
+header nav ul li:nth-child(2):hover #cart{
+    display: block;
+}
+#cart h1{
+    font-size: 1.2em;
+    padding: 0;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+#cart .cartitem{
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    margin-left: 20px;
+    align-items: center;
+}
+
+#cart h2{
+    font-size: 1em;
+    width: 10%;
+}
+#cart p{
+    width: 30%;
+    padding: 0;
+    margin-left: 20px;
+    overflow: hidden;
+}
+#cart img{
+    padding: 0;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+}
+#cart .line{
+    width: 350px;
+    height: 2px;
+    margin: 0 .5em;
+    background: black;
+}
+
+header nav ul li:nth-child(2) a {
+    position: relative;
+}
+header nav ul li:nth-child(2) #index{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    background: red;
+    padding: 2px;
+    color: white;
+    font-weight: bolder;
+    /* box-shadow: 0px 0px 2px 2px rgb(29, 28, 28); */
+    border-top-right-radius: 9px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 9px;
+    /* border: 3px solid white; */
+}
 header nav ul li a{
     text-decoration: none;
     color: white;
@@ -75,188 +170,6 @@ header .account{
 header button{
     margin: 0 1em;
 }
-main{
-    /* background: black; */
-    position: relative;
-    top: 150px;
-    bottom: 0;
-    display: grid;
-    width: 100%;
-    height: 95%;
-    grid-template-columns: 60% 40%;
-    grid-template-rows: 30% 50%;
-    grid-gap: .3em;
-    margin-top: .3em;
-    padding: 0;
-    /* overflow: scroll; */
-}
-
-.grid1{
-    background: #d7c1dd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.productshow{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 80%;
-}
-.product{
-    position: relative;
-    min-width: 20%;
-    min-height: 90%;
-    max-width: 60%;
-    max-height: 100%;
-    border: 2.5px solid black;
-    border-radius: 20px;
-    margin: 0 1em;
-    text-align: center;
-    background: white;
-    
-}
-.product h2{
-    position: absolute;
-    background: rgba(207, 50, 50, 0.74);
-    top: -15%;
-    left: -15%;
-    height: 50px;
-    border-radius: 10px;
-    padding: 0 5px;
-    line-height: 50px;
-    font-size: 1em;
-}
-.product .imgbox{
-    min-width: 80%;
-    min-height: 80%;
-    /* border: 1px solid black; */
-    overflow: hidden;
-}
-.product .price{
-    position: relative;
-    top: -20px;
-    padding:0;
-    margin:0;
-    font-weight: bold;
-}
-.product img{
-    /* overflow: hidden; */
-    width: 100px;
-    /* min-height: 100px ; */
-    /* max-height: 200px; */
-    /* height: 100%; */
-    object-fit: cover;
-    object-position: center;
-
-}
-.product .buy{
-    position: absolute;
-    bottom: -1px;
-    right: 10px;
-    width: 20%;
-    height: 50%;
-    opacity: 0;
-    transition: 0.5s;
-    /* background: rgba(0,0,0,0.5); */
-}
-.product:hover .buy{
-    opacity: 1;
-}
-.product .buy div{
-    width: 40px;
-    height: 40px;
-}
-.product .buy div img{
-    /* width: 20px; */
-    /* height: 20px; */
-    object-fit: cover;
-}
-.product .buy .check img{
-    width: 60%;
-}
-.product .buy .cancel img{
-    width: 60%;
-}
-.grid2{
-    background: rgb(200, 219, 200);
-}
-.grid3{
-    grid-column: 1/3;
-    overflow: scroll;
-    background: rgb(221, 217, 197);
-}
-main section h1{
-    font-size: 2em;
-    padding: 0;
-    margin: 0;
-}
-.grid1 h1{
-    margin-left: 1em;
-}
-.grid2 h1{
-    text-align: center;
-}
-.grid3 h1{
-    position: fixed;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-}
-.grid3 .productshow{
-    display: flex;
-    position: relative;
-    top: 15%;
-    left: 11%;
-}
-/* .grid3::-webkit-scrollbar{
-    display: none;
-} */
-
-.grid2 .product{
-    margin: 1em;
-    width: 25%;
-    height: 60%;
-}
-.grid2 .product h2{
-    background: rgba(238, 109, 130, 0.74);
-}
-.grid3 .product{
-    margin: 1.5em 2em 0;
-    width: 40%;
-    height: 50%;
-}
-.grid3 .product:nth-child(1){
-    margin-left: 4em;
-}
-.grid3 .product h2{
-    background: rgba(157, 221, 153, 0.829);
-}
-.grid3 .product .imgbox img{
-    width: 150px;
-    height: 200px;
-}
-.grid3 .product .buy div{
-    width: 60px;
-    height: 60px;
-}
-/* footer{
-    position: absolute;
-    background: rgb(94, 89, 94);
-    width: 100%;
-    height: 5%;
-    bottom: 0;
-    left: 0;
-    color: rgb(203, 148, 255);
-    display: flex;
-    justify-content: center;
-}
-footer h1{
-    padding: 0;
-    margin: 0;
-} */
 .account{
     position: absolute;
     right: 2em;
@@ -303,4 +216,86 @@ footer h1{
 }
 #more h3 div{
     color: white;
+}
+
+main{
+    position: relative;
+    top: 200px;
+    margin: 0 1em;
+    display: grid;
+    grid-template-columns: repeat(5,minmax(200px,.2fr));
+    grid-gap: 2em;
+    /* overflow: scroll; */
+}
+main .product{
+    position: relative;
+    height: 250px;
+    border: 2px solid black;
+    border-bottom: none;
+    background: rgb(255, 255, 255);
+    transition: 0.4s;
+}
+main .product .infor{
+    position: absolute;
+    width: 100%;
+    background: rgba(199, 178, 221, 0.863);
+    font-size: 1em;
+    bottom: -10px;
+    left: -10px;
+    /* border: 2px solid black; */
+    padding: 0 10px;
+    border-radius: 20px;
+    color: white;
+    overflow: hidden;
+}
+.infor .name{
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.infor .price{
+    color: rgb(49, 49, 20);
+}
+.btn{
+    display: flex;
+    color: black;
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    line-height: 20px;
+    border: 1px solid green;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+/* sau khi nhấp chữ order thì nó chuyển thành color: green (#pick chứa innerText là Order) */
+.btn.active{
+    border: none;
+    background:green;
+    color: white;
+}
+#drop{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 30px;
+    height: 30px;
+}
+.product.chosen{
+    border: 2px solid green;
+}
+.product .imgbox{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.product .imgbox img{
+    object-fit: cover;
+    min-width: 60%;
+    max-width: 100%;
+    min-height: 60%;
+    max-height: 100%;
 }
