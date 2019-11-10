@@ -256,27 +256,11 @@ main .product .infor{
     color: rgb(49, 49, 20);
 }
 .btn{
-    display: flex;
-    color: black;
-    position: absolute;
-    bottom: -5px;
-    right: -5px;
-    line-height: 20px;
-    border: 1px solid green;
-    border-radius: 20px;
-    padding: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.4s;
+    padding: 10px 15px;
+    background: transparent;
+    border:2px solid white;
 }
 
-/* sau khi nhấp chữ order thì nó chuyển thành color: green (#pick chứa innerText là Order) */
-.btn.active{
-    border: none;
-    background:green;
-    color: white;
-}
 #drop{
     position: absolute;
     right: -10px;
