@@ -7,14 +7,14 @@
 
 <?php
 
-print_r($data["giohang"]);
+// print_r($data["giohang"]);
 
 foreach ($data["giohang"] as $key => $hang) {
   # code...
   ?>
   <tr>
     <td><?php echo $hang["mh"] ?></td>
-    <td><?php 1; ?></td>
+    <td><?php echo "0d"; ?></td>
   </tr>
 
 

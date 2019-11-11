@@ -60,7 +60,10 @@
             <div class="line"></div>
         </div>
         </a></li>
-        <?php if(!$_SESSION['client']) echo '<li><a href="/themtrasua">Them tra sua</a></li>'; ?>
+        <?php if(!$_SESSION['client']){
+          echo '<li><a href="/themtrasua">Them tra sua</a></li>';
+          echo '<li><a href="/qlnd">Quan ly nguoi dung</a></li>';
+        } ?>
       </ul>
     </nav>
     <div class="account">Chào , <b> <?php echo $_SESSION['username'] ?> </b> 
@@ -69,10 +72,9 @@
         <a class="out" href="/logout">
             <img src="img/logout.jfif" alt="">
         </a>
-        <h3>Tên : <div> <?php echo $_SESSION['username'] ?> </div></h3> 
-        <h3>Số điện thoại : <div> 0582213537 </div></h3> 
-        <h3>Email : <div>daiphan308@gmail.com </div></h3> 
-        <h3>Địa chỉ : <div> 235/45 D Bạch Đằng, P.15, Quận Bình Thạnh</div></h3> 
+        <h3>Tên : <div> <?php echo $_SESSION['fname'] ?> </div></h3> 
+        <h3>Số điện thoại : <div> <?php echo $_SESSION["sdt"] ?> </div></h3> 
+        <h3>Email : <div><?php echo $_SESSION["email"] ?> </div></h3>  
     </div>
     </div>
 </header>

@@ -15,7 +15,7 @@
         <div class="order">
           <div class="ten"><?php echo $trasua["tenh"] ?></div>
           <div class="gia"><?php echo $trasua["gia"] ?></div>
-          <button id="btn-<?php echo $key ?>">Add</button>
+          <button class="btn-add" id="btn-<?php echo $key ?>">Add</button>
         </div>
       </div>
     <?php } ?>

@@ -26,6 +26,11 @@ class Users extends MySQL{
     return $data;
   }
 
+  public function getuserwithusername($username){
+    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->tb_name." WHERE username = '".$username."' ;");
+    return mysqli_fetch_assoc($result);
+  }
+
   public function validate($username,$password){
     $username = $this->CheckInput($username);
     // $password = hash("md5",$this->CheckInput($password),false);
