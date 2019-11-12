@@ -1,8 +1,9 @@
 
-<table>
+<table class="cart-table">
   <tr>
-    <th>Ten tra sua</th>
-    <th>Gia tien</th>
+    <th>Tên trà sữa</th>
+    <th>Số lượng</th>
+    <th>Giá tiền</th>
   </tr>
 
 <?php
@@ -14,6 +15,7 @@ foreach ($data["giohang"] as $key => $hang) {
   ?>
   <tr>
     <td><?php echo $hang["mh"] ?></td>
+    <td>0</td>
     <td><?php echo "0d"; ?></td>
   </tr>
 

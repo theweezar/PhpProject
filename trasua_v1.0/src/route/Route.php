@@ -24,6 +24,15 @@ class Route extends Controller{
           $_SESSION['sdt'] = $curr_user['infor']['sdt'];
           $_SESSION['email'] = $curr_user['infor']['email'];
           $_SESSION['client'] = $curr_user['infor']['client'];
+          /**
+           * kiểm tra xem user đó có giỏ hàng tồn tại trong database ko để set SESSION
+           */
+          $giohang = $this->model("Giohang");
+          if ($giohang->checkExist($_SESSION["username"])) {
+            $_SESSION['hascart'] = true;
+            $_SESSION['mgh'] = $giohang->getgiohangwithusername($_SESSION['username']);
+          }
+          else $_SESSION['hascart'] = false;
           header("Location: /home");
         }
         else $this->view("login",false,["error"=>"Wrong password or username"]);
@@ -57,15 +66,31 @@ class Route extends Controller{
   }
 
   public function add($mh=''){
+    /**
+     * nếu user có sẵn giỏ hàng thì thêm vào giỏ đó, ko thì tạo mới
+     */
     if (isset($_SESSION['logged'])){
       $giohang = $this->model("Giohang");
-      $giohang->themHang("mgh1",$mh);
+      if (!$_SESSION['hascart']){
+        $giohang->createnewgiohang($_SESSION['username']);
+        $_SESSION['hascart'] = true;
+        $_SESSION['mgh'] = $giohang->getgiohangwithusername($_SESSION['username']);
+        $giohang->themHang($_SESSION['mgh'],$mh);
+      }
+      else $giohang->themHang($_SESSION['mgh'],$mh);
+      echo $_SESSION['mgh'];
     }
   }
 
   public function giohang(){
+    /**
+     * tạo kết nối tới giỏ hàng
+     * tìm giỏ hàng hiện tại khớp với user hiện tại
+     * sau đó lấy toàn bộ hàng mà người đó đã order - sẽ bị lập lại
+     * 
+     */
     if (isset($_SESSION['logged'])){
-      $giohang = $this->model("Giohang");
+      $giohang = $this->model("Giohang"); 
       $cur_mgh = $giohang->getgiohangwithusername($_SESSION['username']);
       $cur_giohang = array();
       if ($cur_mgh != ""){
