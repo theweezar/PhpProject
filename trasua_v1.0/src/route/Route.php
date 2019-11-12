@@ -148,6 +148,10 @@ class Route extends Controller{
     }
   }
 
+  public function themtrasua(){
+    echo "Not Yet";
+  }
+
   public function pagenotfound(){
     echo "Page not found";
   }

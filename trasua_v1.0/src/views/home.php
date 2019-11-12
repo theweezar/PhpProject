@@ -4,22 +4,22 @@
   // print_r($data["giohang"]);
 ?>
 
-<div class="menu">
+<menu>
   <?php 
     foreach ($data["trasua"] as $key => $trasua) {
       ?>
-      <div class="product">
-        <div class="img">
-          <img src="img/<?php echo $trasua["hinh"] ?>" alt="" srcset="">
+      <div class="box">
+        <div class="infor">
+          <img src="img/<?php echo $trasua['hinh']?>" alt="">
+          <div class="data">
+            <div class="name"><?php echo $trasua['tenh']?></div>
+            <div class="price">Gia: <?php echo $trasua['gia']?>d</div>
+          </div>
         </div>
-        <div class="order">
-          <div class="ten"><?php echo $trasua["tenh"] ?></div>
-          <div class="gia"><?php echo $trasua["gia"] ?></div>
-          <button class="btn-add" id="btn-<?php echo $key ?>">Add</button>
-        </div>
+        <button class="btn-add" id="btn-<?php echo $key ?>">+ Add</button>
       </div>
     <?php } ?>
-</div>
+</menu>
 
 
 

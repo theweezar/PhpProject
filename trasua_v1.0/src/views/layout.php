@@ -4,74 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/main.css">
   <script src="js/jquery.min.js"></script>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/simple.css">
-  <title>Document</title>
+  <title>Design page</title>
 </head>
 <body>
-
-<header style="position: relative">
-    <div class = "logo"> <img src="img/logo-6074.jpg" alt="logo" srcset="">
-    </div>
-    <nav >
-      <ul>
-        <!-- <li><a href="#">About Us</a></li> -->
-        <li><a href="/home">
-        <img src="img/fast-food.png" alt="">
-            Thực đơn
-        </a></li>
-        <li><a href="/giohang">
-        <img src="img/shopping-cart.png" alt="">
-        <div id="index">3</div>
-            Giỏ hàng
-        <div id="cart">
-            <h1>CHI TIẾT</h1>
-            <div class="cartitem">
-                <h2>Mã </h2>
-                <p>Tên tà tưa</p>
-                <p>giá * số lượng</p>
-            </div>
-            <div class="line"></div>
-            <div class="cartitem">
-                <h2>Mã </h2>
-                <p>Tên tà tưa</p>
-                <p>giá * số lượng</p>
-            </div>
-            <div class="line"></div>
-            <div class="cartitem">
-                <h2>Mã </h2>
-                <p>Tên tà tưa</p>
-                <p>giá * số lượng</p>
-            </div>
-            <div class="line"></div>
-        </div>
-        </a></li>
-        <?php if(!$_SESSION['client']){
-          echo '<li><a href="/themtrasua">Them tra sua</a></li>';
-          echo '<li><a href="/qlnd">Quan ly nguoi dung</a></li>';
-        } ?>
-      </ul>
-    </nav>
-    <div class="account">Chào , <b> <?php echo $_SESSION['username'] ?> </b> 
-    <div id="accountblock" >V </div>
-    <div id = "more" class="unactive">
-        <a class="out" href="/logout">
-            <img src="img/logout.jfif" alt="">
+  <div class="wall2"></div>
+  <nav>
+    <ul>
+      <li>
+        <p>Chào, <b><?php echo $_SESSION['username'] ?></b> <i id="more-btn"></i> </p>
+        <ul id='more-infor' class='none'>
+          <li>
+            <a href="/logout">Logout</a>
+          </li>
+          <li>Fullname: <?php echo $_SESSION['fname'] ?> </li>
+          <li>Email: <?php echo $_SESSION["email"] ?> </li>
+          <li>Phone: <?php echo $_SESSION["sdt"] ?></li>
+        </ul>
+      </li>
+      <li>
+        <a style="padding: 0;" href="/giohang">
+          <img src="img/shopping-cart.png" style="width: 25px; height: 25px; transform: translateY(5px);" alt="" srcset="">
         </a>
-        <h3>Tên : <div> <?php echo $_SESSION['fname'] ?> </div></h3> 
-        <h3>Số điện thoại : <div> <?php echo $_SESSION["sdt"] ?> </div></h3> 
-        <h3>Email : <div><?php echo $_SESSION["email"] ?> </div></h3>  
-    </div>
-    </div>
-</header>
+      </li>
+      <?php if(!$_SESSION['client']){
+        echo '<li><a href="/themtrasua">Thêm món</a></li>';
+        echo '<li><a href="/qlnd">Quản lý tài khoản</a></li>';
+      } ?>
+      <li><a href="/home">Menu</a></li>
+    </ul>
+  </nav>
 
-<?php 
-  require_once "../src/views/".$view.".php";
-?>
+  <?php 
+    require_once "../src/views/".$view.".php";
+  ?>
 
-
-<script src="js/script.js"></script>
-
+  <script src="js/script.js"></script>
 </body>
 </html>

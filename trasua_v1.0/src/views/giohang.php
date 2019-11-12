@@ -1,36 +1,41 @@
+<div class="cart">
+  <table class="cart-table">
+    <tr>
+      <th>Tên</th>
+      <th>Số lượng</th>
+      <th>Thành tiền</th>
+    </tr>
+    <?php
 
-<table class="cart-table">
-  <tr>
-    <th>Tên trà sữa</th>
-    <th>Số lượng</th>
-    <th>Giá tiền</th>
-  </tr>
+    // print_r($data["giohang"]);
 
-<?php
+    $thanhtien = 0;
 
-// print_r($data["giohang"]);
-
-$thanhtien = 0;
-
-foreach ($data["giohang"] as $key => $hang) {
-  # code...
-  ?>
-  <tr>
-    <td><?php echo $data["trasua"][$key]["tenh"] ?></td>
-    <td><?php echo $hang["soluong"] ?></td>
-    <td><?php $thanhtien += $data["trasua"][$key]["gia"] * $hang["soluong"]; 
-    echo $data["trasua"][$key]["gia"] * $hang["soluong"]; ?></td>
-  </tr>
-<?php } ?>
-</table>
-
-<?php 
+    foreach ($data["giohang"] as $key => $hang) {
+      # code...
+      ?>
+      <tr>
+        <td><?php echo $data["trasua"][$key]["tenh"] ?></td>
+        <td><?php echo $hang["soluong"] ?></td>
+        <td><?php $thanhtien += $data["trasua"][$key]["gia"] * $hang["soluong"]; 
+        echo $data["trasua"][$key]["gia"] * $hang["soluong"]; ?></td>
+      </tr>
+    <?php } ?>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Tổng cộng: <?php echo $thanhtien ?>d</td>
+    </tr>
+  </table>
+  <?php 
   if ($_SESSION['hascart']){
     ?>
-    <a total='<?php echo $thanhtien ?>' id='thanhtoan'>Thanh toán</a>
+    <button total='<?php echo $thanhtien ?>' id='pay'>Thanh toán</button>
     <?php
   }
 ?>
+  
+</div>
 
 <?php
   if (isset($data["done"])){
@@ -42,3 +47,10 @@ foreach ($data["giohang"] as $key => $hang) {
   }
 ?>
 
+<script>
+document.getElementById('pay').addEventListener('click',function(){
+  if (confirm("Ban co chac chan khong ?")){
+    window.location = `/thanhtoan/${this.getAttribute('total')}`;
+  }
+});
+</script>
