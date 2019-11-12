@@ -11,19 +11,6 @@
 </head>
 <body>
 
-<!-- <div class="header">
-  <nav>
-    <ul>
-      <li><a href="/giohang">Gio hang</a></li>
-      <li><a href="/logout">Dang xuat</a></li>
-      <?php 
-      // if(!$_SESSION['client']) echo '<li><a href="/themtrasua">Them tra sua</a></li>'; 
-      ?>
-    </ul>
-  </nav>
-  <div class="infor-board"></div>
-</div> -->
-
 <header style="position: relative">
     <div class = "logo"> <img src="img/logo-6074.jpg" alt="logo" srcset="">
     </div>
