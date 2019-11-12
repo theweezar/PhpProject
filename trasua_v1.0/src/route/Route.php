@@ -4,6 +4,9 @@ class Route extends Controller{
 
   
   public function home(){
+    /**
+     * Homepage sẽ liệt kê ra các món trà sữa để user lựa vào đặt món
+     */
     if (isset($_SESSION['logged'])){
       $hanghoa = $this->model("Hanghoa");
       $trasua = $hanghoa->getAll();
@@ -13,6 +16,13 @@ class Route extends Controller{
   }
 
   public function login(){
+    /**
+     * Sau khi login thành công ta sẽ kiểm tra tài khoản là client hay là administrator
+     * cả 2 đều có thể order
+     * kiểm tra xem user hiện tại có tồn tại giỏ hàng hay ko
+     * nếu có thì tạo Session['mgh'] = giỏ hạng mà user đó đang có
+     * Session['hascart'] = true vì giỏ hàng tồn tại
+     */
     if (!isset($_SESSION["logged"])){
       if (isset($_POST['username']) && isset($_POST['password'])){
         $users = $this->model("Users");
@@ -58,7 +68,6 @@ class Route extends Controller{
         $email = $_POST['email'];
         $users->createUser($fname,$username,$password,$sdt,$email,true);
         header("Location: home");
-        echo "succesfully";
       }
       else $this->view("register",false);
     }
@@ -67,7 +76,7 @@ class Route extends Controller{
 
   public function add($mh=''){
     /**
-     * nếu user có sẵn giỏ hàng thì thêm vào giỏ đó, ko thì tạo mới
+     * nếu user có sẵn giỏ hàng thì thêm vào giỏ đó, ko thì tạo mới rồi thêm món hàng đó vào luôn
      */
     if (isset($_SESSION['logged'])){
       $giohang = $this->model("Giohang");
@@ -87,20 +96,29 @@ class Route extends Controller{
      * tạo kết nối tới giỏ hàng
      * tìm giỏ hàng hiện tại khớp với user hiện tại
      * sau đó lấy toàn bộ hàng mà người đó đã order - sẽ bị lập lại
-     * 
+     * vào database HangHoa để lấy cả thông tin lẫn giá tiền theo mh, mh này được lấy từ
+     * CTGH
      */
     if (isset($_SESSION['logged'])){
-      $giohang = $this->model("Giohang"); 
-      $cur_mgh = $giohang->getgiohangwithusername($_SESSION['username']);
-      $cur_giohang = array();
-      if ($cur_mgh != ""){
-        $cur_giohang = $giohang->getCTGHwithMGH($cur_mgh);
+      $giohang = $this->model("Giohang");
+      $hanghoa = $this->model("Hanghoa");
+      $curr_giohang = array();
+      $curr_trasua = array();
+      if (isset($_SESSION['mgh'])){
+        $curr_giohang = $giohang->getCTGHwithMGH($_SESSION['mgh']);
+        foreach ($curr_giohang as $i => $hang) {
+          # code...
+          array_push($curr_trasua,$hanghoa->getwithcode($hang["mh"]));
+        }
       }
-      $this->view("giohang",true,["giohang"=>$cur_giohang]);
+      $this->view("giohang",true,["giohang"=>$curr_giohang,"trasua"=>$curr_trasua]);
     }
   }
 
   public function qlnd(){
+    /**
+     * List ra tất cả các Users
+     */
     if (isset($_SESSION["logged"])){
       if (!$_SESSION["client"]){
         $users = $this->model("Users");
@@ -110,6 +128,24 @@ class Route extends Controller{
       else header("Location: home");
     }
     else header("Location: home");
+  }
+
+  public function thanhtoan($thanhtien=''){
+    /**
+     * kết nối database hóa đơn
+     * tạo hóa đơn mới với mgh và thành tiền
+     * unset Session['mgh'] đi vì giỏ hàng hiện tại đã được thanh toán
+     * session['hascart'] = false vì ko còn giỏ hàng
+     */
+    if (isset($_SESSION['logged'])){
+      $hoadon = $this->model("Hoadon");
+      $giohang = $this->model("Giohang");
+      $hoadon->createNewbill($_SESSION['mgh'],$thanhtien);
+      $giohang->pay($_SESSION['mgh']);
+      unset($_SESSION['mgh']);
+      $_SESSION['hascart'] = false;
+      header("Location: /");
+    }
   }
 
   public function pagenotfound(){

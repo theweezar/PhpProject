@@ -63,7 +63,7 @@ class Giohang extends MySQL{
 
     public function getCTGHwithMGH($mgh){
       /**
-       * lấy toàn bộ order theo mã giỏ hàng
+       * lấy toàn bộ order từ chi tiết giỏ hàng (mgh - mh)
        */
       $result = mysqli_query($this->conn,"SELECT * FROM ".$this->ctgh." WHERE mgh = '".$mgh."';");
       if (mysqli_num_rows($result) == 0) return array();
@@ -74,5 +74,10 @@ class Giohang extends MySQL{
         }
         return $data;
       }
+    }
+
+    public function pay($mgh){
+      mysqli_query($this->conn,"UPDATE ".$this->giohang." SET pay = 1 WHERE mgh = '".$mgh."' ");
+      mysqli_commit($this->conn);
     }
 }

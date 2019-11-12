@@ -10,15 +10,35 @@
 
 // print_r($data["giohang"]);
 
+$thanhtien = 0;
+
 foreach ($data["giohang"] as $key => $hang) {
   # code...
   ?>
   <tr>
-    <td><?php echo $hang["mh"] ?></td>
-    <td>0</td>
-    <td><?php echo "0d"; ?></td>
+    <td><?php echo $data["trasua"][$key]["tenh"] ?></td>
+    <td><?php echo $hang["soluong"] ?></td>
+    <td><?php $thanhtien += $data["trasua"][$key]["gia"] * $hang["soluong"]; 
+    echo $data["trasua"][$key]["gia"] * $hang["soluong"]; ?></td>
   </tr>
-
-
 <?php } ?>
 </table>
+
+<?php 
+  if ($_SESSION['hascart']){
+    ?>
+    <a total='<?php echo $thanhtien ?>' id='thanhtoan'>Thanh toán</a>
+    <?php
+  }
+?>
+
+<?php
+  if (isset($data["done"])){
+    if ($data["done"]) {
+      ?>
+        <script>alert("Thanh toan da duoc luu vao CSDL");</script>
+      <?php
+    }
+  }
+?>
+
