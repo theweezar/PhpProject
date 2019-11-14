@@ -3,8 +3,6 @@
 class Hanghoa extends MySQL{
   private $conn;
 
-  private $hanghoa = "trasua";
-
   public function __construct(){
     $this->conn = $this->Connect();
   }

@@ -24,7 +24,7 @@
     <tr>
       <td></td>
       <td></td>
-      <td>Tổng cộng: <?php echo $thanhtien ?>d</td>
+      <td><b>Tổng cộng:</b> <?php echo $thanhtien ?>d</td>
     </tr>
   </table>
   <?php 

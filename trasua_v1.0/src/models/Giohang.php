@@ -3,10 +3,6 @@
 class Giohang extends MySQL{
     private $conn;
 
-    private $giohang = 'giohang';
-
-    private $ctgh = 'ctgh';
-
     public function __construct(){
       $this->conn = $this->Connect();
     }

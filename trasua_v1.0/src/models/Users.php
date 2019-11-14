@@ -4,8 +4,6 @@ class Users extends MySQL{
 
   private $conn;
 
-  private $tb_name = 'users';
-
   public function __construct(){
     $this->conn = $this->Connect();
   }
@@ -18,7 +16,7 @@ class Users extends MySQL{
   }
 
   public function getAllUsers(){
-    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->tb_name."");
+    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->users."");
     $data = array();
     for ($i=0;$i<mysqli_num_rows($result);$i++){
       array_push($data,mysqli_fetch_assoc($result));
@@ -27,14 +25,14 @@ class Users extends MySQL{
   }
 
   public function getuserwithusername($username){
-    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->tb_name." WHERE username = '".$username."' ;");
+    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->users." WHERE username = '".$username."' ;");
     return mysqli_fetch_assoc($result);
   }
 
   public function validate($username,$password){
     $username = $this->CheckInput($username);
     // $password = hash("md5",$this->CheckInput($password),false);
-    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->tb_name." WHERE username= '".$username."' ;");
+    $result = mysqli_query($this->conn,"SELECT * FROM ".$this->users." WHERE username= '".$username."' ;");
     if (mysqli_num_rows($result)==0) return false;
     else{
       $val = mysqli_fetch_assoc($result);
@@ -44,7 +42,7 @@ class Users extends MySQL{
   }
 
   public function createUser($fname,$username,$password,$sdt,$email,$client){
-    mysqli_query($this->conn,"INSERT INTO ".$this->tb_name." (username,password,client,fname,sdt,email) VALUES('".$username."','".$password."',".$client.",'".$fname."','".$sdt."','".$email."') ;");
+    mysqli_query($this->conn,"INSERT INTO ".$this->users." (username,password,client,fname,sdt,email) VALUES('".$username."','".$password."',".$client.",'".$fname."','".$sdt."','".$email."') ;");
     mysqli_commit($this->conn);
   }
 }

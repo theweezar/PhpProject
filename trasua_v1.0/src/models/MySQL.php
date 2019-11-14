@@ -5,6 +5,16 @@ class MySQL{
   private $db_username;
   private $db_password;
   private $db_name;
+
+  protected $users = 'users';
+
+  protected $hanghoa = "trasua";
+
+  protected $giohang = 'giohang';
+
+  protected $ctgh = 'ctgh';
+
+  protected $hoadon = "hoadon";
   
   protected function Connect(){
     $this->db_host = "localhost";

@@ -6,6 +6,7 @@
       <th>Password</th>
       <th>Phone number</th>
       <th>Email</th>
+      <th></th>
     </tr>
     <?php 
     foreach ($data["users"] as $key => $user) {
@@ -17,6 +18,7 @@
         <td><?php echo $user["password"]; ?></td>
         <td><?php echo $user["sdt"]; ?></td>
         <td><?php echo $user["email"]; ?></td>
+        <td>Lịch sử giao dịch</td>
       </tr>
       <?php 
     }

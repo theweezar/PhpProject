@@ -2,6 +2,15 @@
 
 class Route extends Controller{
 
+  // public function __construct(){
+    
+  // }
+
+  private $parent;
+
+  public function __construct(){
+    $parent = parent;
+  }
   
   public function home(){
     /**
@@ -145,6 +154,28 @@ class Route extends Controller{
       unset($_SESSION['mgh']);
       $_SESSION['hascart'] = false;
       header("Location: /");
+    }
+  }
+
+  public function lichsu($mgh=""){
+    /**
+     * Lịch sử giao dịch 
+     */
+    if (isset($_SESSION["logged"])){
+      $hoadon = $this->model("Hoadon");
+      $giohang = $this->model("Giohang");
+      if (strcasecmp($mgh,"") == 0){
+        $allbills = $hoadon->getPaidBill($_SESSION["username"]);
+        // print_r($allbills);
+        $this->view("lichsugd",true,["allbills"=>$allbills]);
+      }
+      else{
+        $ctgh = $giohang->getCTGHwithMGH($mgh);
+        $thanhtien = $hoadon->getPrice($mgh);
+        //["ctgh"=>$ctgh,"thanhtien"=>$thanhtien]
+        $this->view("chitietlichsu",true);
+        print_r($this);
+      }
     }
   }
 

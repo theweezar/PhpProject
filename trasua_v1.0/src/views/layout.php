@@ -23,6 +23,7 @@
           <li>Phone: <?php echo $_SESSION["sdt"] ?></li>
         </ul>
       </li>
+      <li><a href="/lichsu">Lịch sử giao dịch</a></li>
       <li>
         <a style="padding: 0;" href="/giohang">
           <img src="img/shopping-cart.png" style="width: 25px; height: 25px; transform: translateY(5px);" alt="" srcset="">
