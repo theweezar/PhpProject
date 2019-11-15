@@ -2,12 +2,7 @@
 class Controller{
 
   protected $defaultLayout = "layout";
-
   
-  // public function static_folder($filename){
-  //   $type = explode(".",$filename)[1];
-    
-  // }
   protected $static = 0;
   public function setStatic($n = 0){
     $this->static = $n;
@@ -15,8 +10,9 @@ class Controller{
 
   public function static_folder($dirname='',$filename=''){
     for($i = 0; $i < $this->static; $i++){
-      
+      $dirname = "../".$dirname;
     }
+    return "".$dirname."/".$filename."";
   }
 
   public function model($model){

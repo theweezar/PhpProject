@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/main.css">
-  <script src="js/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <link rel="stylesheet" href="<?php echo $this->static_folder('css','main.css'); ?>">
+  <script src="<?php echo $this->static_folder('js','jquery.min.js');?>"></script>
   <title>Design page</title>
 </head>
 <body>
@@ -26,7 +27,7 @@
       <li><a href="/lichsu">Lịch sử giao dịch</a></li>
       <li>
         <a style="padding: 0;" href="/giohang">
-          <img src="img/shopping-cart.png" style="width: 25px; height: 25px; transform: translateY(5px);" alt="" srcset="">
+          <img src="<?php echo $this->static_folder('img','shopping-cart.png'); ?>" style="width: 25px; height: 25px; transform: translateY(5px);" alt="" srcset="">
         </a>
       </li>
       <?php if(!$_SESSION['client']){
@@ -41,6 +42,6 @@
     require_once "../src/views/".$view.".php";
   ?>
 
-  <script src="js/script.js"></script>
+  <script src="<?php echo $this->static_folder('js','script.js'); ?>"></script>
 </body>
 </html>

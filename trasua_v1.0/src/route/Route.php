@@ -1,16 +1,6 @@
 <?php
 
 class Route extends Controller{
-
-  // public function __construct(){
-    
-  // }
-
-  private $parent;
-
-  public function __construct(){
-    $parent = parent;
-  }
   
   public function home(){
     /**
@@ -145,6 +135,7 @@ class Route extends Controller{
      * tạo hóa đơn mới với mgh và thành tiền
      * unset Session['mgh'] đi vì giỏ hàng hiện tại đã được thanh toán
      * session['hascart'] = false vì ko còn giỏ hàng
+     * trong mysql đã dùng current_timestamp cho cột created_at nên ta ko cần tạo mới nữa
      */
     if (isset($_SESSION['logged'])){
       $hoadon = $this->model("Hoadon");
@@ -164,17 +155,22 @@ class Route extends Controller{
     if (isset($_SESSION["logged"])){
       $hoadon = $this->model("Hoadon");
       $giohang = $this->model("Giohang");
+      $hanghoa = $this->model("Hanghoa");
       if (strcasecmp($mgh,"") == 0){
-        $allbills = $hoadon->getPaidBill($_SESSION["username"]);
+        $allbills = $hoadon->getAllPaidBill($_SESSION["username"]);
         // print_r($allbills);
         $this->view("lichsugd",true,["allbills"=>$allbills]);
       }
       else{
         $ctgh = $giohang->getCTGHwithMGH($mgh);
-        $thanhtien = $hoadon->getPrice($mgh);
-        //["ctgh"=>$ctgh,"thanhtien"=>$thanhtien]
-        $this->view("chitietlichsu",true);
-        print_r($this);
+        // $thanhtien = $hoadon->getPrice($mgh);
+        $bill = $hoadon->getOneBill($mgh);
+        $ghinfor = array();
+        foreach ($ctgh as $key => $gh) {
+          # code...
+          array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
+        }
+        $this->view("chitietlichsu",true,["ctgh"=>$ghinfor,"thanhtien"=>$bill["thanhtien"],"created_at"=>$bill["created_at"]]);
       }
     }
   }
