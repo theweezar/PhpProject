@@ -32,7 +32,7 @@
       </li>
       <?php if(!$_SESSION['client']){
         echo '<li><a href="/themtrasua">Thêm món</a></li>';
-        echo '<li><a href="/qlnd">Quản lý tài khoản</a></li>';
+        echo '<li><a href="/quanly">Quản lý tài khoản</a></li>';
       } ?>
       <li><a href="/home">Menu</a></li>
     </ul>

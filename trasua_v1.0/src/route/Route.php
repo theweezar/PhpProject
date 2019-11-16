@@ -114,15 +114,34 @@ class Route extends Controller{
     }
   }
 
-  public function qlnd(){
+  public function quanly($username=''){
     /**
      * List ra tất cả các Users
+     * Ngoài ra, còn có thể xem được đơn hàng hiện tại của User
+     * Nếu giỏ hàng có tồn tại ($giohang->checkExist($username)) thì ta sẽ lấy cái giở hàng đó
      */
     if (isset($_SESSION["logged"])){
       if (!$_SESSION["client"]){
         $users = $this->model("Users");
-        $allusers = $users->getAllUsers();
-        $this->view("quanly",true,["users"=>$allusers]);
+        $hanghoa = $this->model("Hanghoa");
+        $giohang = $this->model("Giohang");
+        if (strcasecmp(trim($username),"") == 0){
+          $allusers = $users->getAllUsers();
+          $this->view("quanly",true,["users"=>$allusers]);
+        }
+        else{
+          if ($giohang->checkExist($username)){
+            $ghinfor = array();
+            $mgh = $giohang->getgiohangwithusername($username);
+            $ctgh = $giohang->getCTGHwithMGH($mgh);
+            foreach ($ctgh as $key => $gh) {
+              # code...
+              array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
+            }
+            $this->view("chitietdonhang",true,["ctgh"=>$ghinfor]);
+          }
+          else $this->view("chitietdonhang",true);
+        }
       }
       else header("Location: home");
     }
@@ -170,7 +189,7 @@ class Route extends Controller{
           # code...
           array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
         }
-        $this->view("chitietlichsu",true,["ctgh"=>$ghinfor,"thanhtien"=>$bill["thanhtien"],"created_at"=>$bill["created_at"]]);
+        $this->view("chitietdonhang",true,["ctgh"=>$ghinfor,"thanhtien"=>$bill["thanhtien"],"created_at"=>$bill["created_at"]]);
       }
     }
   }

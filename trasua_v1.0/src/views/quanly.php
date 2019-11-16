@@ -6,7 +6,7 @@
       <th>Password</th>
       <th>Phone number</th>
       <th>Email</th>
-      <th></th>
+      <th>Đơn hàng hiện tại</th>
     </tr>
     <?php 
     foreach ($data["users"] as $key => $user) {
@@ -18,7 +18,7 @@
         <td><?php echo $user["password"]; ?></td>
         <td><?php echo $user["sdt"]; ?></td>
         <td><?php echo $user["email"]; ?></td>
-        <td>Lịch sử giao dịch</td>
+        <td style="text-align:center;"><a href="/quanly/<?php echo $user["username"];?>">Xem</a></td>
       </tr>
       <?php 
     }

@@ -1,6 +1,12 @@
 
+<?php 
+  if (isset($data["ctgh"])){
+
+  
+?>
+
 <center><div class="bill">
-  <p>Chi tiết giao dịch (<?php echo $data["created_at"]; ?>) </p>
+  <p>Chi tiết đơn hàng <?php if (isset($data["created_at"])) echo "(".$data["created_at"].")"; ?> </p>
   <table>
     <?php
       foreach ($data["ctgh"] as $key => $gh) {
@@ -22,7 +28,16 @@
       <td style="font-weight: bold; text-transform:uppercase;">Tổng cộng: </td>
       <td></td>
       <td></td>
-      <td style="border-top:2px solid black;"><?php echo $data["thanhtien"];?>đ</td>
+      <td style="border-top:2px solid black;"><?php if(isset($data["thanhtien"])) echo $data["thanhtien"];?>đ</td>
     </tr>
   </table>
 </div></center>
+
+<?php
+  }
+  else{
+    ?>
+    <center><h1>Không có đơn hàng hiện tại</h1></center>
+    <?php
+  } 
+?>
