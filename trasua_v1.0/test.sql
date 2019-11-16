@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 14, 2019 lúc 06:11 AM
+-- Thời gian đã tạo: Th10 16, 2019 lúc 04:07 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -88,7 +88,7 @@ INSERT INTO `giohang` (`mgh`, `username`, `pay`) VALUES
 ('mgh4', 'admin', 1),
 ('mgh5', 'admin', 1),
 ('mgh6', 'dai', 0),
-('mgh7', 'admin', 0);
+('mgh7', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -99,19 +99,21 @@ INSERT INTO `giohang` (`mgh`, `username`, `pay`) VALUES
 CREATE TABLE `hoadon` (
   `mahd` varchar(100) NOT NULL,
   `mgh` varchar(100) NOT NULL,
-  `thanhtien` int(11) NOT NULL
+  `thanhtien` int(11) NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Đang đổ dữ liệu cho bảng `hoadon`
 --
 
-INSERT INTO `hoadon` (`mahd`, `mgh`, `thanhtien`) VALUES
-('hd1', 'mgh2', 32112),
-('hd2', 'mgh3', 1000),
-('hd3', 'mgh4', 14900),
-('hd4', 'mgh1', 23390),
-('hd5', 'mgh5', 12200);
+INSERT INTO `hoadon` (`mahd`, `mgh`, `thanhtien`, `created_at`) VALUES
+('hd1', 'mgh2', 32112, '2019-11-12'),
+('hd2', 'mgh3', 1000, '2019-11-12'),
+('hd3', 'mgh4', 14900, '2019-11-13'),
+('hd4', 'mgh1', 23390, '2019-11-12'),
+('hd5', 'mgh5', 12200, '2019-11-14'),
+('hd6', 'mgh7', 13978, '2019-11-15');
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,9 @@ INSERT INTO `trasua` (`mh`, `tenh`, `gia`, `con`, `hinh`) VALUES
 ('ts07', 'Tra Sua Thai', 2500, 1, 'p4_love.png'),
 ('ts08', 'Tra sua chan chau duong den', 4500, 1, 'p15.png'),
 ('ts09', 'Hong tra nho', 2478, 1, 'p9.png'),
-('ts10', 'Tra chanh', 1700, 1, 'p2.png');
+('ts10', 'Tra chanh', 1700, 1, 'p2.png'),
+('ts11', 'Tra sua chan chau duong phen', 1500, 1, 'ts1.png'),
+('ts12', 'Tra sua kem trang den', 9000, 1, 'ts2.png');
 
 -- --------------------------------------------------------
 
