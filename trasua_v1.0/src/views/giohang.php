@@ -30,7 +30,7 @@
   <?php 
   if ($_SESSION['hascart']){
     ?>
-    <button total='<?php echo $thanhtien ?>' id='pay'>Thanh toán</button>
+    <button total='<?php echo $thanhtien ?>' id='pay'>Đặt hàng</button>
     <?php
   }
 ?>

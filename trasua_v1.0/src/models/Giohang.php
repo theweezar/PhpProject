@@ -57,6 +57,20 @@ class Giohang extends MySQL{
       else return "";
     }
 
+    public function isMyGH($mgh){
+      /**
+       * Kiểm tra xem giỏ hàng request có phải giỏ hàng của mình ko
+       * nếu username của mgh đó === &_session["username"] thì return true
+       */
+      $result = mysqli_query($this->conn,"SELECT username FROM ".$this->giohang." WHERE mgh = '".$mgh."' ");
+      if (mysqli_num_rows($result) == 0) return false;
+      else{
+        $data = mysqli_fetch_assoc($result);
+        if (strcasecmp($data["username"],$_SESSION["username"]) == 0) return true;
+        else return false;
+      }
+    }
+
     public function getCTGHwithMGH($mgh){
       /**
        * lấy toàn bộ order từ chi tiết giỏ hàng (mgh - mh)

@@ -8,7 +8,7 @@ class Route extends Controller{
      */
     if (isset($_SESSION['logged'])){
       $hanghoa = $this->model("Hanghoa");
-      $trasua = $hanghoa->getAll();
+      $trasua = $hanghoa->getAllStillSell();
       $this->view("home",true,["trasua"=>$trasua]);
     }
     else $this->view("start",false);
@@ -86,7 +86,6 @@ class Route extends Controller{
         $giohang->themHang($_SESSION['mgh'],$mh);
       }
       else $giohang->themHang($_SESSION['mgh'],$mh);
-      echo $_SESSION['mgh'];
     }
   }
 
@@ -123,24 +122,27 @@ class Route extends Controller{
     if (isset($_SESSION["logged"])){
       if (!$_SESSION["client"]){
         $users = $this->model("Users");
-        $hanghoa = $this->model("Hanghoa");
-        $giohang = $this->model("Giohang");
+        // $hanghoa = $this->model("Hanghoa");
+        // $giohang = $this->model("Giohang");
+        $hoadon = $this->model("Hoadon");
         if (strcasecmp(trim($username),"") == 0){
           $allusers = $users->getAllUsers();
           $this->view("quanly",true,["users"=>$allusers]);
         }
         else{
-          if ($giohang->checkExist($username)){
-            $ghinfor = array();
-            $mgh = $giohang->getgiohangwithusername($username);
-            $ctgh = $giohang->getCTGHwithMGH($mgh);
-            foreach ($ctgh as $key => $gh) {
-              # code...
-              array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
-            }
-            $this->view("chitietdonhang",true,["ctgh"=>$ghinfor]);
-          }
-          else $this->view("chitietdonhang",true);
+          // if ($giohang->checkExist($username)){
+          //   $ghinfor = array();
+          //   $mgh = $giohang->getgiohangwithusername($username);
+          //   $ctgh = $giohang->getCTGHwithMGH($mgh);
+          //   foreach ($ctgh as $key => $gh) {
+          //     # code...
+          //     array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
+          //   }
+          //   $this->view("chitietdonhang",true,["ctgh"=>$ghinfor]);
+          // }
+          // else $this->view("chitietdonhang",true);
+          $allbills = $hoadon->getAllPaidBill($username);
+          $this->view("lichsugd",true,["allbills"=>$allbills]);
         }
       }
       else header("Location: home");
@@ -181,15 +183,21 @@ class Route extends Controller{
         $this->view("lichsugd",true,["allbills"=>$allbills]);
       }
       else{
-        $ctgh = $giohang->getCTGHwithMGH($mgh);
-        // $thanhtien = $hoadon->getPrice($mgh);
-        $bill = $hoadon->getOneBill($mgh);
-        $ghinfor = array();
-        foreach ($ctgh as $key => $gh) {
-          # code...
-          array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
+        $OK = false;
+        if (!$_SESSION["client"]) $OK = true;
+        else if ($giohang->isMyGH($mgh)) $OK = true;
+        if ($OK){
+          $ctgh = $giohang->getCTGHwithMGH($mgh);
+          // $thanhtien = $hoadon->getPrice($mgh);
+          $bill = $hoadon->getOneBill($mgh);
+          $ghinfor = array();
+          foreach ($ctgh as $key => $gh) {
+            # code...
+            array_push($ghinfor,["hang"=>$hanghoa->getwithcode($gh["mh"]),"soluong"=>$gh["soluong"]]);
+          }
+          $this->view("chitietdonhang",true,["ctgh"=>$ghinfor,"thanhtien"=>$bill["thanhtien"],"created_at"=>$bill["created_at"]]);
         }
-        $this->view("chitietdonhang",true,["ctgh"=>$ghinfor,"thanhtien"=>$bill["thanhtien"],"created_at"=>$bill["created_at"]]);
+        else header("Location: /");
       }
     }
   }
@@ -200,48 +208,96 @@ class Route extends Controller{
      * print_r($_FILES["fileToUpload"]) để xem thêm thuộc tính của nó
      * move_uploaded_file là hàm di chuyển file, nếu thành công sẽ return true, và ngược lại
      */
-    if (isset($_POST['upload'])){
-      if (isset($_POST["tenhang"]) &&  isset($_POST["gia"])){
-        $target_dir = "img/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        // print_r($target_file);
-        // print_r($_FILES["fileToUpload"]);
-        
-        if (file_exists($target_file)) {
-          $this->view("themtrasua",true,["msg"=>"File da ton tai trong database"]);
-          $uploadOk = 0;
+
+    if (isset($_SESSION["logged"])){
+      if (!$_SESSION["client"]){
+        if (isset($_POST['upload'])){
+          if (isset($_POST["tenhang"]) &&  isset($_POST["gia"])){
+            $target_dir = "img/";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            // print_r($target_file);
+            // print_r($_FILES["fileToUpload"]);
+            
+            if (file_exists($target_file)) {
+              $this->view("themtrasua",true,["msg"=>"File da ton tai trong database"]);
+              $uploadOk = 0;
+            }
+      
+            // if ($_FILES["fileToUpload"]["size"] > 500000) {
+            //   echo "Sorry, your file is too large.";
+            //   $uploadOk = 0;
+            // }
+      
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif") {
+              $this->view("themtrasua",true,["msg"=>"File khong phai hinh anh"]);
+              $uploadOk = 0;
+            }
+      
+            if ($uploadOk == 0) {
+              $this->view("themtrasua",true,["msg"=>"Có lỗi, vui lòng thử lại !"]);
+            } 
+            else {
+              if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                $hanghoa = $this->model("Hanghoa");
+                $hanghoa->add($_POST["tenhang"],$_POST["gia"],$_FILES["fileToUpload"]["name"]);
+                $this->view("themtrasua",true,["msg"=>"File img đã được thêm vào folder","done"=>true]);
+              } 
+              else {
+                $this->view("themtrasua",true,["msg"=>"Có lỗi, vui lòng thử lại !"]);
+              }
+            }
+          }
+          else $this->view("themtrasua",true,["msg"=>"Vui lòng điền đẩy đủ thông tin !"]);
         }
-  
-        // if ($_FILES["fileToUpload"]["size"] > 500000) {
-        //   echo "Sorry, your file is too large.";
-        //   $uploadOk = 0;
-        // }
-  
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-        && $imageFileType != "gif") {
-          $this->view("themtrasua",true,["msg"=>"File khong phai hinh anh"]);
-          $uploadOk = 0;
+        else $this->view("themtrasua",true);
+      }
+      else header("Location: /");
+    }
+    
+  }
+
+  public function xoamon($mh=''){
+    if (isset($_SESSION["logged"])){
+      if (!$_SESSION["client"]){
+        $hanghoa = $this->model("Hanghoa");
+        if (strcasecmp("",trim($mh)) == 0){
+          $alldrinks = $hanghoa->getAll();
+          $this->view("xoamon",true,["alldrinks"=>$alldrinks]);
         }
-  
-        if ($uploadOk == 0) {
-          $this->view("themtrasua",true,["msg"=>"Có lỗi, vui lòng thử lại !"]);
-        } 
-        else {
-          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $hanghoa = $this->model("Hanghoa");
-            $hanghoa->add($_POST["tenhang"],$_POST["gia"],$_FILES["fileToUpload"]["name"]);
-            $this->view("themtrasua",true,["msg"=>"File img đã được thêm vào folder","done"=>true]);
+        else{
+          if ($hanghoa->getwithcode($mh) == null){
+            header("Location: /xoamon");
           } 
-          else {
-            $this->view("themtrasua",true,["msg"=>"Có lỗi, vui lòng thử lại !"]);
+          else{
+            $hanghoa->stopSelling($mh);
+            header("Location: /xoamon");
           }
         }
       }
-      else $this->view("themtrasua",true,["msg"=>"Vui lòng điền đẩy đủ thông tin !"]);
     }
-    else $this->view("themtrasua",true);
+  }
+
+  public function moban($mh=''){
+    if (isset($_SESSION["logged"])){
+      if (!$_SESSION["client"]){
+        $hanghoa = $this->model("Hanghoa");
+        if (strcasecmp("",trim($mh)) == 0){
+          header("Location: /xoamon");
+        }
+        else{
+          if ($hanghoa->getwithcode($mh) == null){
+            header("Location: /xoamon");
+          } 
+          else{
+            $hanghoa->startSelling($mh);
+            header("Location: /xoamon");
+          }
+        }
+      }
+    }
   }
 
   public function pagenotfound(){

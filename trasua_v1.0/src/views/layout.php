@@ -31,6 +31,7 @@
         </a>
       </li>
       <?php if(!$_SESSION['client']){
+        echo '<li><a href="/xoamon">Thay đổi trạng thái món</a></li>';
         echo '<li><a href="/themtrasua">Thêm món</a></li>';
         echo '<li><a href="/quanly">Quản lý tài khoản</a></li>';
       } ?>

@@ -6,11 +6,13 @@
       <th>Password</th>
       <th>Phone number</th>
       <th>Email</th>
-      <th>Đơn hàng hiện tại</th>
+      <!-- <th>Đơn hàng hiện tại</th> -->
+      <th>Lịch sử giao dịch</th>
     </tr>
     <?php 
     foreach ($data["users"] as $key => $user) {
       # code...
+      if ($user["client"]){
       ?>
       <tr>
         <td><?php echo $user["fname"]; ?></td>
@@ -19,8 +21,10 @@
         <td><?php echo $user["sdt"]; ?></td>
         <td><?php echo $user["email"]; ?></td>
         <td style="text-align:center;"><a href="/quanly/<?php echo $user["username"];?>">Xem</a></td>
+        <!-- <td style="text-align:center;"><a href="">Xem</a></td> -->
       </tr>
       <?php 
+      }
     }
     ?>
   </table>
