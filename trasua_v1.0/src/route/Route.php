@@ -210,7 +210,7 @@ class Route extends Controller{
         // print_r($_FILES["fileToUpload"]);
         
         if (file_exists($target_file)) {
-          $this->view("themtrasua",true,["msg"=>"File khong ton tai"]);
+          $this->view("themtrasua",true,["msg"=>"File da ton tai trong database"]);
           $uploadOk = 0;
         }
   

@@ -1,12 +1,12 @@
-<form action="/themtrasua" method="post" enctype="multipart/form-data">
+<form class='form-add' action="/themtrasua" method="post" enctype="multipart/form-data">
   <div class="input-text">
-    <div>
-      <input placeholder="Tên hàng" type="text" name="tenhang" id="">
+    <div class='input-family'>
+      <input required="required" placeholder="Tên hàng" type="text" name="tenhang" id="">
     </div>
-    <div>
-      <input placeholder="Giá tiền" type="number" name="gia" id="">
+    <div class='input-family'>
+      <input required="required" placeholder="Giá tiền" type="number" name="gia" id="">
     </div>
-    <div>
+    <div class='input-family'>
       <input name="upload" type="submit" value="Submit">
     </div>
   </div>
