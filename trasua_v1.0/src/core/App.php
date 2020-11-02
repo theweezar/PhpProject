@@ -7,7 +7,8 @@ class App{
   protected $params;
 
   public function __construct(){
-    $url = $this->parseURL();
+    // localhost
+    $url = $this->parseURL(); // => []
     $notfound = false;
     require_once '../src/route/Route.php';
     $this->controller = new Route();
