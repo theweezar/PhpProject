@@ -1,4 +1,5 @@
 <?php
+  session_start();
   // Phần kết nối mysql
   include_once($_SERVER['DOCUMENT_ROOT'].'/../database/initdatabase.php');
   // Phần set biến true/false khi bật tắt lớp bảo vệ

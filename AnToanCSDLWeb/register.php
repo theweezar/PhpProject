@@ -33,7 +33,16 @@
 <?php
   if (isset($_POST["submit"])){
     $userTb = new User();
-    $userTb->register($_POST["email"], $_POST["username"], $_POST["password"], $_POST["about"]);
+    $exist = $userTb->exist($_POST["email"], $_POST["username"]);
+    if (isset($exist["usernameE"])){
+      // Báo lỗi
+      echo "<script>alert('Username trùng')</script>";
+    }
+    else if (isset($exist["emailE"])){
+      // Báo lỗi
+      echo "<script>alert('Email')</script>";
+    }
+    else $userTb->register($_POST["email"], $_POST["username"], $_POST["password"], $_POST["about"]);
   }
 
 ?>

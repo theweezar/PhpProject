@@ -8,8 +8,19 @@ class User extends MySQL{
     $this->conn = $this->getConnection();
   }
 
-  public function exist(){
-
+  public function exist($email, $username){
+    $status = ["usernameE" => null, "emailE" => null];
+    $result = mysqli_query($this->conn,"SELECT * FROM users WHERE username = '".$username."' ;");
+    if (mysqli_num_rows($result) != 0) {
+      $status["usernameE"] = true;
+      return true;
+    }
+    $result = mysqli_query($this->conn,"SELECT * FROM users WHERE email = '".$email."' ;");
+    if (mysqli_num_rows($result) != 0) {
+      $status["emailE"] = true;
+      return false;
+    }
+    return true;
   }
 
   public function login($username, $password){
