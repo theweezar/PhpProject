@@ -1,0 +1,888 @@
+*{
+    padding: 0;
+    margin : 0;
+    
+    transition: 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+
+body{
+    overflow-x: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #888; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #333333; 
+  }
+  
+/* Default size is : 1440 x 800 */
+/* Order: From top -> bottom, 
+               left -> right,
+               big -> small */
+.container{
+    width: 100%;
+    height: 103vh;
+    position: relative;
+    --container-padding: 11%;
+}
+/* For Navbar */
+.container nav{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FCFCFF;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: .7fr .3fr;
+    height: 70px;
+    padding: 0 var(--container-padding);  
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.45);
+    z-index: 1;
+}
+/* Left: .logo */
+.container nav .logo{
+    padding: 1% 0;
+}
+.container nav .logo .mobile{
+    display: none;
+}
+.container nav .logo .dienquang,
+.container nav .logo .dienquang-logo{
+    max-width: 100%;
+    height: auto;
+}
+.container nav .logo .dienquang-logo{
+    transform: translateY( -2px);
+}
+/* Right: .navlink */
+.container nav .navlink {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.container nav .navlink .nl-item{
+    padding: 5%;
+    min-width: 70px;
+    font-size: 18px;
+    line-height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+} 
+.container nav .navlink .nl-item:hover{
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.45);
+} 
+.container nav .navlink .nl-item .language-dropbox{
+    padding: 0;
+    margin: 0;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: #FCFCFF;
+    border-radius: 5px;
+    z-index: 1;
+    display: none;
+}
+.container nav .navlink .nl-item:hover .language-dropbox{
+    display: block;
+}
+.container nav .navlink .nl-item .language-dropbox li{
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+    width: 9rem;
+    max-width: 195px;
+    box-sizing: border-box;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+}
+.container nav .navlink .nl-item .language-dropbox li#vi{
+    border-radius: 5px 5px 0px 0px;
+}
+.container nav .navlink .nl-item .language-dropbox li#en{
+    border-radius: 0px 0px 5px 5px;
+}
+.container nav .navlink .nl-item .language-dropbox li:hover{
+    background-color: #383838;
+    color: #FCFCFF;
+}
+/* Main */
+main{
+    top: 0;
+    padding: 0 var(--container-padding);
+    height: 100%;
+    max-height: 100vh;
+    position: relative;
+    background-image: url(../img/main-background.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    z-index: 0;
+}
+
+/* Overlay  */
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    min-height: 94vh;
+    background-color: rgba(0,0,0,.93);
+    z-index: 1;
+}
+.overlay.contact{
+    color: #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.overlay.contact h2{
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.overlay.contact p{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin: 2.5px 0;
+}
+.overlay.formore{
+    color: #E0E0E0;
+    display: block;
+    padding: 50px var(--container-padding);
+    width: auto;
+    text-align: justify;
+}
+.overlay.dnone{
+    display: none;
+}
+.overlay.formore h2{
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+}
+.overlay.formore p{
+    margin: 5px 0; 
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 35px;
+    letter-spacing: 0em;   
+    word-wrap: break-word;
+    text-indent: 15px;
+}
+
+.overlay .exit{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 12px;
+    right: 41px;
+    top: 41px;
+    z-index: 2;
+    outline: none;
+    cursor: pointer;
+}
+/* Overlay end */
+
+/* Visual */
+main .visual{
+    display: grid;
+    height: 90%;
+    grid-template-columns: 30% 60%;
+    grid-gap: 10%;
+}
+/* LEFT */
+main .visual .left{
+    display: grid;
+    height: 80%;
+    max-height: 70vh;
+    grid-template-rows: 73px 272px 40px 5%;
+    grid-gap: 50px;
+    padding: 75px 30px 10% 0;
+}
+
+main .visual .left .certi{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+main .visual .left .certi p{
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 18px;
+    text-transform: uppercase;
+    margin-top: -12px;
+    padding-left: 20px;
+    color: #E0E0E0;
+}
+main .visual .left .intro{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 272px;
+    /* border: 1px solid white; */
+}
+main .visual .left .intro #content{
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 35px;
+    text-align: justify;
+    max-width: 380px;
+    
+    color: #E0E0E0;
+}
+main .visual .left .intro #content b{
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 34px;
+}
+main .visual .left .formore{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .visual .left .formore #formore-btn{
+    outline: none;
+    border: none;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(185,16,61,.65);
+    cursor: pointer;
+}
+main .visual .left .formore #formore-btn p{
+    font-weight: lighter;
+    font-size: 20px;
+    line-height: 19px;
+    color: #E0E0E0;
+    padding-right: 20px;
+}
+main .visual .left .logo5{
+    padding: 0;
+}
+main .visual .left .logo5 img{
+    transform: translateX(-6px) translateY(-10px);
+}
+main .visual .right{
+    display: grid;
+    grid-template-rows: 55% 30% ;
+    grid-gap: 15px;
+    height: 100%;
+    max-height: 90vh;
+    padding: 54px 0 0;
+}
+main .visual .right .big-video{
+    padding: 0;
+    min-height: 374px;
+}
+main .visual .right .big-video img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-position: center center;
+    cursor: pointer;
+}
+main .visual .right .med-video{
+    display: grid;
+    grid-template-columns: 55% 40% ;
+    height: auto;
+    grid-gap: 5%;
+}
+main .visual .right .med-video .md-video{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+main .visual .right .med-video .md-video img{
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+    /* object-position: ; */
+    border-radius: 15px;
+    cursor: pointer;
+}
+main .visual .right .med-video .add-video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* main .visual > div{
+    background-color: rgba(0,0,0,.45);
+}
+main .visual > div:nth-child(odd){
+    background-color: rgba(253, 9, 9, 0.8);
+} */
+main .visual .top{
+    display: none;
+}
+main .interact{
+    display: none;
+}
+
+/* Visual end */
+
+/* Main end */
+
+/* Navbar end */
+@media only screen and (max-width: 1100px){
+    .container{
+        --container-padding: 10px;
+        position: relative;
+        height: 100vh;
+    }
+    .container nav{
+        position: relative;
+        background: #FCFCFF;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: 10%;
+        max-height: 80px;
+        /* padding: 0 var(--container-padding);   */
+        box-shadow: 0 2px 8px rgba(0,0,0,.45);
+    }
+    .container nav .logo{
+        padding: 3% 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .container nav .logo .desktop{
+        display: none;
+    }
+    .container nav .logo .mobile{
+        display: block;
+        object-fit: contain;
+        transform: scale(1.5);
+        max-width: 100%;
+        height: auto;
+        margin: 0 5%;
+    }
+    .container nav .logo .dienquang-logo{
+        margin-left: 1%;
+        transform: translateY(-5px) scale(1.5);
+    }
+    .container nav .navlink{
+        display: none;
+    }
+    .overlay{
+        overflow: hidden;
+    }
+    .overlay.formore-mobile{
+        padding: 55px 25px 30px;
+        color: rgba(224,224,224,1);
+    }
+    .overlay.formore-mobile h2{
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .overlay.formore-mobile p{
+        margin: 10px 0; 
+        font-size: 35px;
+        font-weight: 300;
+        line-height: 40px;
+        letter-spacing: 0em;   
+        word-wrap: break-word;
+        text-indent: 15px;
+        text-align: justify;
+    }
+    .overlay .exit{
+        top: 20px;
+        right: 40px;
+        padding: 20px;
+    }
+    /* Main */
+    main{
+        top: 0;
+        
+        height: 94%;
+        min-height: 90vh;
+        /* min-height: 105vh; */
+        position: relative;
+        background-image: url(../img/main-mobile-background.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    main .visual{
+        height: 100%;
+        padding: 0 var(--container-padding);
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        grid-gap: 5%;
+        /* padding: 0; */
+        /* margin: 0; */
+    }
+    main .visual .top{
+        padding-top: 10px;
+        display: grid;
+        grid-template-rows: 70% 20% 10%;
+        grid-gap: 3%;
+    }
+    main .visual .top .slider{
+        display: grid;
+        grid-template-columns: repeat(3,32%);
+        grid-gap: 2%;
+    }
+    main .visual .top .slider > div{
+        padding: 0;
+        /* background-color: chocolate; */
+    }
+    main .visual .top .slider div img{
+        min-width: 100%;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+    main .visual .top .big-video {
+        padding: 0 auto;
+    }
+    main .visual .top .big-video img{
+        width: 100%;
+        height: 100%;   
+        cursor: pointer;
+    }
+    main .visual .top .dot{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    main .visual .top .dot img{
+        transform: scale(1.2);
+        padding: 0 4px;
+    }
+    main .visual .top .dot .active{
+        filter: brightness(3);
+    }
+    main .visual .left{
+        border-top: 1px solid white;
+        display: grid;
+        grid-template-rows: 15% 35% 10% 10%;
+        grid-gap: 5%;
+        padding: 20px 0 0;
+        margin: 0;
+    }
+    main .visual .left .certi{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-5%);
+    }
+    main .visual .left .certi p{
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 24px;
+        text-transform: uppercase;
+        margin-top: -12px;
+        padding-left: 30px;
+        color: #E0E0E0;
+    }
+    main .visual .left .certi img{
+        width: 9%;
+    }
+    main .visual .left .intro{
+        padding: 0 20px;
+        box-sizing: border-box;
+        /* border: 1px solid white; */
+    }
+    main .visual .left .intro #content{
+        font-weight: 300;
+        font-size: 2vh;
+        line-height: 3.5vh;
+        text-align: justify;
+        color: #E0E0E0;
+        max-width: 100%;
+    }
+    main .visual .left .intro #content b{
+        font-weight: 700;
+        font-size: 2.3vh;
+        line-height: 3.5vh;
+    }
+    main .visual .left .formore{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    main .visual .left .formore #formore-btn{
+        outline: none;
+        border: none;
+        width: 20vh;
+        height: 4vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #C32532;
+        transform: translateY(-3vh);
+        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+    }
+    main .visual .left .formore #formore-btn p{
+        font-weight: lighter;
+        font-size: 2vh;
+        line-height: 19px;
+        color: #E0E0E0;
+        padding: 0;
+    }
+    main .visual .left .formore #formore-btn img{
+        display: none;
+    }
+    main .visual .left .logo5{
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border-bottom: 1px solid white;
+    }
+    main .visual .left .logo5 img{
+        width: 90%;
+        object-fit: contain;    
+        transform: translateY(-1.5vh);
+    }
+    main .visual .right{
+        display: none;
+    }
+    .overlay{
+        z-index: 2;
+    }
+    main .interact{
+        display: grid;
+        grid-template-columns: repeat(4,20%);
+        grid-gap: 2.5%;
+        padding: 0 5%;
+        position: fixed;
+        width: 100%;
+        height: 7%;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+    }   
+    main .interact > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(151,17,39,0.4);
+    }
+    main .interact div:active{
+        background-color: rgba(151,17,39,1);
+    }
+    main .interact > div img{
+        width: 2.5vh;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    .container{
+        --container-padding: 1.2vh;
+        overflow: hidden;
+    }
+    .container nav{
+        background: #FCFCFF;
+        position: relative;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        height: 10%;
+        max-height: 55px;
+        box-shadow: none;
+    }
+    .container nav .logo{
+        padding: 2% 0;
+        width: 100%;
+        transform: scale(.7) translateX(20px);
+        display: flex;
+        justify-content: center;
+    }
+    .container nav .logo .desktop{
+        display: none;
+    }
+    .container nav .logo .mobile{
+        display: block;
+        object-fit: contain;
+        transform: scale(1.5);
+        margin: 0 7%;
+    }
+    .container nav .logo .mobile.dienquang-logo{
+        transform: translateY(-5px) scale(1.5);
+    }
+    /* Main */
+    main{
+        top: 0;
+        padding: 0;
+        height: 93%;
+        /* min-height: 105vh; */
+        position: relative;
+        background-image: url(../img/main-mobile-background.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .overlay{
+        overflow: hidden;
+    }
+    .overlay.formore-mobile{
+        padding: 55px 25px 30px;
+        color: rgba(224,224,224,1);
+    }
+    .overlay.formore-mobile h2{
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 20px;
+    }
+    .overlay.formore-mobile p{
+        margin: 5px 0; 
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 20px;
+        letter-spacing: 0em;   
+        word-wrap: break-word;
+        text-indent: 15px;
+        text-align: justify;
+    }
+    .overlay .exit{
+        top: 10px;
+        right: 20px;
+        padding: 10px;
+    }
+    main .visual{
+        height: 100%;
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        /* grid-gap: 1%; */
+        /* width: calc(100% - 32px); */
+        margin: 0 var(--container-padding);
+        /* margin: 0; */
+    }
+    main .visual .top{
+        display: grid;
+        grid-template-rows: 70% 20% 2.5%;
+        grid-gap: 7.5%;
+    }
+    /* main .visual .top > div{
+        border: 1px solid white;
+    } */
+    main .visual .top .slider{
+        display: grid;
+        /* width: 1; */
+        grid-template-columns: repeat(3,maxmin(111px,30%));
+        height: 100%;
+        width: 100%;
+        grid-gap: 6px;
+    }
+    main .visual .top .slider > div{
+        padding: 0;
+        width: 100%;
+        /* border: 1px solid blue; */
+        /* background-color: chocolate; */
+    }
+    main .visual .top .slider div img{
+        width: 100%;
+        height: 100%;
+        max-width: 111px;
+        object-position: center center;
+        margin: 0;
+    }
+    
+    main .visual .top .big-video {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        /* min-width: 345px; */
+        padding: 0;
+    }
+    main .visual .top .big-video img{
+        width: 100%;
+        /* min-width: 345px; */
+        height: auto;
+        /* object-fit: cover; */
+        text-align: center;
+    }
+    main .visual .top .dot{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform:  translateX(-2px);
+    }
+    main .visual .top .dot img{
+        transform: scale(.8);
+        padding: 0 2px;
+    }
+    main .visual .top .dot .active{
+        filter: brightness(3);
+    }
+    main .visual .left{
+        border-top: 1px solid white;
+        display: grid;
+        grid-template-rows: 15% 45% 10% 5%;
+        grid-gap: 3%;
+        padding: 10px 0 0 ;
+        margin: 0;
+    }
+    /* main .visual .left > div{
+        border: 1px solid white;
+    } */
+    main .visual .left .certi{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-10px);
+    }
+    main .visual .left .certi p{
+        font-weight: 400;
+        font-size: 1.5vh;
+        line-height: 1.5vh;
+        text-transform: uppercase;
+        margin-top: -5px;
+        padding-left: 1.5vh;
+        color: #E0E0E0;
+    }
+    main .visual .left .certi img{
+        width: 10%
+    }
+    main .visual .left .intro{
+        box-sizing: border-box;
+        padding: 0 13px;
+        /* border: 1px solid white; */
+    }
+    main .visual .left .intro #content{
+        font-weight: 300;
+        font-size: 12.4px;
+        line-height: 17px;
+        text-align: justify;
+        color: rgba(224,224,224,1);
+        max-width: 100%;
+    }
+    main .visual .left .intro #content b{
+        font-weight: 700;
+        font-size: 19.8px;
+        line-height: 17px;
+    }
+    main .visual .left .formore{
+        width: 100%;
+    }
+    main .visual .left .formore #formore-btn{
+        outline: none;
+        border: none;
+        width: 70px;
+        height: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #C32532;
+        transform: translateY(-3vh) translateX(-13px);
+        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+    }
+    main .visual .left .formore #formore-btn p{
+        font-weight: lighter;
+        font-size: 10px;
+        line-height: 19px;
+        color: #E0E0E0;
+        padding: 0;
+    }
+    main .visual .left .formore #formore-btn img{
+        display: none;
+    }
+    main .visual .left .logo5{
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border-bottom: 1px solid white;
+    }
+    main .visual .left .logo5 img{
+        width: 90%;
+        object-fit: contain;    
+        /* transform: none; */
+    }
+    main .visual .right{
+        display: none;
+    }
+    .overlay{
+        z-index: 2;
+    }
+    main .interact{
+        display: grid;
+        grid-template-columns: repeat(4,20%);
+        grid-gap: 2.5%;
+        padding: 0 5%;
+        position: fixed;
+        width: 100%;
+        height: 5%;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+    }   
+    main .interact > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(151,17,39,0.4);
+    }
+    main .interact > div a{
+        width: 100%;
+        height: 100%;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid white */
+    }
+    main .interact div:active{
+        background-color: rgba(151,17,39,1);
+    }
+    main .interact > div img{
+        width: 2.5vh;
+    }   
+}

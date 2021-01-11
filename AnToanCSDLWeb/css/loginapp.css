@@ -1,0 +1,92 @@
+body{
+    padding: 0;
+    margin : 0;
+    height: 100vh;
+    position: relative;
+    background: url(../img/body_background2.jpg);
+    background-position: left 0px top -200px;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,.9);
+    background-size: cover;
+}
+
+/* !Lát add vào boostrap  */
+.top-center{
+    top : 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: 0.5s;
+}
+
+.bg-darkshadow{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.w-40{
+    width: 40%;
+}
+.sim_input{
+    width: 70%;
+    max-width: 80%;
+    margin: 24px 0;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgb(255,255,255,1);
+    padding: 0 10px;
+    letter-spacing: 1px;
+}
+.sim_input::placeholder{
+    color: white;   
+}
+/* - Custom  - */
+.cus_box{
+    width: 150px;
+}
+.cus_h1_form{
+    text-align: center;
+    letter-spacing: 5px;
+    margin-left: 0px;
+    padding: 10px 10px 0px;
+    font-size: 40px;
+}
+.cus_input_control{
+    margin: 0 50px;
+}
+.cus_but_form{
+    outline: none;
+    border: none;
+    /* background-color: white; */
+    width: 55%;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 0 rgba(157, 96, 212, 0.5);
+    border: solid 3px transparent;
+    background-image:  linear-gradient(101deg, #D2337A, #E66113);
+    background-origin: border-box;
+    /* background-clip: content-box, border-box; */
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+    max-width: 80%;
+    transition: 0.3s;
+    cursor: pointer;
+    background-size: 100% 100%;
+
+}
+.cus_but_form:hover {
+    transform: scale(1.1);
+    box-shadow: none;
+    color: white;
+}
+@media only screen and (max-width: 1300px) {
+    body {
+       background-position: 0 -30%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+       background-position: 0 0;
+    }
+}
