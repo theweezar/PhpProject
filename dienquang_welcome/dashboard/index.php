@@ -138,10 +138,70 @@
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
 
-                    
-                    <div class="card shadow mb-4">
+                    <!-- Load content here to edit -->
+                    <?php 
+                        include_once($_SERVER['DOCUMENT_ROOT'].'/database/web_content.php');
+                        $web_content = new WebContent();
+                        $result = $web_content->load_content();
+                        if ($result != null){
+                            for($i = 0; $i < mysqli_num_rows($result); $i+=1){
+                                $content = mysqli_fetch_assoc($result);
+                                ?>
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
+                                        <div class="my-2">
+                                            <select name="" id="">
+                                                <option value="1" 
+                                                <?php echo $content['type'] == 1 ? 'selected="selected"':''; ?>>Text</option>
+                                                <option value="2"
+                                                <?php echo $content['type'] == 2 ? 'selected="selected"':''; ?>>Image</option>
+                                                <option value="3"
+                                                <?php echo $content['type'] == 3 ? 'selected="selected"':''; ?>>Embed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" <?php echo $content['type'] == 1 ? 'contenteditable="true"':'' ?>>
+                                        <?php 
+                                            if ($content['type'] == 1) {
+                                                ?>
+                                                <!-- HTML for TEXT go here -->
+                                                <p> <?php echo $content['content']; ?> </p>
+                                                <?php
+                                            }
+                                            else if ($content['type'] == 2){
+                                                ?>
+                                                <!-- HTML for IMAGE go here -->
+                                                <input type="file" name="" id="">
+                                                <div class="text-center">
+                                                    <img width='200' height='200' src="https://cf.shopee.vn/file/efb997b2977929858eaacdbd938ebb11" alt="" srcset="">
+                                                    <img src="<?php //echo $content['content']; ?>" alt="">
+                                                </div>
+                                                <?php
+                                            }
+                                            else if ($content['type'] == 3){
+                                                ?>
+                                                <!-- HTML for Embed go here -->
+                                                <p>Embed Link</p>
+                                                <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                        }
+                    ?>
+                    <!-- <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Text Content</h6>
+                            <div class="my-2">
+                                <select name="" id="">
+                                    <option value="1" selected="selected">Text</option>
+                                    <option value="2">Image</option>
+                                    <option value="3">Embed</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="card-body" contenteditable="true">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus in illo inventore nemo nisi magni accusantium tempora voluptatem veritatis perspiciatis molestias accusamus assumenda, quidem fugiat architecto minima adipisci, praesentium sint?</p>
@@ -150,14 +210,48 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Image content</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">
+                                Image content
+                            </h6>
+                            <div class="my-2">
+                                <select name="" id="">
+                                    <option value="">Text</option>
+                                    <option value="" selected="selected">Image</option>
+                                    <option value="">Embed</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="card-body" contenteditable="true">
                             <input type="file" name="" id="">
                         </div>
+                    </div> -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">
+                                Embed Content
+                            </h6>
+                            <div class="my-2">
+                                <select name="" id="">
+                                    <option value="">Text</option>
+                                    <option value="">Image</option>
+                                    <option value="" selected="selected">Embed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Embed Link">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-info text-white">Load</span>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/5mhasaD8jzg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="float-right">
+                    <!-- Load content end here -->
+                    <div class="float-right my-3">
                         <button class="px-3 bg-success text-light border border-dark">Save</button>
                     </div>
                 </div>
