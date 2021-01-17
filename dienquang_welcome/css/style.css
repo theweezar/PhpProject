@@ -1,5 +1,1245 @@
 *{
-    transition: 0.2s;
+    padding: 0;
+    margin : 0;
+    
+    transition: 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+
+body{
+    overflow-x: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #888; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #333333; 
+  }
+  
+/* Default size is : 1440 x 800 */
+/* Order: From top -> bottom, 
+               left -> right,
+               big -> small */
+.container{
+    width: 100%;
+    height: 103vh;
+    position: relative;
+    --container-padding: 11%;
+}
+/* For Navbar */
+.container nav{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FCFCFF;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: .7fr .3fr;
+    height: 70px;
+    padding: 0 var(--container-padding);  
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.45);
+    z-index: 1;
+}
+/* Left: .logo */
+.container nav .logo{
+    padding: 1% 0;
+    animation: vibrate 1s ease forwards;
+}
+.container nav .logo .mobile{
+    display: none;
+}
+.container nav .logo .dienquang,
+.container nav .logo .dienquang-logo{
+    max-width: 100%;
+    height: auto;
+}
+.container nav .logo .dienquang-logo{
+    transform: translateY( -2px);
+}
+/* Right: .navlink */
+.container nav .navlink {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.container nav .navlink .nl-item{
+    padding: 5%;
+    min-width: 90px;
+    font-size: 18px;
+    line-height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+} 
+.container nav .navlink .nl-item:hover{
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.45);
+} 
+.container nav .navlink .nl-item .language-dropbox{
     padding: 0;
     margin: 0;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background-color: #FCFCFF;
+    border-radius: 5px;
+    z-index: 1;
+    display: none;
 }
+.container nav .navlink .nl-item:hover .language-dropbox{
+    display: block;
+}
+.container nav .navlink .nl-item .language-dropbox li{
+    text-decoration: none;
+    list-style: none;
+    outline: none;
+    width: 9rem;
+    max-width: 195px;
+    box-sizing: border-box;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+}
+.container nav .navlink .nl-item .language-dropbox li#vi{
+    border-radius: 5px 5px 0px 0px;
+}
+.container nav .navlink .nl-item .language-dropbox li#en{
+    border-radius: 0px 0px 5px 5px;
+}
+.container nav .navlink .nl-item .language-dropbox li:hover{
+    background-color: #383838;
+    color: #FCFCFF;
+}
+/* Main */
+main{
+    top: 0;
+    padding: 0 var(--container-padding);
+    height: 100%;
+    /* max-height: 100vh; */
+    position: relative;
+    background-image: url(../img/main-background.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    z-index: 0;
+}
+
+/* Overlay  */
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    min-height: 94vh;
+    background-color: rgba(0,0,0,.93);
+    animation: slidedown 0.5s ease forwards;
+    z-index: 1;
+}
+.overlay.contact{
+    color: #E0E0E0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.overlay.contact h2{
+    font-size: 33px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.overlay.contact p{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 34px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin: 2.5px 0;
+}
+.overlay.formore{
+    color: #E0E0E0;
+    display: block;
+    padding: 50px var(--container-padding);
+    width: auto;
+    text-align: justify;
+}
+.overlay.dnone{
+    display: none;
+}
+.dnone{
+    display: none;
+}
+.dgrid{
+    display: grid !important;
+    animation: popup-med .5s ease forwards;
+}
+.overlay.formore h2{
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+}
+.overlay.formore p{
+    margin: 5px 0; 
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 35px;
+    letter-spacing: 0em;   
+    word-wrap: break-word;
+    text-indent: 15px;
+}
+
+.overlay .exit{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 12px;
+    right: 41px;
+    top: 41px;
+    z-index: 2;
+    outline: none;
+    cursor: pointer;
+}
+/* Overlay end */
+
+/* Visual */
+main .visual{
+    display: grid;
+    height: 90%;
+    grid-template-columns: 30% 60%;
+    grid-gap: 10%;
+}
+/* LEFT */
+main .visual .left{
+    display: grid;
+    height: 80%;
+    max-height: 70vh;
+    grid-template-rows: 73px 272px 40px 5%;
+    grid-gap: 50px;
+    padding: 75px 30px 10% 0;
+    
+    animation: slidein 1s ease forwards;
+}
+
+main .visual .left .certi{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+main .visual .left .certi p{
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 18px;
+    text-transform: uppercase;
+    margin-top: -12px;
+    padding-left: 20px;
+    color: #E0E0E0;
+}
+main .visual .left .intro{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 272px;
+    /* border: 1px solid white; */
+}
+main .visual .left .intro #content{
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 35px;
+    text-align: justify;
+    max-width: 380px;
+    animation: slidein_short .5s ease forwards;
+    color: #E0E0E0;
+}
+main .visual .left .intro #content b{
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 34px;
+}
+main .visual .left .formore{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .visual .left .formore #formore-btn{
+    outline: none;
+    border: none;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(185,16,61,.65);
+    cursor: pointer;
+}
+main .visual .left .formore #formore-btn p{
+    font-weight: lighter;
+    font-size: 20px;
+    line-height: 19px;
+    color: #E0E0E0;
+    padding-right: 20px;
+}
+main .visual .left .logo5{
+    padding: 0;
+}
+main .visual .left .logo5 img{
+    transform: translateX(-6px) translateY(-10px);
+}
+main .visual .video img:hover{
+    transform: scale(1.05);
+}
+main .visual .right{
+    display: grid;
+    grid-template-rows: 55% 30% ;
+    grid-gap: 15px;
+    height: 100%;
+    max-height: 90vh;
+    padding: 54px 0 0;
+}
+/* main .visual .right div{
+    border: 1px solid white;
+} */
+main .visual .right .big-video{
+    padding: 0;
+    min-height: minmax(auto,374px);
+    animation: slidein-right 1s ease forwards;
+}
+main .visual .right .big-video img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-position: center center;
+    cursor: pointer;
+}
+main .visual .right .med-video{
+    display: grid;
+    grid-template-columns: 55% 40% ;
+    height: auto;
+    grid-gap: 5%;
+}
+main .visual .right .med-video .md-video{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    animation: popup-med 1s ease forwards ;
+}
+main .visual .right .med-video .md-video img{
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+    /* object-position: ; */
+    border-radius: 15px;
+    cursor: pointer;
+}
+main .visual .right .med-video .add-video{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: popup-med 1s ease forwards ;
+}
+main .visual .right .med-video .add-video img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+main .visual .right .med-video .add-video:hover img{
+    filter: brightness(3);
+    transform: scale(1.1);
+}
+/* main .visual > div{
+    background-color: rgba(0,0,0,.45);
+}
+main .visual > div:nth-child(odd){
+    background-color: rgba(253, 9, 9, 0.8);
+} */
+main .visual .top{
+    display: none;
+}
+main .interact{
+    display: none;
+}
+.video{
+    /* border: 1px solid white; */
+    position: relative;
+}
+.play-btn{
+    position: absolute;
+      font-size: 3vh;
+      top: 50%;
+      left: 50%;
+      animation: popup_center 1s ease forwards;
+      transform: translate(-50%,-50%);
+      box-sizing: border-box;
+      width: 6vh;
+      height: 6vh;
+      border-radius: 20%;
+      margin: auto;
+      background-color: rgba(49, 49, 49, 0.897);
+      z-index: 1;    
+      /* border: .3vh solid white; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: .4vh;
+      color: rgb(202, 202, 202);    
+      cursor: pointer;
+      
+  }
+.play-btn:hover{
+    transform: scale(1.1) translate(-50%,-50%);
+     background-color: rgba(197, 42, 42, 0.897);
+     color: rgb(202, 202, 202);    
+    cursor: pointer;
+  }
+/* Visual end */
+
+/* Main end */
+
+/* Navbar end */
+@media (min-height: 400px) and ( max-height: 780px ) and (min-width: 1600px) {
+    .container{
+        --container-padding: 10vw;
+    }
+    main{
+        top: 0;
+        padding: 0 var(--container-padding);
+        height: 100%;
+        min-height: 120vh;
+        position: relative;
+        background-position: none;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+    main .visual .left{
+        display: grid;
+        height: 80%;
+        max-height: auto;
+        grid-template-rows: 10% 50% 40px 5%;
+        grid-gap: 50px;
+        padding: 75px 30px 10% 0;
+        
+        animation: slidein 1s ease forwards;
+    }
+    /* main .visual .left > div{
+        border: 1px solid white;
+    } */
+    main .visual .left .certi p{
+        font-weight: 400;
+        font-size: 3.5vh;
+        line-height: 3vh;
+        text-transform: uppercase;
+        margin-top: -12px;
+        padding-left: 20px;
+        color: #E0E0E0;
+    }
+    main .visual .left .intro #content{
+        font-weight: 300;
+        font-size: 3.5vh;
+        line-height: 5vh;
+        text-align: justify;
+        max-width: 100%;
+        animation: slidein_short .5s ease forwards;
+        color: #E0E0E0;
+    }
+    main .visual .left .intro #content b{
+        font-weight: 700;
+        font-size: 4.5vh;
+        line-height: 5vh;
+    }
+    main .visual .right{
+        display: grid;
+        grid-template-rows: 55% 40% ;
+        grid-gap: 5%;
+        height: 100%;
+        max-height: auto;
+        padding: 5% 0 0;
+    }
+    /* main .visual .right div{
+        border: 1px solid white;
+    } */
+    main .visual .right .big-video img{
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        object-fit: contain;
+        /* object-position: center center; */
+        cursor: pointer;
+    }
+    main .visual .right .med-video{
+        display: grid;
+        grid-template-columns: 50% 40% ;
+        height: auto;
+        max-height: auto;   
+        grid-gap: 5%;
+    }
+    main .visual .right .med-video .md-video img{
+        width: 100%;
+        height: 100%;
+        object-position: none;
+        object-fit: contain;
+        /* object-position: ; */
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    main .visual .left .formore #formore-btn{
+        width: 220px;
+        height: 40px;
+    }
+    main .visual .left .formore #formore-btn p{
+        font-weight: lighter;
+        font-size: 3vh;
+        line-height: 2vh;
+    }
+}
+@media only screen and (max-width: 1280px) {
+    .container nav .navlink .nl-item{
+        padding: 5%;
+        min-width: 70px;
+        font-size: 15px;
+        line-height: 19px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+    } 
+        /* Visual */
+    main .visual{
+        display: grid;
+        height: 90%;
+        grid-template-columns: 35% 55%;
+        grid-gap: 10%;
+    }
+    /* LEFT */
+    main .visual .left{
+        display: grid;
+        height: 80%;
+        max-height: 70vh;
+        grid-template-rows: minmax(auto,73px) auto minmax(auto,15%) 5%;
+        grid-gap: 8%;
+        padding: 75px 30px 10% 0;
+        
+        animation: slidein 1s ease forwards;
+    }
+    /* main .visual .left div{
+        border: 1px solid white;
+    } */
+    main .visual .left .certi{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    main .visual .left .certi p{
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 19px;
+        text-transform: uppercase;
+        margin-top: -12px;
+        padding-left: 26px;
+        color: #E0E0E0;
+    }
+    main .visual .left .intro{
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        max-height: 272px;
+        /* border: 1px solid white; */
+    }
+    main .visual .left .intro #content{
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 32px;
+        text-align: justify;
+        max-width: 380px;
+        animation: slidein_short .5s ease forwards;
+        color: #E0E0E0;
+    }
+    main .visual .left .intro #content b{
+        font-weight: 700;
+        font-size: 26px;
+        line-height: 30px;
+    }
+    main .visual .left .formore{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main .visual .left .formore #formore-btn{
+        outline: none;
+        border: none;
+        width: 200px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(185,16,61,.65);
+        cursor: pointer;
+    }
+    main .visual .left .formore #formore-btn p{
+        font-weight: lighter;
+        font-size: 16px;
+        line-height: 15px;
+        color: #E0E0E0;
+        padding-right: 20px;
+    }
+    main .visual .left .logo5{
+        padding: 0;
+    }
+    main .visual .left .logo5 img{
+        transform: translateX(-6px) translateY(-10px);
+    }
+    main .visual .video img:hover{
+        transform: scale(1.05);
+        
+    }
+    main .visual .right{
+        display: grid;
+        grid-template-rows: 50% 30% ;
+        grid-gap: 2%;
+        height: 100%;
+        max-height: 90vh;
+        padding: 54px 0 0;
+    }
+    /* main .visual .right div{
+        border: 1px solid white;
+    } */
+    main .visual .right .big-video{
+        padding: 0;
+        min-height: minmax(auto,374px);
+        animation: slidein-right 1s ease forwards;
+    }
+    main .visual .right .big-video img{
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        object-position: center center;
+        object-fit: contain;
+        cursor: pointer;
+    }
+    main .visual .right .med-video{
+        display: grid;
+        grid-template-columns: 55% 40% ;
+        height: auto;
+        grid-gap: 5%;
+    }
+    main .visual .right .med-video .md-video{
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        animation: popup-med 1s ease forwards ;
+    }
+    main .visual .right .med-video .md-video img{
+        width: 100%;
+        height: 100%;
+        object-position: center center;
+        /* object-position: ; */
+        object-fit: contain;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    main .visual .right .med-video .add-video{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        animation: popup-med 1s ease forwards ;
+        
+    }
+    main .visual .right .med-video .add-video img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        outline: none;
+    }
+}
+
+@media only screen and (max-width: 1024px){
+    .container{
+        --container-padding: 10px;
+        position: relative;
+        height: 100vh;
+    }
+    .container nav{
+        position: relative;
+        background: #FCFCFF;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: 10%;
+        max-height: 80px;
+        /* padding: 0 var(--container-padding);   */
+        box-shadow: 0 2px 8px rgba(0,0,0,.45);
+    }
+    .container nav .logo{
+        padding: 3% 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .container nav .logo .desktop{
+        display: none;
+    }
+    .container nav .logo .mobile{
+        display: block;
+        object-fit: contain;
+        transform: scale(1.5);
+        max-width: 100%;
+        height: auto;
+        margin: 0 5%;
+    }
+    .container nav .logo .dienquang-logo{
+        margin-left: 1%;
+        transform: translateY(-5px) scale(1.5);
+    }
+    .container nav .navlink{
+        display: none;
+    }
+    .overlay{
+        overflow: hidden;
+    }
+    .overlay.formore-mobile{
+        padding: 55px 25px 30px;
+        color: rgba(224,224,224,1);
+    }
+    .overlay.formore-mobile h2{
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .overlay.formore-mobile p{
+        margin: 10px 0; 
+        font-size: 35px;
+        font-weight: 300;
+        line-height: 40px;
+        letter-spacing: 0em;   
+        word-wrap: break-word;
+        text-indent: 15px;
+        text-align: justify;
+    }
+    .overlay .exit{
+        top: 20px;
+        right: 40px;
+        padding: 20px;
+    }
+    /* Main */
+    main{
+        top: 0;
+        
+        height: 94%;
+        min-height: 90vh;
+        /* min-height: 105vh; */
+        position: relative;
+        background-image: url(../img/main-mobile-background.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    main .visual{
+        height: 100%;
+        padding: 0 var(--container-padding);
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        grid-gap: 5%;
+        /* padding: 0; */
+        /* margin: 0; */
+    }
+    main .visual .top{
+        padding-top: 10px;
+        display: grid;
+        grid-template-rows: 72% 33%;
+        grid-gap: 2%;
+    }
+    main .visual .top .slider{
+        /* border: 1px solid white; */
+        overflow: hidden;
+    }
+    main .visual .top .slider .slide{
+        display: grid;
+        grid-template-columns: repeat(3,minmax(10%,32%));
+        grid-gap: 2%;
+        /* background-color: white; */
+    }
+    main .visual .top .slider .slide > div{
+        padding: 0;
+        position: relative;
+        /* background-color: chocolate; */
+    }
+    main .visual .top .slider .slide div img{
+        min-width: 100%;
+        text-align: center;
+        cursor: pointer;
+        animation: popup-med 1s ease forwards;
+    }
+    
+    main .visual .top .big-video {
+        padding: 0 auto;
+    }
+    main .visual .top .big-video img{
+        width: 100%;
+        height: 100%;   
+        cursor: pointer;
+        animation: popup 1s ease forwards;
+    }
+    main .visual .top .dot{
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    main .visual .top .dot img{
+        transform: scale(1.2);
+        padding: 0 4px;
+    }
+    main .visual .top .dot .active{
+        filter: brightness(3);
+    }
+    main .visual .left{
+        border-top: 1px solid white;
+        display: grid;
+        grid-template-rows: 15% 35% 10% 10%;
+        grid-gap: 5%;
+        padding: 20px 0 0;
+        margin: 0;
+   
+    }
+    main .visual .left .certi{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-5%);
+        
+    }
+    main .visual .left .certi p{
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 24px;
+        text-transform: uppercase;
+        margin-top: -12px;
+        padding-left: 30px;
+        color: #E0E0E0;
+    }
+    main .visual .left .certi img{
+        width: 9%;
+    }
+    main .visual .left .intro{
+        padding: 0 20px;
+        box-sizing: border-box;
+        /* border: 1px solid white; */
+    }
+    main .visual .left .intro #content{
+        font-weight: 300;
+        font-size: 2vh;
+        line-height: 3.5vh;
+        text-align: justify;
+        color: #E0E0E0;
+        max-width: 100%;
+    }
+    main .visual .left .intro #content b{
+        font-weight: 700;
+        font-size: 2.3vh;
+        line-height: 3.5vh;
+    }
+    main .visual .left .formore{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+    main .visual .left .formore #formore-btn{
+        outline: none;
+        border: none;
+        width: 20vh;
+        height: 4vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #C32532;
+        transform: translateY(-1vh);
+        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+    }
+    main .visual .left .formore #formore-btn p{
+        font-weight: lighter;
+        font-size: 2vh;
+        line-height: 19px;
+        color: #E0E0E0;
+        padding: 0;
+    }
+    main .visual .left .formore #formore-btn img{
+        display: none;
+    }
+    main .visual .left .logo5{
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border-bottom: 1px solid white;
+    }
+    main .visual .left .logo5 img{
+        width: 90%;
+        object-fit: contain;    
+        transform: translateY(-1.5vh);
+    }
+    main .visual .right{
+        display: none;
+    }
+    .overlay{
+        z-index: 2;
+    }
+    main .interact{
+        display: grid;
+        grid-template-columns: repeat(4,20%);
+        grid-gap: 2.5%;
+        padding: 0 5%;
+        position: fixed;
+        width: 100%;
+        height: 7%;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+    }   
+    main .interact > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(151,17,39,0.4);
+    }
+    main .interact div:active{
+        background-color: rgba(151,17,39,1);
+    }
+    main .interact > div img{
+        width: 2.5vh;
+    }
+    
+}
+
+@media only screen and (max-width: 450px){
+    .container{
+        --container-padding: 1.2vh;
+        overflow: hidden;
+    }
+    .container nav{
+        background: #FCFCFF;
+        position: relative;
+        left: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        height: 10%;
+        max-height: 55px;
+        box-shadow: none;
+    }
+    .container nav .logo{
+        padding: 1% 0;
+        width: 100%;
+        transform: scale(.7) translateX(20px);
+        display: flex;
+        justify-content: center;
+    }
+    .container nav .logo .desktop{
+        display: none;
+    }
+    .container nav .logo .mobile{
+        display: block;
+        object-fit: contain;
+        margin: 0 1%;
+    }
+    .container nav .logo .mobile.dienquang{
+        transform: scale(1);
+    }
+    .container nav .logo .mobile.dienquang-logo{
+        transform: translateY(-5px) scale(1);
+    }
+    /* Main */
+    main{
+        top: 0;
+        padding: 0;
+        height: 100%;
+        /* min-height: 105vh; */
+        position: relative;
+        background-image: url(../img/main-mobile-background.png);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .overlay{
+        /* height: 90%; */
+        min-height: 103vh;
+        /* max-height: 103vh; */
+        overflow: scroll;
+    }
+    /* width */
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+    .overlay.formore-mobile{
+        padding: 55px 25px 30px;
+        color: rgba(224,224,224,1);
+    }
+    .overlay.formore-mobile h2{
+        font-weight: 500;
+        font-size: 21px;
+        line-height: 20px;
+    }
+    .overlay.formore-mobile p{
+        margin: 5px 0; 
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 20px;
+        letter-spacing: 0em;   
+        word-wrap: break-word;
+        text-indent: 15px;
+        text-align: justify;
+    }
+    .overlay.youtube-mobile{
+        overflow: hidden;
+    }
+    .overlay .exit{
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        transform: scale(0.8);
+    }
+    main .visual{
+        height: 100%;
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        grid-gap: 0%;
+        /* width: calc(100% - 32px); */
+        margin: 0 var(--container-padding);
+        /* margin: 0; */
+    }
+    main .visual .top{
+        display: grid;
+        grid-template-rows: 66% 33%;
+        grid-gap: 1%;
+    }
+    /* main .visual .top > div{
+        border: 1px solid white;
+    } */
+    main .visual .top .slider{
+        /* border: 1px solid white; */
+        overflow: hidden;
+    }
+    main .visual .top .slider .slide{
+        display: grid;
+        grid-template-columns: repeat(3,maxmin(10%,30%));
+        height: 100%;
+        width: 100%;
+        grid-gap: 6px;
+    }
+    main .visual .top .slider .slide > div{
+        padding: 0;
+        width: 100%; 
+        /* border: 1px solid blue; */
+        /* background-color: chocolate; */
+    }
+    main .visual .top .slider .slide div img{
+        width: 100%;
+        height: 100%;
+        max-width: 111px;
+        object-position: center center;
+        margin: 0;
+    }
+    
+    main .visual .top .big-video {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        /* min-width: 345px; */
+        padding: 0;
+    }
+    main .visual .top .big-video img{
+        width: 100%;
+        /* min-width: 345px; */
+        height: 100%;
+        object-fit: contain;
+        text-align: center;
+    }
+    main .visual .top .dot{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform:  translateX(-2px);
+    }
+    main .visual .top .dot img{
+        transform: scale(.8);
+        padding: 0 2px;
+    }
+    main .visual .top .dot .active{
+        filter: brightness(3);
+    }
+    main .visual .left{
+        border-top: 1px solid white;
+        display: grid;
+        /* grid-template-rows: 15% 40% 10% 5%; */
+        grid-template-rows: 15% minmax(auto,40%) 7.5% 10%;
+        grid-gap: 3%;
+        padding: 10px 0 0 ;
+        margin: 0;
+    }
+    /* main .visual .left > div{
+        border: 1px solid white;
+    } */
+    main .visual .left .certi{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-10px);
+    }
+    main .visual .left .certi p{
+        font-weight: 400;
+        font-size: 3vw;
+        line-height: 3vw;
+        text-transform: uppercase;
+        margin-top: -5px;
+        padding-left: 1.5vh;
+        color: #E0E0E0;
+    }
+    main .visual .left .certi img{
+        width: 10%
+    }
+    main .visual .left .intro{
+        box-sizing: border-box;
+        padding: 0 13px;
+        /* border: 1px solid white; */
+    }
+    main .visual .left .intro #content{
+        font-weight: 300;
+        font-size: 3.2vw;
+        line-height: 5vw;
+        text-align: justify;
+        color: rgba(224,224,224,1);
+        max-width: 100%;
+    }
+    main .visual .left .intro #content b{
+        font-weight: 700;
+        font-size: 3.5vw;
+        line-height: 5vw;
+    }
+    main .visual .left .formore{
+        width: 100%;
+    }
+    main .visual .left .formore #formore-btn{
+        outline: none;
+        border: none;
+        width: 18vw;
+        height: 6vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #C32532;
+        transform: translateY(-2vh) translateX(-1vh);
+        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+    }
+    main .visual .left .formore #formore-btn p{
+        font-weight: lighter;
+        font-size: 3vw;
+        line-height: 3vw;
+        color: #E0E0E0;
+        padding: 0;
+    }
+    main .visual .left .formore #formore-btn img{
+        display: none;
+    }
+    main .visual .left .logo5{
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border-bottom: 1px solid white;
+    }
+    main .visual .left .logo5 img{
+        width: 80%;
+        object-fit: contain;    
+        /* transform: none; */
+    }
+    main .visual .right{
+        display: none;
+    }
+    .overlay{
+        z-index: 2;
+    }
+    main .interact{
+        display: grid;
+        grid-template-columns: repeat(4,20%);
+        grid-gap: 2.5%;
+        padding: 0 5%;
+        position: fixed;
+        width: 100%;
+        height: 5%;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+    }   
+    main .interact > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(151,17,39,0.4);
+    }
+    main .interact > div a{
+        width: 100%;
+        height: 100%;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid white */
+    }
+    main .interact div:active{
+        background-color: rgba(151,17,39,1);
+    }
+    main .interact > div img{
+        width: 2.5vh;
+    }   
+    .play-btn{
+          font-size: 2vh;
+          width: 4vh;
+          height: 4vh;
+          border-radius: 20%;
+          padding-left: .3vh;
+          color: rgb(202, 202, 202);    
+          cursor: pointer;
+      }
+    
+}
+

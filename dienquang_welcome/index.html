@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome Dien Quang</title>
     <link rel="shortcut icon" href="./img/left-nav-dienquang-logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script id="iframe_api"></script>
 </head>
 <body>
     <div class="container">
@@ -37,7 +41,7 @@
             <!-- --------------------------------------- -->
         </nav>
         <!-- ----------MAIN------------------------------------ -->
-        <div class="overlay formore-mobile dnone ">
+        <div class="overlay formore-mobile dnone"  onclick="ClickExit()">
             <h2>Lorem ipsum dolor sit amet</h2>
             
             <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
@@ -55,21 +59,21 @@
                 <img src="./img/exit-icon.png" alt="exit-icon">
             </button>
         </div>
-        <div class="overlay youtube-mobile dnone">
-            <iframe style="margin: 0 5%;box-sizing: border-box;" width="89%" height="100%" src="#" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="overlay youtube-mobile dnone" onclick="ClickExitYoutube()" style="animation-duration: 1s;" >
+            <iframe style="margin: 0 5%;box-sizing: border-box;" width="89%" height="100%" src="https://www.youtube.com/embed/rPBL2sSy7O4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <button class="exit" onclick="ClickExitYoutube()">
                 <img src="./img/exit-icon.png" alt="exit-icon">
             </button>
         </div>
         <main>
             <!-- ---------OVERLAY------------------------------ -->
-            <div class="overlay youtube dnone">
-                <iframe style="margin: 0 5%;box-sizing: border-box;" width="89%" height="100%" src="#" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="overlay youtube dnone" onclick="ClickExitYoutube()" style="animation-duration: 1s;">
+                <iframe style="margin: 0 5%;box-sizing: border-box;" width="89%" height="100%" src="https://www.youtube.com/embed/rPBL2sSy7O4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <button class="exit" onclick="ClickExitYoutube()">
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
             </div>
-            <div class="overlay contact dnone">
+            <div class="overlay contact dnone" onclick="ClickExit()">
                 <h2>CÔNG TY CỔ PHẦN BÓNG ĐÈN ĐIỆN QUANG</h2>
                 <p>125 Hàm Nghi, Phường Nguyễn Thái Bình, Quận 1, Hồ Chí Minh</p>
                     <p>Hotline: 19001257 - Email: info@dienquang.com</p>
@@ -78,7 +82,7 @@
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
             </div>
-            <div class="overlay formore dnone ">
+            <div class="overlay formore dnone " onclick="ClickExit()">
                 <h2>Lorem ipsum dolor sit amet</h2>
                 
                 <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
@@ -103,17 +107,78 @@
                 <div class="top">
                     <div class="video big-video">
                         <img vid="5mhasaD8jzg" src="./img/big-vid-mobile.png" onclick="RunVideo(this)" alt="big-vid">
+                        <div class="play-btn" onclick="RunVideoBut(this)">
+                            &#x25B6;
+                        </div>
                     </div>
-                    <div class="video slider">
-                        <div><img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid"></div>
-                        <div><img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid"></div>
-                        <div><img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid"></div>
+                    
+                    <div id="splide" class="splide slider">
+                        <div class="splide__track">
+                            <ul class="splide__list" style="color: white">
+                                <li class="splide__slide slide">
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide slide">
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide slide">
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
+                                        <div class="play-btn" onclick="RunVideoBut(this)">
+                                            &#x25B6;
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="dot">
-                        <img class="active" src="./img/Ellipse 80.png" alt="dot">
-                        <img src="./img/Ellipse 80.png" alt="dot">
-                        <img src="./img/Ellipse 80.png" alt="dot">
-                    </div>
+                    
                 </div>
                 <!-- --------LEFT FOR DES & MOB ----------------- -->
                 <div class="left">
@@ -144,11 +209,18 @@
                 </div>
                 <!-- ---------RIGHT FOR DES ----------------- -->
                 <div class="right">
-                    <div class="video big-video">
-                        <img vid="5mhasaD8jzg" src="./img/big-vid.png" alt="big-vid" onclick="RunVideo(this)"></div>
-                    <div class="video med-video">
-                        <div class="md-video">
+                    <div class="big-video video">
+                        <img vid="5mhasaD8jzg" src="./img/big-vid.png" alt="big-vid" onclick="RunVideo(this)">
+                        <div class="play-btn" onclick="RunVideoBut(this)">
+                            &#x25B6;
+                        </div>
+                    </div>
+                    <div class="med-video video">
+                        <div class="md-video video">
                             <img vid="rPBL2sSy7O4" src="./img/Med-vid.png" alt="med-vid" onclick="RunVideo(this)">
+                            <div class="play-btn" onclick="RunVideoBut(this)">
+                                &#x25B6;
+                            </div>
                         </div>
                         <div class="add-video" id="add-video">
                             <img src="./img/addVideo.png" alt="addVideo">
@@ -177,6 +249,24 @@
     
 
 </body>
-<script src="./js/ClickHandler.js"></script>
+
 <script src="./js/TranslateHandler.js"></script>
+<script src="./js/IframeAPIforMobile.js"></script>
+<script src="./js/ClickHandler.js"></script>
+<script>
+    new Splide( '#splide', {
+      type    : 'loop',
+      autoplay: true,
+      } ).mount();
+    document.querySelector('.splide__list').style.transform = 'none';
+    document.querySelectorAll('.splide__arrows button').forEach((x)=>{
+      x.style.display = 'none';
+    })
+    document.querySelectorAll('.splide__pagination__page').forEach((x)=>{
+      x.style.width = '1.2vh';
+      x.style.height = '1.2vh';
+      x.style.transform = 'translateY(.9vh)';
+    })
+    
+  </script>
 </html>

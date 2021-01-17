@@ -32,6 +32,18 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+        button:focus,
+        input:focus,
+        select:focus{
+            outline: none! important;
+            box-shadow: none! important;
+        }
+
+        .pointer{
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -151,7 +163,7 @@
                                     <div class="card-header py-3">
                                         <h6 class="m-0 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
                                         <div class="my-2">
-                                            <select name="" id="">
+                                            <select name="" id="select-option">
                                                 <option value="1" 
                                                 <?php echo $content['type'] == 1 ? 'selected="selected"':''; ?>>Text</option>
                                                 <option value="2"
@@ -161,28 +173,37 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="card-body" <?php echo $content['type'] == 1 ? 'contenteditable="true"':'' ?>>
+                                    <div content-id="<?php echo $content['id'];?>" 
+                                    class="card-body" <?php echo $content['type'] == 1 ? 'contenteditable="true"':'' ?>>
                                         <?php 
                                             if ($content['type'] == 1) {
                                                 ?>
                                                 <!-- HTML for TEXT go here -->
-                                                <p> <?php echo $content['content']; ?> </p>
+                                                <?php echo $content['content']; ?>
                                                 <?php
                                             }
                                             else if ($content['type'] == 2){
                                                 ?>
                                                 <!-- HTML for IMAGE go here -->
-                                                <input type="file" name="" id="">
+                                                <input type="file" name="image_to_upload" onchange="load_image(this)" 
+                                                accept="image/png, image/jpeg, image/jpg" id="upload-image">
                                                 <div class="text-center">
-                                                    <img width='200' height='200' src="https://cf.shopee.vn/file/efb997b2977929858eaacdbd938ebb11" alt="" srcset="">
-                                                    <img src="<?php //echo $content['content']; ?>" alt="">
+                                                    <img src="<?php echo $content['content']; ?>" alt="">
                                                 </div>
                                                 <?php
                                             }
                                             else if ($content['type'] == 3){
                                                 ?>
                                                 <!-- HTML for Embed go here -->
-                                                <p>Embed Link</p>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Embed Link">
+                                                    <div class="input-group-append">
+                                                        <span onclick="load_embed(this)" class="input-group-text bg-info text-white pointer">Load</span>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center">
+                                                    <iframe width="560" height="315" src="<?php echo $content['content']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                </div>
                                                 <?php
                                             }
                                         ?>
@@ -193,39 +214,6 @@
                         }
                     ?>
                     <!-- <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Text Content</h6>
-                            <div class="my-2">
-                                <select name="" id="">
-                                    <option value="1" selected="selected">Text</option>
-                                    <option value="2">Image</option>
-                                    <option value="3">Embed</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="card-body" contenteditable="true">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus in illo inventore nemo nisi magni accusantium tempora voluptatem veritatis perspiciatis molestias accusamus assumenda, quidem fugiat architecto minima adipisci, praesentium sint?</p>
-                        </div>
-                    </div>
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">
-                                Image content
-                            </h6>
-                            <div class="my-2">
-                                <select name="" id="">
-                                    <option value="">Text</option>
-                                    <option value="" selected="selected">Image</option>
-                                    <option value="">Embed</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="card-body" contenteditable="true">
-                            <input type="file" name="" id="">
-                        </div>
-                    </div> -->
-                    <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">
                                 Embed Content
@@ -242,17 +230,17 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Embed Link">
                                 <div class="input-group-append">
-                                    <span class="input-group-text bg-info text-white">Load</span>
+                                    <span onclick="load_embed(this)" class="input-group-text bg-info text-white pointer">Load</span>
                                 </div>
                             </div>
                             <div class="text-center">
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/5mhasaD8jzg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Load content end here -->
                     <div class="float-right my-3">
-                        <button class="px-3 bg-success text-light border border-dark">Save</button>
+                        <button id='savebtn' class="px-3 bg-success text-light border border-dark">Save</button>
                     </div>
                 </div>
             </div>
@@ -271,6 +259,7 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
 
 </body>
 

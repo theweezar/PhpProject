@@ -25,11 +25,23 @@ function TranslatetoVietNamese(){
     document.getElementById('en').innerHTML = vi.language[1];
 
     document.getElementById('content').innerHTML = vi.content;
+    document.getElementById('content').animate([
+        {opacity: 0,
+        transform: "translateX(-50px)"},
+        {opacity: 1,
+            transform: "translateX(0)"},
+    ],{duration: 500})
 
     document.getElementById('formore').innerHTML = vi.formore;
 }
 function TranslatetoVietNamese2(){
     document.getElementById('content').innerHTML = vi.content;
+    document.getElementById('content').animate([
+        {opacity: 0,
+        transform: "translateX(-50px)"},
+        {opacity: 1,
+            transform: "translateX(0)"},
+    ],{duration: 500})
 
     document.getElementById('formore').innerHTML = vi.formore;
 }
@@ -46,12 +58,23 @@ function TranslatetoEnglish(){
     document.getElementById('en').innerHTML = en.language[1];
 
     document.getElementById('content').innerHTML = en.content;
-
+    document.getElementById('content').animate([
+        {opacity: 0,
+        transform: "translateX(-50px)"},
+        {opacity: 1,
+            transform: "translateX(0)"},
+    ],{duration: 500})
     document.getElementById('formore').innerHTML = en.formore;
 
 }
 function TranslatetoEnglish2(){
     document.getElementById('content').innerHTML = en.content;
+    document.getElementById('content').animate([
+        {opacity: 0,
+        transform: "translateX(-50px)"},
+        {opacity: 1,
+            transform: "translateX(0)"},
+    ],{duration: 500})
 
     document.getElementById('formore').innerHTML = en.formore;
 }

@@ -25,11 +25,25 @@ class WebContent extends MySQL{
     }
   }
 
-  public function edit_content(){
-
+  public function save_content($id, $data, $type){
+    try{
+      mysqli_query($this->conn,"UPDATE web_content SET content='".$data."',type=".$type." WHERE id=".$id." ");
+      mysqli_commit($this->conn);
+    }
+    catch(Exception $e){
+      return false;
+    }
+    return true;
   }
 
-  public function save_content(){
-
+  public function load_content_with_id($id){
+    try{
+      $result = mysqli_query($this->conn,"SELECT * FROM web_content WHERE id=".$id.";");
+      return $result;
+    }
+    catch(Exception $e){
+      return null;
+    }
   }
+
 }
