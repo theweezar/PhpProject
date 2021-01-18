@@ -37,7 +37,11 @@ if ($uploadOk){
   $dirname = explode("/",$old_data['content'])[1];
   $filename = explode("/",$old_data['content'])[2];
   // Hàm xóa
-  unlink("./".$dirname."/".$filename);
+  try {
+    unlink("./".$dirname."/".$filename);
+  } catch (Exception $e) {
+    echo "File ko tồn tại để xóa.";
+  }
   // Lưu đường link
   $data = './upload/'.$_FILES["image_to_upload"]['name'];
   $web_content->save_content($id, $data, 2);
