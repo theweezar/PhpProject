@@ -21,7 +21,8 @@ function ClicktoOpenFormoreOverlay(){
 }
 // ytb_video + id to run
 function RunVideo(x){
-    const id = "https://www.youtube.com/embed/"+x.getAttribute("vid")+"?autoplay=1";
+    // const id = "https://www.youtube.com/embed/"+x.getAttribute("vid")+"?autoplay=1";
+    const id = x.getAttribute("vid") + "?autoplay=1";
     let youtube = document.querySelector(".youtube iframe");
     if( screen.width <= 1000) {
         youtube = document.querySelector(".youtube-mobile iframe");
@@ -37,7 +38,8 @@ function RunVideo(x){
         
 }
 function RunVideoBut(x){
-    const id = "https://www.youtube.com/embed/"+x.previousSibling.previousSibling.getAttribute('vid')+"?autoplay=1"; 
+    // const id = "https://www.youtube.com/embed/"+x.previousSibling.previousSibling.getAttribute('vid')+"?autoplay=1";
+    const id = x.previousSibling.previousSibling.getAttribute('vid')+"?autoplay=1";
     let youtube = document.querySelector(".youtube iframe");
     if( screen.width <= 1000) {
         youtube = document.querySelector(".youtube-mobile iframe");
@@ -64,17 +66,30 @@ function ClickExitYoutube(){
     youtube.setAttribute("src","https://www.youtube.com/embed/rPBL2sSy7O4");
 }
 
+function get_image_url(url = ""){
+    const params = url.match(/embed\/(.*)/g)
+    if (params != null) {
+        return `https://img.youtube.com/vi/${params[0].split("/")[1]}/0.jpg`
+    }
+    else return ""
+}
+
 (function(){
     let iter = 0
+    console.log('vid_list',vid_list)
+    let image_list = vid_list.map(el => {
+        return get_image_url(el)
+    })
+    console.log('image_list',image_list)
     
     const image = document.querySelector('.md-video img[alt="med-vid"]')
     const play = document.querySelector('.md-video .play-btn')
-    image.src = "dashboard"+image_list[iter]  
+    image.src = image_list[iter]  
     image.setAttribute('vid',vid_list[iter])
     const next = document.getElementById('add-video')
     next.onclick = function(){
       iter = iter == image_list.length - 1 ? 0:++iter
-      image.src = "dashboard"+image_list[iter]
+      image.src = image_list[iter]
       image.animate([
         // keyframes
         { opacity: 0,

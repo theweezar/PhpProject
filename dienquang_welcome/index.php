@@ -279,12 +279,17 @@ function fetch_content_with_name($database, $name){
 <script>
     // Load từ các đường link embed tại đây
     // const image_list = ['Med-vid.png', 'Med-vid2.png', 'Med-vid3.png']
-    const image_list = [
-        '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_2"); ?>',
-        '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_3"); ?>',
-        '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_4"); ?>',
+    // const image_list = [
+    //     '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_2"); ?>',
+    //     '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_3"); ?>',
+    //     '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_4"); ?>',
+    // ]
+    // const vid_list = ['rPBL2sSy7O4','Qb_t_mdEK-E', 'HR42lbbPjTg']
+    const vid_list = [
+        '<?php echo fetch_content_with_name($web_content, "embed_video_2"); ?>',
+        '<?php echo fetch_content_with_name($web_content, "embed_video_3"); ?>',
+        '<?php echo fetch_content_with_name($web_content, "embed_video_4"); ?>',
     ]
-    const vid_list = ['rPBL2sSy7O4','Qb_t_mdEK-E', 'HR42lbbPjTg']
     // 'Qb_t_mdEK-E', 'HR42lbbPjTg'
 </script>
 

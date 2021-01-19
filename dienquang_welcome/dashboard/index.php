@@ -33,7 +33,7 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        button:focus,
+        button:focus,h6:focus,
         input:focus,
         select:focus{
             outline: none! important;
@@ -148,8 +148,20 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    <div class="d-sm-flex align-items-center justify-content-between my-3">
+                        <div class="h3 mb-0 text-gray-800">
+                            <h3>Dashboard</h3>
+                            <?php 
+                                if (isset($_GET['type'])){
+                                    if ($_GET['type'] == 3){
+                                        ?>
+                                        <button id="insert-btn" 
+                                        class="btn px-4 py-2 border border-primary bg-primary text-white">Insert</button>
+                                        <?php
+                                    }
+                                }
+                            ?>
+                        </div>
                     </div>
 
                     <!-- Load content here to edit -->
@@ -168,7 +180,7 @@
                                 ?>
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
+                                        <h6 contenteditable="true" class="m-0 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
                                         <div class="my-2">
                                             <select name="" id="select-option">
                                                 <option value="1" 
@@ -210,7 +222,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <iframe width="560" height="315" src="<?php echo $content['content']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe width="480" height="235" src="<?php echo $content['content']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                </div>
+                                                <div>
+                                                    <div>Tải thumbnail</div>
+                                                    <input type="file" name="image_to_upload" onchange="load_image(this)" 
+                                                    accept="image/png, image/jpeg, image/jpg" id="upload-image">
+                                                    <div class="text-center">
+                                                        <img src=".<?php 
+                                                            $thumbnail = $web_content->load_thumbnail($content['id']);
+                                                            if ($thumbnail != null) {
+                                                                echo mysqli_fetch_assoc($thumbnail)['thumbnail_link'];
+                                                            }
+                                                            else echo "";
+                                                        ?>" alt="">
+                                                    </div>
                                                 </div>
                                                 <?php
                                             }

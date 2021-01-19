@@ -66,4 +66,25 @@ class WebContent extends MySQL{
     }
   }
 
+  public function save_thumbnail($embed_id, $thumbnail){
+    try{
+      mysqli_query($this->conn,"UPDATE thumbnail SET thumbnail_link='".$thumbnail."' WHERE embed_id=".$embed_id." ");
+      mysqli_commit($this->conn);
+    }
+    catch(Exception $e){
+      return false;
+    }
+    return true;
+  }
+
+  public function load_thumbnail($embed_id){
+    try{
+      $result = mysqli_query($this->conn,"SELECT * FROM thumbnail WHERE embed_id=".$embed_id.";");
+      return $result;
+    }
+    catch(Exception $e){
+      return null;
+    }
+  }
+
 }

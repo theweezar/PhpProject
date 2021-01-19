@@ -4,9 +4,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/database/web_content.php');
 
 $web_content = new WebContent();
 
-$id = $_POST["id"];
+$embed_id = $_POST["id"];
 $target_dir = realpath(dirname(getcwd()))."\\dashboard\\upload\\";
-$target_file = $target_dir . basename($_FILES["image_to_upload"]["name"]);
+$target_file = $target_dir .'thumbnail_'. basename($_FILES["image_to_upload"]["name"]);
 $uploadOk = true;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -34,19 +34,19 @@ try {
 if ($uploadOk){
   try {
     // Lấy content ảnh cũ ra và xóa
-    $old_data = mysqli_fetch_assoc($web_content->load_content_with_id($id));
-    $dirname = explode("/",$old_data['content'])[1];
-    $filename = explode("/",$old_data['content'])[2];
+    $old_data = mysqli_fetch_assoc($web_content->load_thumbnail($embed_id));
+    $dirname = explode("/",$old_data['thumbnail_link'])[1];
+    $filename = explode("/",$old_data['thumbnail_link'])[2];
     unlink("./".$dirname."/".$filename);
   } catch (Exception $e) {
     echo "File ko tồn tại để xóa.";
   }
   // Lưu đường link
-  $data = '/upload/'.$_FILES["image_to_upload"]['name'];
-  $web_content->save_content($id, $data, 2);
+  $data = '/upload/'.'thumbnail_'.$_FILES["image_to_upload"]['name'];
+  $web_content->save_thumbnail($embed_id, $data);
   // upload và đưa vào thư mục upload
   // tmp_name là cái file của host này đang chứa
   move_uploaded_file($_FILES["image_to_upload"]['tmp_name'], $target_file);
-  echo "Lưu dữ liệu ảnh content ".$id." thành công";
+  echo "Lưu dữ liệu ảnh thumbnail ".$embed_id." thành công";
 }
-else echo "Lưu dữ liệu ảnh content ".$id." thất bại";
+else echo "Lưu dữ liệu ảnh thumbnail ".$embed_id." thất bại";
