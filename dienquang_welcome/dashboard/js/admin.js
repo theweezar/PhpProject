@@ -24,10 +24,10 @@ function load_image(input){
 // Load dữ liệu đường link embed
 function load_embed(input){
   try {
-    const url = new URL(input.parentElement.previousElementSibling.value)
-    const params = url.search;
-    const link = `https://www.youtube.com/embed/${params}`
-    // const link = input.parentElement.previousElementSibling.value
+    // const url = new URL(input.parentElement.previousElementSibling.value)
+    // const params = url.search;
+    // const link = `https://www.youtube.com/embed/${params}`
+    const link = input.parentElement.previousElementSibling.value
     input.parentElement.parentElement.nextElementSibling.firstElementChild.src = link
   } catch (error) {
     input.parentElement.parentElement.nextElementSibling.firstElementChild.src = ""

@@ -56,4 +56,14 @@ class WebContent extends MySQL{
     }
   }
 
+  public function load_content_with_type($type){
+    try{
+      $result = mysqli_query($this->conn,"SELECT * FROM web_content WHERE type=".$type.";");
+      return $result;
+    }
+    catch(Exception $e){
+      return null;
+    }
+  }
+
 }

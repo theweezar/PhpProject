@@ -32,18 +32,17 @@ try {
 // echo $target_file;
 
 if ($uploadOk){
-  // Lấy content ảnh cũ ra và xóa
-  $old_data = mysqli_fetch_assoc($web_content->load_content_with_id($id));
-  $dirname = explode("/",$old_data['content'])[1];
-  $filename = explode("/",$old_data['content'])[2];
-  // Hàm xóa
   try {
+    // Lấy content ảnh cũ ra và xóa
+    $old_data = mysqli_fetch_assoc($web_content->load_content_with_id($id));
+    $dirname = explode("/",$old_data['content'])[1];
+    $filename = explode("/",$old_data['content'])[2];
     unlink("./".$dirname."/".$filename);
   } catch (Exception $e) {
     echo "File ko tồn tại để xóa.";
   }
   // Lưu đường link
-  $data = './upload/'.$_FILES["image_to_upload"]['name'];
+  $data = '/upload/'.$_FILES["image_to_upload"]['name'];
   $web_content->save_content($id, $data, 2);
   // upload và đưa vào thư mục upload
   // tmp_name là cái file của host này đang chứa

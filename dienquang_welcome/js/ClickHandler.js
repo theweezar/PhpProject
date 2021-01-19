@@ -66,16 +66,15 @@ function ClickExitYoutube(){
 
 (function(){
     let iter = 0
-    const image_list = ['Med-vid.png', 'Med-vid2.png', 'Med-vid3.png']
-    const vid_list = ['rPBL2sSy7O4', 'Qb_t_mdEK-E', 'HR42lbbPjTg']
+    
     const image = document.querySelector('.md-video img[alt="med-vid"]')
     const play = document.querySelector('.md-video .play-btn')
-    image.src = "./img/"+image_list[iter]  
+    image.src = "dashboard"+image_list[iter]  
     image.setAttribute('vid',vid_list[iter])
     const next = document.getElementById('add-video')
     next.onclick = function(){
       iter = iter == image_list.length - 1 ? 0:++iter
-      image.src = "./img/"+image_list[iter]
+      image.src = "dashboard"+image_list[iter]
       image.animate([
         // keyframes
         { opacity: 0,

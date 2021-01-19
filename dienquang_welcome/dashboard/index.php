@@ -80,11 +80,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Type</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Welcome page</a>
+                        <a class="collapse-item" href="./index.php?type=1">Text</a>
+                        <a class="collapse-item" href="./index.php?type=2">Image</a>
+                        <a class="collapse-item" href="./index.php?type=3">Embed Video</a> 
                     </div>
                 </div>
             </li>
@@ -154,7 +156,12 @@
                     <?php 
                         include_once($_SERVER['DOCUMENT_ROOT'].'/database/web_content.php');
                         $web_content = new WebContent();
-                        $result = $web_content->load_content();
+                        $load_success = true;
+                        $result = null;
+                        if (isset($_GET['type'])){
+                            $result = $web_content->load_content_with_type($_GET['type']);
+                        }
+                        else $result = $web_content->load_content();
                         if ($result != null){
                             for($i = 0; $i < mysqli_num_rows($result); $i+=1){
                                 $content = mysqli_fetch_assoc($result);
@@ -188,7 +195,7 @@
                                                 <input type="file" name="image_to_upload" onchange="load_image(this)" 
                                                 accept="image/png, image/jpeg, image/jpg" id="upload-image">
                                                 <div class="text-center">
-                                                    <img src="<?php echo $content['content']; ?>" alt="">
+                                                    <img src=".<?php echo $content['content']; ?>" alt="">
                                                 </div>
                                                 <?php
                                             }
@@ -196,7 +203,8 @@
                                                 ?>
                                                 <!-- HTML for Embed go here -->
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="Embed Link">
+                                                    <input type="text" class="form-control" 
+                                                    placeholder="Dẫn đường link embed vào đầy và ấn Load">
                                                     <div class="input-group-append">
                                                         <span onclick="load_embed(this)" class="input-group-text bg-info text-white pointer">Load</span>
                                                     </div>

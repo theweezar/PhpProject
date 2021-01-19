@@ -19,7 +19,7 @@ function fetch_content_with_name($database, $name){
     }
 }
 
-fetch_content_with_name($web_content, "nav_1_trang_chu");
+// fetch_content_with_name($web_content, "nav_1_trang_chu");
 
 ?>
 
@@ -42,10 +42,14 @@ fetch_content_with_name($web_content, "nav_1_trang_chu");
         <nav>
             <!-- --------------------------------------- -->
             <div class="logo">
-                <img class="dienquang desktop" src="./img/left-nav-dienquang.png" alt="Dien Quang">
-                <img class="dienquang-logo desktop" src="./img/left-nav-dienquang-logo.png" alt="dienquang-logo">
-                <img class="dienquang mobile" src="./img/dienquang.png" alt="Dien Quang">
-                <img class="dienquang-logo mobile" src="./img/dienquang-logo.png" alt="dienquang-logo">
+                <img class="dienquang desktop" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
+                alt="Dien Quang">
+                <img class="dienquang-logo desktop" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
+                alt="dienquang-logo">
+                <img class="dienquang mobile" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
+                alt="Dien Quang">
+                <img class="dienquang-logo mobile" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
+                alt="dienquang-logo">
             </div>
             <!-- ---  -->
             <div class="navlink">
@@ -230,7 +234,9 @@ fetch_content_with_name($web_content, "nav_1_trang_chu");
                 <!-- ---------RIGHT FOR DES ----------------- -->
                 <div class="right">
                     <div class="big-video video">
-                        <img vid="5mhasaD8jzg" src="./img/big-vid.png" alt="big-vid" onclick="RunVideo(this)">
+                        <img vid="5mhasaD8jzg" 
+                        src="dashboard<?php echo fetch_content_with_name($web_content, "embed_thumbnail_1"); ?>" 
+                        alt="big-vid" onclick="RunVideo(this)">
                         <div class="play-btn" onclick="RunVideoBut(this)">
                             &#x25B6;
                         </div>
@@ -270,8 +276,20 @@ fetch_content_with_name($web_content, "nav_1_trang_chu");
 
 </body>
 
+<script>
+    // Load từ các đường link embed tại đây
+    // const image_list = ['Med-vid.png', 'Med-vid2.png', 'Med-vid3.png']
+    const image_list = [
+        '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_2"); ?>',
+        '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_3"); ?>',
+        '<?php echo fetch_content_with_name($web_content, "embed_thumbnail_4"); ?>',
+    ]
+    const vid_list = ['rPBL2sSy7O4','Qb_t_mdEK-E', 'HR42lbbPjTg']
+    // 'Qb_t_mdEK-E', 'HR42lbbPjTg'
+</script>
+
 <script src="./js/TranslateHandler.js"></script>
-<script src="./js/IframeAPIforMobile.js"></script>
+<!-- <script src="./js/IframeAPIforMobile.js"></script> -->
 <script src="./js/ClickHandler.js"></script>
 <script>
     new Splide( '#splide', {
