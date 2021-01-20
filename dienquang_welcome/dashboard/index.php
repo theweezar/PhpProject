@@ -145,7 +145,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" id="page-content">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between my-3">
@@ -180,8 +180,16 @@
                                 ?>
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 contenteditable="true" class="m-0 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
-                                        <div class="my-2">
+                                        <h6 contenteditable="true" class="m-0 w-75 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
+                                        <?php 
+                                            if ($content['type'] == 3) {
+                                                ?>
+                                        <button id="delete" onclick="delete_embed(this)" 
+                                        class="float-right btn btn-danger text-white border border-danger">&#10007;</button>
+                                        <?php
+                                            }
+                                        ?>
+                                        <div class="my-2 d-none">
                                             <select name="" id="select-option">
                                                 <option value="1" 
                                                 <?php echo $content['type'] == 1 ? 'selected="selected"':''; ?>>Text</option>
@@ -222,7 +230,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <iframe width="480" height="235" src="<?php echo $content['content']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe width="300" height="auto" src="<?php echo $content['content']; ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                                 </div>
                                                 <div>
                                                     <div>Tải thumbnail</div>
@@ -273,9 +281,10 @@
                         </div>
                     </div> -->
                     <!-- Load content end here -->
-                    <div class="float-right my-3">
-                        <button id='savebtn' class="px-3 bg-success text-light border border-dark">Save</button>
-                    </div>
+                    
+                </div>
+                <div class="text-center my-3">
+                    <button id='savebtn' class="btn px-4 bg-success text-light border border-success">Save</button>
                 </div>
             </div>
             <!-- End of Main Content -->

@@ -22,13 +22,61 @@ function load_image(input){
 }
 
 function insert_embed(){
-  $.ajax({
-    url:'./insert_embed.php',
-    type:'POST',
-    success:function(){
+  $('#page-content').append(
+    `<div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 contenteditable="true" id="content-name" class="m-0 font-weight-bold text-primary">===> Edit name here <===</h6>
+          <button id="delete" onclick="delete_embed(this)" 
+          class="float-right btn btn-danger text-white border border-danger">&#10007;</button>
+          <div class="my-2">
+              <select name="" id="select-option">
+                  <option value="1" disabled>Text</option>
+                  <option value="2" disabled>Image</option>
+                  <option value="3" selected="selected" >Embed</option>
+              </select>
+          </div>
+      </div>
+      <div new-content="true" class="card-body">
+        <!-- HTML for Embed go here -->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" 
+            placeholder="Dẫn đường link embed vào đầy và ấn Load">
+            <div class="input-group-append">
+                <span onclick="load_embed(this)" class="input-group-text bg-info text-white pointer">Load</span>
+            </div>
+        </div>
+        <div class="text-center">
+            <iframe width="300" height="auto" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div>
+            <div>Tải thumbnail</div>
+            <input type="file" name="image_to_upload" onchange="load_image(this)" 
+            accept="image/png, image/jpeg, image/jpg" id="upload-image">
+            <div class="text-center">
+                <img src="." alt="">
+            </div>
+        </div>
+      </div>
+  </div>`
+  )
+}
 
-    }
-  })
+function delete_embed(input){
+  const whole_content = input.parentElement.parentElement
+  const content = whole_content.querySelector('div[content-id]')
+  if (content){
+    $.ajax({
+      url:"./delete.php",
+      type:"POST",
+      data:{
+        id:content.getAttribute("content-id")
+      },
+      success: function(response){
+        console.log(response)
+      }
+    })
+  }
+  whole_content.parentElement.removeChild(whole_content)
 }
 
 // Load dữ liệu đường link embed
@@ -78,7 +126,7 @@ function switch_option(){
       </div>
     </div>
     <div class="text-center">
-      <iframe width="480" height="235" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="300" height="auto" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div>
       <div>Tải thumbnail</div>
@@ -165,7 +213,7 @@ function save_content(){
         })
       }
       data_img = el.querySelector('input[type="file"]').files
-      console.log('data:',data,'data_img',data_img)
+      console.log('data:',data,'\ndata_img',data_img)
       if (data_img.length > 0){
         var form = new FormData()
         // Image data
@@ -179,6 +227,39 @@ function save_content(){
     // console.log('Mode:',mode,'Length:',data == null ? 'null':data.length,'Data:',data)
   })
   alert('Lưu dữ liệu thành công')
+
+  const new_content = document.querySelectorAll('div[new-content]')
+  new_content.forEach(el => {
+    const mode = el.previousElementSibling.lastElementChild.firstElementChild.selectedIndex
+    const name = el.parentElement.querySelector("h6").innerText
+    const data_src = el.querySelector('iframe').getAttribute('src').trim()
+    const data_img = el.querySelector('input[type="file"]').files
+    
+    var form = new FormData()
+    // Lưu content trong web_content và thumbnail trước, có thể 2 cái đó có null
+    form.append('name',name)
+    form.append('iframe',data_src)
+    $.ajax({
+      url:"./insert_embed.php",
+      type:"POST",
+      data: form,
+      contentType: false,
+      processData: false,
+      success: function(response){
+        response = JSON.parse(response)
+        console.log(response)
+        if (data_img.length > 0){
+          form.append('image_to_upload',data_img[0])
+          form.append('id', JSON.parse(response).newest_embed_id)
+          ajax_save_image('./save_thumbnail.php',form)
+        }
+        el.setAttribute("content-id",response.newest_embed_id)
+        el.removeAttribute("new-content")
+      }
+    })
+
+    console.log('name:',name,'\ndata:',data_src,'\ndata_img',data_img,'\nmode:',mode)
+  })
 }
 
 (function(){
