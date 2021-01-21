@@ -7,3 +7,5 @@ $web_content = new WebContent();
 
 $web_content->delete_content($id);
 $web_content->delete_thumbnail($id);
+
+echo "Xóa dữ liệu embed và thumnail của embed_id: ".$id;

@@ -77,19 +77,19 @@ function get_image_url(url = ""){
 (function(){
     let iter = 0
     console.log('vid_list',vid_list)
-    let image_list = vid_list.map(el => {
-        return get_image_url(el)
-    })
+    // let image_list = vid_list.map(el => {
+    //     return get_image_url(el)
+    // })
     console.log('image_list',image_list)
     
     const image = document.querySelector('.md-video img[alt="med-vid"]')
     const play = document.querySelector('.md-video .play-btn')
-    image.src = image_list[iter]  
+    image.src = "dashboard"+image_list[iter]  
     image.setAttribute('vid',vid_list[iter])
     const next = document.getElementById('add-video')
     next.onclick = function(){
       iter = iter == image_list.length - 1 ? 0:++iter
-      image.src = image_list[iter]
+      image.src = "dashboard"+image_list[iter]
       image.animate([
         // keyframes
         { opacity: 0,

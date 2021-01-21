@@ -28,7 +28,7 @@ function insert_embed(){
           <h6 contenteditable="true" id="content-name" class="m-0 font-weight-bold text-primary">===> Edit name here <===</h6>
           <button id="delete" onclick="delete_embed(this)" 
           class="float-right btn btn-danger text-white border border-danger">&#10007;</button>
-          <div class="my-2">
+          <div class="my-2 d-none">
               <select name="" id="select-option">
                   <option value="1" disabled>Text</option>
                   <option value="2" disabled>Image</option>
@@ -176,14 +176,17 @@ function save_content(){
     // Lấy dư liệu
     const id = el.getAttribute('content-id')
     const mode = el.previousElementSibling.lastElementChild.firstElementChild.selectedIndex
+    const name = el.parentElement.querySelector("h6").innerText
     var data = undefined
     // Text
     if (mode == 0){
       data = el.innerText.trim()
       ajax_save_text('./save_text.php',{
         id: id,
+        name: name,
         data: data,
-        type: mode + 1
+        type: mode + 1,
+        status: 1
       })
     }
     // Image
@@ -191,27 +194,33 @@ function save_content(){
       // data = el.querySelector('img').getAttribute('src').trim()
       // if (data.length == 0) ok = false
       var files = el.querySelector('input').files
+      var form = new FormData()
       if (files.length > 0){
-        var form = new FormData()
         // Image data
+        form.append('status',1)
         form.append('image_to_upload',files[0])
-        // id
-        form.append('id', el.getAttribute('content-id'))
-        data = form
       }
-      else data = null;
-      if (data != null) ajax_save_image('./save_image.php',data) 
+      else form.append('status',0)
+      form.append('id', el.getAttribute('content-id'))
+      form.append('name', name)
+      
+      // Nếu data != null tức là đã upload 1 ảnh mới, thì mới ajax để save ảnh đó về
+      ajax_save_image('./save_image.php',form) 
     }
     // Embed
     else if (mode == 2){
       data = el.querySelector('iframe').getAttribute('src').trim()
-      if (data.length > 0){
-        ajax_save_text('./save_text.php',{
-          id: id,
-          data: data,
-          type: mode + 1
-        })
+      var status = 1
+      if (data.length == 0){
+        status = 0
       }
+      ajax_save_text('./save_text.php',{
+        id: id,
+        name: name,
+        data: data,
+        type: mode + 1,
+        status: status
+      })
       data_img = el.querySelector('input[type="file"]').files
       console.log('data:',data,'\ndata_img',data_img)
       if (data_img.length > 0){

@@ -76,7 +76,19 @@ class WebContent extends MySQL{
 
   public function save_content($id, $data, $type){
     try{
-      mysqli_query($this->conn,"UPDATE web_content SET content='".$data."',type=".$type." WHERE id=".$id." ");
+      mysqli_query($this->conn,"UPDATE web_content SET content='".$data."'
+      ,type=".$type." WHERE id=".$id." ");
+      mysqli_commit($this->conn);
+    }
+    catch(Exception $e){
+      return false;
+    }
+    return true;
+  }
+
+  public function change_name($id, $name){
+    try{
+      mysqli_query($this->conn,"UPDATE web_content SET name='".$name."' WHERE id=".$id." ");
       mysqli_commit($this->conn);
     }
     catch(Exception $e){
@@ -124,6 +136,16 @@ class WebContent extends MySQL{
       return false;
     }
     return true;
+  }
+
+  public function load_all_thumbnail_order_embed_id(){
+    try{
+      $result = mysqli_query($this->conn,"SELECT * FROM thumbnail ORDER BY embed_id");
+      return $result;
+    }
+    catch(Exception $e){
+      return null;
+    }
   }
 
   public function load_thumbnail($embed_id){
