@@ -243,7 +243,7 @@ function save_content(){
     const name = el.parentElement.querySelector("h6").innerText
     const data_src = el.querySelector('iframe').getAttribute('src').trim()
     const data_img = el.querySelector('input[type="file"]').files
-    
+  
     var form = new FormData()
     // Lưu content trong web_content và thumbnail trước, có thể 2 cái đó có null
     form.append('name',name)
@@ -259,7 +259,7 @@ function save_content(){
         console.log(response)
         if (data_img.length > 0){
           form.append('image_to_upload',data_img[0])
-          form.append('id', JSON.parse(response).newest_embed_id)
+          form.append('id', response.newest_embed_id)
           ajax_save_image('./save_thumbnail.php',form)
         }
         el.setAttribute("content-id",response.newest_embed_id)

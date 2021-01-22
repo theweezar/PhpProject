@@ -76,11 +76,11 @@ function get_image_url(url = ""){
 
 (function(){
     let iter = 0
-    console.log('vid_list',vid_list)
+    // console.log('vid_list',vid_list)
     // let image_list = vid_list.map(el => {
     //     return get_image_url(el)
     // })
-    console.log('image_list',image_list)
+    // console.log('image_list',image_list)
     
     const image = document.querySelector('.md-video img[alt="med-vid"]')
     const play = document.querySelector('.md-video .play-btn')

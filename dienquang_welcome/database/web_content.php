@@ -158,4 +158,14 @@ class WebContent extends MySQL{
     }
   }
 
+  public function load_all_embed_join_thumbnail(){
+    try{
+      $result = mysqli_query($this->conn,"SELECT * FROM web_content ct, thumbnail tn WHERE ct.id = tn.embed_id");
+      return $result;
+    }
+    catch(Exception $e){
+      return null;
+    }
+  }
+
 }

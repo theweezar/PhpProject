@@ -19,6 +19,23 @@ function fetch_content_with_name($database, $name){
     }
 }
 
+function fetch_thumbnail_with_name($database, $name){
+    try {
+        $result = $database->load_content_with_name($name);
+        if ($result != null){
+            $content = mysqli_fetch_assoc($result);
+            $result = $database->load_thumbnail($content['id']);
+            if ($result != null) return mysqli_fetch_assoc($result)['thumbnail_link'];
+            else return "";
+        }
+        else return "";
+    } catch (Exception $e) {
+        return "Lỗi kết nối database";
+    }
+}
+
+
+
 // fetch_content_with_name($web_content, "nav_1_trang_chu");
 
 ?>
@@ -34,6 +51,7 @@ function fetch_content_with_name($database, $name){
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
     <script id="iframe_api"></script>
 </head>
 <body>
@@ -42,48 +60,38 @@ function fetch_content_with_name($database, $name){
         <nav>
             <!-- --------------------------------------- -->
             <div class="logo">
-                <img class="dienquang desktop" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
+                <img class="dienquang desktop" key-data="logo_1" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
                 alt="Dien Quang">
-                <img class="dienquang-logo desktop" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
+                <img class="dienquang-logo desktop" key-data="logo_3" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
                 alt="dienquang-logo">
-                <img class="dienquang mobile" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
+                <img class="dienquang mobile" key-data="logo_1" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
                 alt="Dien Quang">
-                <img class="dienquang-logo mobile" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
+                <img class="dienquang-logo mobile" key-data="logo_3" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
                 alt="dienquang-logo">
             </div>
             <!-- ---  -->
             <div class="navlink">
                 <div class="nl-item">
-                    <a href="#" id="home" ><?php echo fetch_content_with_name($web_content, "nav_1_trang_chu"); ?></a>
+                    <a href="#" id="home" key-data="nav_1_trang_chu"><?php echo fetch_content_with_name($web_content, "nav_1_trang_chu"); ?></a>
                 </div>
                 <div class="nl-item" id="language">
-                    <a href="#" id="lang" ><?php echo fetch_content_with_name($web_content, "nav_2_ngon_ngu"); ?></a>
+                    <a href="#" id="lang" key-data="nav_2_ngon_ngu"><?php echo fetch_content_with_name($web_content, "nav_2_ngon_ngu"); ?></a>
                     <ul class="language-dropbox">
                         <li id="vi" onclick="TranslatetoVietNamese()">Tiếng Việt</li>
                         <li id="en" onclick="TranslatetoEnglish()">Tiếng Anh</li>
                     </ul>
                 </div>
                 <div class="nl-item" onclick="ClicktoOpenContactOverlay()">
-                    <a href="#" id="contact" ><?php echo fetch_content_with_name($web_content, "nav_3_lien_he"); ?></a>
+                    <a href="#" id="contact" key-data="nav_3_lien_he"><?php echo fetch_content_with_name($web_content, "nav_3_lien_he"); ?></a>
                 </div>
             </div>
             <!-- --------------------------------------- -->
         </nav>
         <!-- ----------MAIN------------------------------------ -->
         <div class="overlay formore-mobile dnone"  onclick="ClickExit()">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            
-            <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-            Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-           </p>
-            
-            <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-            Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
+            <p key-data="more">
+
             </p>
-            
-            <!-- <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-            Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-            </p> -->
             <button class="exit" onclick="ClickExit()">
                 <img src="./img/exit-icon.png" alt="exit-icon">
             </button>
@@ -103,29 +111,20 @@ function fetch_content_with_name($database, $name){
                 </button>
             </div>
             <div class="overlay contact dnone" onclick="ClickExit()">
-                <h2><?php echo fetch_content_with_name($web_content, "company_name"); ?></h2>
-                <p><?php echo fetch_content_with_name($web_content, "address"); ?></p>
+                <h2 key-data="company_name"><?php echo fetch_content_with_name($web_content, "company_name"); ?></h2>
+                <p key-data="address"><?php echo fetch_content_with_name($web_content, "address"); ?></p>
                     <p>Hotline: <?php echo fetch_content_with_name($web_content, "hotline"); ?> 
                     - Email: <?php echo fetch_content_with_name($web_content, "email"); ?></p>
-                    <p>Website: <?php echo fetch_content_with_name($web_content, "website"); ?></p>
+                    <p key-data="website">Website: <?php echo fetch_content_with_name($web_content, "website"); ?></p>
                 <button class="exit" onclick="ClickExit()">
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
             </div>
             <div class="overlay formore dnone " onclick="ClickExit()">
-                <h2>Lorem ipsum dolor sit amet</h2>
-                
-                <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-                Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-               </p>
-                
-                <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-                Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
+                <!-- content của see more tiếng việt -->
+                <p id="see-more-content" key-data="more">
+                    <?php echo fetch_content_with_name($web_content,"more"); ?>
                 </p>
-                
-                <!-- <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-                Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-                </p> -->
                 <button class="exit" onclick="ClickExit()">
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
@@ -234,8 +233,9 @@ function fetch_content_with_name($database, $name){
                 <!-- ---------RIGHT FOR DES ----------------- -->
                 <div class="right">
                     <div class="big-video video">
-                        <img vid="5mhasaD8jzg" 
-                        src="dashboard<?php echo fetch_content_with_name($web_content, "embed_thumbnail_1"); ?>" 
+                    <!-- Load embed link vào trong những attribute "vid" -->
+                        <img vid="<?php echo fetch_content_with_name($web_content,"big_video") ?>" 
+                        src="dashboard<?php echo fetch_thumbnail_with_name($web_content, "big_video"); ?>" 
                         alt="big-vid" onclick="RunVideo(this)">
                         <div class="play-btn" onclick="RunVideoBut(this)">
                             &#x25B6;
@@ -280,7 +280,7 @@ function fetch_content_with_name($database, $name){
     // Load từ các đường link embed tại đây
     // const image_list = ['Med-vid.png', 'Med-vid2.png', 'Med-vid3.png']
     // const vid_list = ['rPBL2sSy7O4','Qb_t_mdEK-E', 'HR42lbbPjTg']
-
+    
     const vid_list = [
         <?php 
             $embed_rs = $web_content->load_content_with_type(3);
@@ -307,7 +307,7 @@ function fetch_content_with_name($database, $name){
     
     // 'Qb_t_mdEK-E', 'HR42lbbPjTg'
 </script>
-
+<script src="./js/display_data.js"></script>
 <script src="./js/TranslateHandler.js"></script>
 <!-- <script src="./js/IframeAPIforMobile.js"></script> -->
 <script src="./js/ClickHandler.js"></script>
