@@ -74,8 +74,9 @@ function get_image_url(url = ""){
     else return ""
 }
 
+
 (function(){
-    let iter = 0
+    let iter = 1
     // console.log('vid_list',vid_list)
     // let image_list = vid_list.map(el => {
     //     return get_image_url(el)
@@ -88,7 +89,7 @@ function get_image_url(url = ""){
     image.setAttribute('vid',vid_list[iter])
     const next = document.getElementById('add-video')
     next.onclick = function(){
-      iter = iter == image_list.length - 1 ? 0:++iter
+      iter = iter == image_list.length - 1 ? 1:++iter
       image.src = "dashboard"+image_list[iter]
       image.animate([
         // keyframes
@@ -112,4 +113,5 @@ function get_image_url(url = ""){
       })
       image.setAttribute('vid',vid_list[iter])
     }
+    
   })()

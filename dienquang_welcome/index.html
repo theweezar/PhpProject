@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script src="./js/jquery.min.js"></script>
     <script id="iframe_api"></script>
 </head>
 <body>
@@ -17,10 +18,10 @@
         <nav>
             <!-- --------------------------------------- -->
             <div class="logo">
-                <img class="dienquang desktop" src="./img/left-nav-dienquang.png" alt="Dien Quang">
-                <img class="dienquang-logo desktop" src="./img/left-nav-dienquang-logo.png" alt="dienquang-logo">
-                <img class="dienquang mobile" src="./img/dienquang.png" alt="Dien Quang">
-                <img class="dienquang-logo mobile" src="./img/dienquang-logo.png" alt="dienquang-logo">
+                <img class="dienquang desktop" key-data="logo_1" src="." alt="Dien Quang">
+                <img class="dienquang-logo desktop" key-data="logo_3" src="." alt="dienquang-logo">
+                <img class="dienquang mobile" key-data="logo_1" src="." alt="Dien Quang">
+                <img class="dienquang-logo mobile" key-data="logo_3" src="." alt="dienquang-logo">
             </div>
             <!-- ---  -->
             <div class="navlink">
@@ -42,19 +43,7 @@
         </nav>
         <!-- ----------MAIN------------------------------------ -->
         <div class="overlay formore-mobile dnone"  onclick="ClickExit()">
-            <h2>Lorem ipsum dolor sit amet</h2>
-            
-            <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-            Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-           </p>
-            
-            <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-            Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-            </p>
-            
-            <!-- <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-            Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-            </p> -->
+            <p key-data="more"></p>
             <button class="exit" onclick="ClickExit()">
                 <img src="./img/exit-icon.png" alt="exit-icon">
             </button>
@@ -74,28 +63,18 @@
                 </button>
             </div>
             <div class="overlay contact dnone" onclick="ClickExit()">
-                <h2>CÔNG TY CỔ PHẦN BÓNG ĐÈN ĐIỆN QUANG</h2>
-                <p>125 Hàm Nghi, Phường Nguyễn Thái Bình, Quận 1, Hồ Chí Minh</p>
-                    <p>Hotline: 19001257 - Email: info@dienquang.com</p>
-                    <p>Website: https://dienquang.com</p>
+                <h2 key-data="company_name">CÔNG TY CỔ PHẦN BÓNG ĐÈN ĐIỆN QUANG</h2>
+                <p key-data="address">125 Hàm Nghi, Phường Nguyễn Thái Bình, Quận 1, Hồ Chí Minh</p>
+                    <p>
+                        Hotline: <span key-data="hotline">19001257</span> - 
+                        Email: <span key-data="email">info@dienquang.com</span></p>
+                    <p>Website: <span key-data="website">https://dienquang.com</span></p>
                 <button class="exit" onclick="ClickExit()">
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
             </div>
             <div class="overlay formore dnone " onclick="ClickExit()">
-                <h2>Lorem ipsum dolor sit amet</h2>
-                
-                <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-                Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-               </p>
-                
-                <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-                Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-                </p>
-                
-                <!-- <p><span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quia eveniet cumque neque, distinctio tempora excepturi voluptatum modi veritatis animi pariatur cum perspiciatis ullam facilis commodi quos blanditiis nam adipisci.
-                Aperiam qui rerum a atque! Obcaecati magni dolorum rem repellendus sit suscipit reiciendis necessitatibus, quidem corrupti exercitationem vel nulla dolorem repellat autem nobis laudantium earum natus quo. Nemo, alias maxime.
-                </p> -->
+                <p key-data="more"></p>
                 <button class="exit" onclick="ClickExit()">
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
@@ -184,10 +163,10 @@
                 <div class="left">
                     <div class="certi">
                         <img src="./img/VietNam-Value-logo.png" alt="VietNam-Value-logo">
-                        <p>Tự hào thương hiệu quốc gia</p>
+                        <p key-data="slogan">Tự hào thương hiệu quốc gia</p>
                     </div>
                     <div class="intro">
-                        <p id="content">
+                        <p id="content" key-data="introduce">
                             Điện Quang được thành lập từ năm <b>1973</b>,
                             là Thương Hiệu Quốc gia duy nhất trong ngành chiếu sáng; 
                             đang chuyển mình mạnh mẽ theo định hướng 
@@ -195,6 +174,7 @@
                             trong lĩnh vực chiếu sáng, thiết bị điện 
                             và điều khiển thông minh.
                         </p>
+                        
                         
                     </div>
                     <div class="formore">
@@ -250,6 +230,7 @@
 
 </body>
 
+<script src="./js/display_data.js"></script>
 <script src="./js/TranslateHandler.js"></script>
 <script src="./js/IframeAPIforMobile.js"></script>
 <script src="./js/ClickHandler.js"></script>

@@ -60,13 +60,13 @@ function fetch_thumbnail_with_name($database, $name){
         <nav>
             <!-- --------------------------------------- -->
             <div class="logo">
-                <img class="dienquang desktop" key-data="logo_1" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
+                <img class="dienquang desktop" key-data="logo_1" src="." 
                 alt="Dien Quang">
-                <img class="dienquang-logo desktop" key-data="logo_3" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
+                <img class="dienquang-logo desktop" key-data="logo_3" src="." 
                 alt="dienquang-logo">
-                <img class="dienquang mobile" key-data="logo_1" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_1"); ?>" 
+                <img class="dienquang mobile" key-data="logo_1" src="." 
                 alt="Dien Quang">
-                <img class="dienquang-logo mobile" key-data="logo_3" src="/dashboard<?php echo fetch_content_with_name($web_content, "logo_3"); ?>" 
+                <img class="dienquang-logo mobile" key-data="logo_3" src="." 
                 alt="dienquang-logo">
             </div>
             <!-- ---  -->
@@ -111,11 +111,12 @@ function fetch_thumbnail_with_name($database, $name){
                 </button>
             </div>
             <div class="overlay contact dnone" onclick="ClickExit()">
-                <h2 key-data="company_name"><?php echo fetch_content_with_name($web_content, "company_name"); ?></h2>
-                <p key-data="address"><?php echo fetch_content_with_name($web_content, "address"); ?></p>
-                    <p>Hotline: <?php echo fetch_content_with_name($web_content, "hotline"); ?> 
-                    - Email: <?php echo fetch_content_with_name($web_content, "email"); ?></p>
-                    <p key-data="website">Website: <?php echo fetch_content_with_name($web_content, "website"); ?></p>
+                <h2 key-data="company_name">CÔNG TY CỔ PHẦN BÓNG ĐÈN ĐIỆN QUANG</h2>
+                    <p key-data="address">125 Hàm Nghi, Phường Nguyễn Thái Bình, Quận 1, Hồ Chí Minh</p>
+                    <p>
+                        Hotline: <span key-data="hotline">19001257</span> - 
+                        Email: <span key-data="email">info@dienquang.com</span></p>
+                    <p>Website: <span key-data="website">https://dienquang.com</span></p>
                 <button class="exit" onclick="ClickExit()">
                     <img src="./img/exit-icon.png" alt="exit-icon">
                 </button>
@@ -135,7 +136,7 @@ function fetch_thumbnail_with_name($database, $name){
                 <!-- ----------TOP FOR MOB ----------------- -->
                 <div class="top">
                     <div class="video big-video">
-                        <img vid="5mhasaD8jzg" src="./img/big-vid-mobile.png" onclick="RunVideo(this)" alt="big-vid">
+                        <img vid="5mhasaD8jzg" id="big-video" src="./img/big-vid-mobile.png" onclick="RunVideo(this)" alt="big-vid">
                         <div class="play-btn" onclick="RunVideoBut(this)">
                             &#x25B6;
                         </div>
@@ -143,8 +144,8 @@ function fetch_thumbnail_with_name($database, $name){
                     
                     <div id="splide" class="splide slider">
                         <div class="splide__track">
-                            <ul class="splide__list" style="color: white">
-                                <li class="splide__slide slide">
+                            <ul class="splide__list" style="color: white" id="phone-splide">
+                                <!-- <li class="splide__slide slide">
                                     <div>
                                         <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
                                         <div class="play-btn" onclick="RunVideoBut(this)">
@@ -163,47 +164,7 @@ function fetch_thumbnail_with_name($database, $name){
                                             &#x25B6;
                                         </div>
                                     </div>
-                                </li>
-                                <li class="splide__slide slide">
-                                    <div>
-                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
-                                        <div class="play-btn" onclick="RunVideoBut(this)">
-                                            &#x25B6;
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
-                                        <div class="play-btn" onclick="RunVideoBut(this)">
-                                            &#x25B6;
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
-                                        <div class="play-btn" onclick="RunVideoBut(this)">
-                                            &#x25B6;
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="splide__slide slide">
-                                    <div>
-                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
-                                        <div class="play-btn" onclick="RunVideoBut(this)">
-                                            &#x25B6;
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
-                                        <div class="play-btn" onclick="RunVideoBut(this)">
-                                            &#x25B6;
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img vid="Qb_t_mdEK-E" src="./img/med-vid-mobile.png" onclick="RunVideo(this)" alt="Med vid">
-                                        <div class="play-btn" onclick="RunVideoBut(this)">
-                                            &#x25B6;
-                                        </div>
-                                    </div>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -212,12 +173,11 @@ function fetch_thumbnail_with_name($database, $name){
                 <!-- --------LEFT FOR DES & MOB ----------------- -->
                 <div class="left">
                     <div class="certi">
-                        <img src="./img/VietNam-Value-logo.png" alt="VietNam-Value-logo">
-                        <p><?php echo fetch_content_with_name($web_content, "slogan"); ?></p>
+                        <img key-data="logo_2" src="." alt="VietNam-Value-logo">
+                        <p key-data="slogan"></p>
                     </div>
                     <div class="intro">
-                        <p id="content">
-                        <?php echo fetch_content_with_name($web_content, "introduce"); ?>
+                        <p key-data="introduce" id="content">
                         </p>
                     </div>
                     <div class="formore">
@@ -312,19 +272,7 @@ function fetch_thumbnail_with_name($database, $name){
 <!-- <script src="./js/IframeAPIforMobile.js"></script> -->
 <script src="./js/ClickHandler.js"></script>
 <script>
-    new Splide( '#splide', {
-      type    : 'loop',
-      autoplay: true,
-      } ).mount();
-    document.querySelector('.splide__list').style.transform = 'none';
-    document.querySelectorAll('.splide__arrows button').forEach((x)=>{
-      x.style.display = 'none';
-    })
-    document.querySelectorAll('.splide__pagination__page').forEach((x)=>{
-      x.style.width = '1.2vh';
-      x.style.height = '1.2vh';
-      x.style.transform = 'translateY(.9vh)';
-    })
+    
     
   </script>
 </html>

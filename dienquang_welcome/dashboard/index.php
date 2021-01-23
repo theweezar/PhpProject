@@ -180,7 +180,7 @@
                                 ?>
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 contenteditable="true" class="m-0 w-75 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
+                                        <h6 <?php echo $content['type'] == 3 ? 'contenteditable="true"':'' ?> class="m-0 w-75 font-weight-bold text-primary"><?php echo $content['name']; ?></h6>
                                         <?php 
                                             if ($content['type'] == 3) {
                                                 ?>
