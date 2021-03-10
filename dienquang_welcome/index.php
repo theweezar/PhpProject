@@ -209,7 +209,8 @@ function fetch_thumbnail_with_name($database, $name){
                             </div>
                         </div>
                         <div class="add-video" id="add-video">
-                            <img src="./img/addVideo.png" alt="addVideo">
+                            <div class="plus"></div>
+                            <img src="./img/no-video.png" alt="addVideo">
                         </div>
                     </div>
                 </div>

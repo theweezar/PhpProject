@@ -82,21 +82,55 @@ function get_image_url(url = ""){
     //     return get_image_url(el)
     // })
     // console.log('image_list',image_list)
-    
+    // js for php
     const image = document.querySelector('.md-video img[alt="med-vid"]')
+    // update 25/1/2020 - create next_image
+    const next_image = document.querySelector('.add-video img[alt="addVideo"]')
+    const plus = document.querySelector('.add-video .plus')
     const play = document.querySelector('.md-video .play-btn')
-    image.src = "dashboard"+image_list[iter]  
+    image.src = "dashboard"+image_list[iter]
+    // update 25/1/2020 - if next_image
+    if(image_list.length <= 1) next_image.src="./img/no-video.png";
+    else if(iter+1 <= image_list.length-1 )
+        next_image.src = "dashboard"+image_list[iter+1]
+    else 
+        next_image.src = "dashboard"+image_list[1]  
     image.setAttribute('vid',vid_list[iter])
     const next = document.getElementById('add-video')
     next.onclick = function(){
       iter = iter == image_list.length - 1 ? 1:++iter
       image.src = "dashboard"+image_list[iter]
+      // update 25/1/2020 - if next_image 
+      if(image_list.length <= 1) next_image.src="./img/no-video.png";
+      else
+        if(iter+1 <= image_list.length-1 )
+        next_image.src = "dashboard"+image_list[iter+1]
+        else 
+        next_image.src = "dashboard"+image_list[1]
       image.animate([
         // keyframes
         { opacity: 0,
         transform: 'translate(0)' },
         { opacity: 1,
         transform: 'translate(0)' }
+      ], {
+        // timing options
+        duration: 1000,
+      })
+      next_image.animate([
+        // keyframes
+        { opacity: 0,
+        transform: 'translate(0)' },
+        { opacity: 1,
+        transform: 'translate(0)' }
+      ], {
+        // timing options
+        duration: 1000,
+      })
+      plus.animate([
+        // keyframes
+        { opacity: 0,},
+        { opacity: 1,}
       ], {
         // timing options
         duration: 1000,
