@@ -23,7 +23,10 @@ class ClientController extends Controller
      */
 
     public function register(Request $request){
-        
-        return 'register here';
+        return [
+            "clientId" => 1,
+            "firstName" => "Duc",
+            "lastName" => "Minh"
+        ];
     }
 }
