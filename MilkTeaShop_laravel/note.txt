@@ -1,0 +1,15 @@
+Get list of command => php artisan list
+Get help of method => php artisan help <method>
+Deploy app => php artisan serve
+Create a controller => "php artisan make:controller <name>"
+Create a model => "php artisan make:model <name>"
+Make migration file => "php artisan make:migration <name>"
+
+
+clone model from database => https://github.com/krlove/eloquent-model-generator
+| composer require krlove/eloquent-model-generator --dev
+| php artisan krlove:generate:model Client --table-name=client => clone table tên "client" vào folder app với tên Client
+
+
+config debug mode => config/app.php
+config database => config/database.php (database, username, password)
