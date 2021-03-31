@@ -19,15 +19,16 @@ use App\Http\Controllers\DatabaseTestingController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/greeting', function(){
-    return 'Greeting my friend!';
-});
+// Route::get('/greeting', function(){
+//     return 'Greeting my friend!';
+// });
 
 /**
- * Để dùng 1 controller ta phải import vào
- * tham biến thứ 2 'register' là tên method gọi đến khi request tới đường link này
+ * Dưới này là cách khai báo route để gọi đến 1 class Controller, tham biến thứ 2 là method của Controller đó
  */
 
 Route::get('/register',[ClientController::class,'register']);
+Route::get('/drink',[DrinkController::class,'render']);
+Route::get('/drink/drinkform',[DrinkController::class,'render_form']);
 Route::get('test',[DatabaseTestingController::class,'test']);
 // Route::post('/drink/insert',[DrinkController::class,'insert']);

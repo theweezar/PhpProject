@@ -16,7 +16,7 @@ class CreateExtraTable extends Migration
         Schema::create('extra', function (Blueprint $table) {
             $table->id('extra_id')->autoIncrement();
             $table->string('extra_name',50);
-            $table->string('extra_image',1024);
+            $table->string('extra_image',1024)->nullable();
             $table->integer('extra_type');
             $table->string('extra_describe',1024);
             $table->boolean('is_active');

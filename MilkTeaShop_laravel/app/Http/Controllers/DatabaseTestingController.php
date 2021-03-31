@@ -8,6 +8,6 @@ use App\Migration;
 class DatabaseTestingController extends Controller
 {
     public function test(Request $request){
-        return "Migration::get()";
+        return Migration::get();
     }
 }

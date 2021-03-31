@@ -16,7 +16,7 @@ class CreateDrinkTable extends Migration
         Schema::create('drink', function (Blueprint $table) {
             $table->id('drink_id')->autoIncrement();
             $table->string('drink_name',50);
-            $table->string('drink_image',1024);
+            $table->string('drink_image',1024)->nullable();
             $table->integer('drink_type');
             $table->string('drink_describe',1024);
             $table->boolean('is_active');
