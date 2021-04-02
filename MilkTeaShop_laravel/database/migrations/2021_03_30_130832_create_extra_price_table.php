@@ -15,7 +15,7 @@ class CreateExtraPriceTable extends Migration
     {
         Schema::create('extra_price', function (Blueprint $table) {
             $table->unsignedBigInteger('extra_id');
-            $table->unsignedBigInteger('extra_price');
+            $table->unsignedBigInteger('extra_price')->nullable();
             $table->dateTime('updated_at');
             $table->dateTime('created_at')->useCurrent();
             // $table->foreign('extra_id')->references('extra_id')->on('extra')->onUpdate('cascade')

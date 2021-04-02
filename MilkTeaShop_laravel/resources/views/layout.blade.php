@@ -13,8 +13,8 @@
   <div class="container-fluid">
 
     <div class="wrapper d-flex">
-      <div class="sidebar pl-3">
-        <div class="brand">
+      <div class="sidebar">
+        <div class="brand pl-3">
           MilkTeaShop3DM
         </div>
         <div>
@@ -23,13 +23,13 @@
               <a class="nav-link" href="{{ url ('drink') }}">Drink Section</a>
             </li>
             <li class="nav-item">
-              Extra Section
+              <a class="nav-link" href="{{ url ('extra') }}">Extra Section</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="content-wrapper">
-        <div class="p-4">
+        <div class="py-4">
           Manager Section
         </div>
         @yield('content')

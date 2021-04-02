@@ -16,7 +16,7 @@ class CreateDrinkPriceTable extends Migration
         Schema::create('drink_price', function (Blueprint $table) {
             $table->unsignedBigInteger('drink_id');
             $table->integer('drink_size');
-            $table->unsignedBigInteger('drink_price');
+            $table->unsignedBigInteger('drink_price')->nullable();
             $table->dateTime('updated_at');
             $table->dateTime('created_at')->useCurrent();
             // $table->foreign('drink_id')->references('drink_id')->on('drink')->onUpdate('cascade')

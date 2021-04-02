@@ -28,6 +28,11 @@ class AddFk extends Migration
             ->onDelete('cascade');
         });
 
+        Schema::table('drink', function(Blueprint $table){
+            $table->foreign('drink_type_id')->references('drink_type_id')->on('drink_type')->onUpdate('cascade')
+            ->onDelete('cascade');
+        });
+
         Schema::table('extra_price', function(Blueprint $table){
             $table->foreign('extra_id')->references('extra_id')->on('extra')->onUpdate('cascade')
             ->onDelete('cascade');

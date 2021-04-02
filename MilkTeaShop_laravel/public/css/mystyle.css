@@ -7,10 +7,16 @@
 }
 
 input:focus,
-.btn:focus
+.btn:focus,
+textarea:focus,
+select:focus
 {
   box-shadow: none!important;
   outline: none!important;
+}
+
+textarea{
+  resize: none;
 }
 
 .no-margin{
@@ -28,12 +34,16 @@ input:focus,
 .sidebar{
   min-height: 100vh;
   width: 25rem;
-  background-color: #3d3d3d;
+  /* background-color: #3d3d3d; */
+}
+
+.active{
+  background-color: #0074fa;
 }
 
 a{
   text-decoration: none;
-  color: white;
+  /* color: white; */
 }
 
 .content-wrapper{
@@ -48,4 +58,8 @@ a{
 
 .func-btn:hover{
   color: white!important;
+}
+
+.table{
+  font-size: 10px;
 }
