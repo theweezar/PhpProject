@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $extra_id
+ * @property integer $extra_type_id
  * @property string $extra_name
  * @property string $extra_image
- * @property int $extra_type
  * @property string $extra_describe
  * @property boolean $is_active
  * @property string $updated_at
  * @property string $created_at
+ * @property ExtraType $extraType
  * @property ExtraPrice[] $extraPrices
  * @property OrderExtraFood[] $orderExtraFoods
  * @property OrderExtraTopping[] $orderExtraToppings
@@ -43,7 +44,15 @@ class Extra extends Model
     /**
      * @var array
      */
-    protected $fillable = ['extra_name', 'extra_image', 'extra_type', 'extra_describe', 'is_active', 'updated_at', 'created_at'];
+    protected $fillable = ['extra_type_id', 'extra_name', 'extra_image', 'extra_describe', 'is_active', 'updated_at', 'created_at'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function extraType()
+    {
+        return $this->belongsTo('App\ExtraType', null, 'extra_type_id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

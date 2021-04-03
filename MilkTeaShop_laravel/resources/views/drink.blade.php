@@ -31,16 +31,19 @@
         <th scope="row">{{$drink['drink_id']}}</th>
         <td>{{$drink['drink_name']}}</td>
         <td>{{$drink['drink_describe']}}</td>
-        <td>{{$drink['drink_type']}}</td>
+        <td>{{$drink['drink_type_id']}}</td>
         @if ($drink['is_active'])
-        <td class="text-sucess">Stop selling</td>
+        <td class="text-primary">Selling</td>
         @else
         <td class="text-danger">Stop selling</td>
         @endif
-        <td>
-          <img src="{{$drink['drink_image']}}" alt="" srcset="" width="25px" height="auto">
-        </td>
         <td class="text-center">
+          {{-- http://127.0.0.1:8000/storage/img/KO6XtSXJTdOYOqYh3gSLjagowYWb8TkAC8AQ6ZS7.png --}}
+          {{-- <img src="{{asset($drink['drink_image'])}}" alt="" srcset="" width="25px" height="auto"> --}}
+          <img src="{{ url('storage/img',$drink['drink_image']) }}" 
+          alt="" srcset="" width="250px" height="auto">
+        </td>
+        <td>
           <a href="{{url('drink/drinkform/'.$drink['drink_id'])}}">Edit</a>
         </td>
       </tr>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExtraTable extends Migration
+class CreateExtraTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateExtraTable extends Migration
      */
     public function up()
     {
-        Schema::create('extra', function (Blueprint $table) {
-            $table->id('extra_id')->autoIncrement();
-            $table->string('extra_name',50);
-            $table->string('extra_image',1024)->nullable();
-            $table->unsignedBigInteger('extra_type_id');
-            $table->string('extra_describe',1024);
-            $table->boolean('is_active');
+        Schema::create('extra_type', function (Blueprint $table) {
+            $table->id('extra_type_id')->autoIncrement();
+            $table->string('extra_type_name',100);
             $table->dateTime('updated_at');
             $table->dateTime('created_at')->useCurrent();
         });
@@ -32,6 +28,6 @@ class CreateExtraTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extra');
+        Schema::dropIfExists('extra_type');
     }
 }

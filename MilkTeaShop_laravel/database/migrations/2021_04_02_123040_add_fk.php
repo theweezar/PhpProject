@@ -13,7 +13,7 @@ class AddFk extends Migration
      */
     public function up()
     {
-
+        // This is add foreign key function after created all tables
         // Schema::table('<name>', function(Blueprint $table){
             
         // });
@@ -35,6 +35,11 @@ class AddFk extends Migration
 
         Schema::table('extra_price', function(Blueprint $table){
             $table->foreign('extra_id')->references('extra_id')->on('extra')->onUpdate('cascade')
+            ->onDelete('cascade');
+        });
+
+        Schema::table('extra', function(Blueprint $table){
+            $table->foreign('extra_type_id')->references('extra_type_id')->on('extra_type')->onUpdate('cascade')
             ->onDelete('cascade');
         });
 

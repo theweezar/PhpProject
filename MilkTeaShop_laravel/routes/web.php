@@ -6,6 +6,7 @@ use App\Http\Controllers\DrinkController;
 use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\DatabaseTestingController;
 use App\Http\Controllers\SetupController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,10 @@ Route::get('/setup',[SetupController::class,'setup']);
 Route::get('/drink',[DrinkController::class,'render']);
 Route::get('/drink/drinkform',[DrinkController::class,'render_form_insert']);
 Route::get('/drink/drinkform/{drink_id}',[DrinkController::class,'render_form_update']);
+Route::post('/drink/update/{drink_id}',[DrinkController::class,'update']);
 Route::post('/drink/insert',[DrinkController::class,'insert']);
 Route::get('/extra',[ExtraController::class,'render']);
 Route::get('/extra/extraform',[ExtraController::class,'render_form']);
 Route::post('/extra/insert',[ExtraController::class,'insert']);
+// Route::get('/storage/img/{filename}',[ImageController::class,'display_image']);
 Route::get('test',[DatabaseTestingController::class,'test']);

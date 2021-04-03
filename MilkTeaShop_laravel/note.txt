@@ -13,3 +13,6 @@ clone model from database => https://github.com/krlove/eloquent-model-generator
 
 config debug mode => config/app.php
 config database => config/database.php (database, username, password)
+
+Laravel Blade php
+| url() vs route(): url() là hiển thị đường link, route() là vừa hiển thị mà vừa truy cập theo dynamic
