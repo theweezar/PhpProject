@@ -14,6 +14,7 @@ class CreateExtraPriceTable extends Migration
     public function up()
     {
         Schema::create('extra_price', function (Blueprint $table) {
+            $table->id()->autoIncrement();
             $table->unsignedBigInteger('extra_id');
             $table->unsignedBigInteger('extra_price')->nullable();
             $table->dateTime('updated_at');

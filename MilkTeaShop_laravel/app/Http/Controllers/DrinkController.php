@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Storage;
 use App\Drink;
 use App\DrinkPrice;
 use App\DrinkType;
@@ -30,17 +31,21 @@ class DrinkController extends Controller
         // return $request;
         $alert = null;
         $path = null;
+        $file_original_name = null;
 
         try {
             // đầu tiên - Lấy file được upload từ client và lưu vào thư mục storage\app\public\img
             // basename là lấy cái file name cuối cùng của mọi đường link
-            if ($request->file('drink_image') != null)
+            if ($request->file('drink_image') != null){
                 $path = basename($request->file('drink_image')->store('public/img'));
+                $file_original_name = $request->file('drink_image')->getClientOriginalName();
+            }
             
             // tiếp theo insert table drink trước
             Drink::create([
                 "drink_name" => trim($request->input('drink_name')),
-                "drink_image" => $path,
+                "drink_image_path" => $path,
+                "drink_image_original_name" => $file_original_name,
                 "drink_type_id" => trim($request->input('drink_type_id')),
                 "drink_describe" => trim($request->input('drink_describe')),
                 "is_active" => $request->input('is_active') !== null ? true:false
@@ -83,6 +88,41 @@ class DrinkController extends Controller
     }
     
     public function update(Request $request, $drink_id){
-        // kiểm tra xem ảnh mới upload lên có phải ảnh mới ko hay là ảnh được giữ nguyên
+        $drink = Drink::where('drink_id','=',$drink_id)->get()[0];
+        $path = null;
+        $file_original_name = null;
+
+        // Kiểm tra xem có ảnh được upload hay không. Nếu có thì store vào
+        if ($request->file('drink_image') != null){
+            $path = basename($request->file('drink_image')->store('public/img'));
+            $file_original_name = $request->file('drink_image')->getClientOriginalName();
+            // Kiểm tra xem drink hiện tại có ảnh hay là đang để null. Nếu có thì tìm và xóa
+            if ($drink->drink_image_path != null) try {
+                Storage::delete('public/img/'.$drink['drink_image_path']);
+            } catch (Exception $e) {
+                //throw $th;
+                return $e->getMessage();
+            }
+            // Sau hết thì lưu đường link vào database
+            $drink->drink_image_path = $path;
+            $drink->drink_image_original_name = $file_original_name;
+        }
+
+        // update table drink
+        $drink->drink_name = trim($request->input('drink_name'));
+        $drink->drink_type_id = trim($request->input('drink_type_id'));
+        $drink->drink_describe = trim($request->input('drink_describe'));
+        $drink->is_active = $request->input('is_active') !== null ? true:false;
+        $drink->save();
+        // update table drink_price
+        $drink_price = DrinkPrice::where('drink_id','=',$drink_id)->get();
+        $drink_price[0]->drink_price = $request->input('price_size_s');
+        $drink_price[0]->save();
+        $drink_price[1]->drink_price = $request->input('price_size_m');
+        $drink_price[1]->save();
+        $drink_price[2]->drink_price = $request->input('price_size_l');
+        $drink_price[2]->save();
+
+        return redirect('/drink');
     }
 }

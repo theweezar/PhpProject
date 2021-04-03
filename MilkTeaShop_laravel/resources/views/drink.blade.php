@@ -40,7 +40,7 @@
         <td class="text-center">
           {{-- http://127.0.0.1:8000/storage/img/KO6XtSXJTdOYOqYh3gSLjagowYWb8TkAC8AQ6ZS7.png --}}
           {{-- <img src="{{asset($drink['drink_image'])}}" alt="" srcset="" width="25px" height="auto"> --}}
-          <img src="{{ url('storage/img',$drink['drink_image']) }}" 
+          <img src="{{$drink['drink_image_path'] !== null ? url('storage/img',$drink['drink_image_path']):'' }}" 
           alt="" srcset="" width="250px" height="auto">
         </td>
         <td>

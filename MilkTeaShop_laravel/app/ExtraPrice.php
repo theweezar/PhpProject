@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property integer $id
  * @property integer $extra_id
  * @property integer $extra_price
  * @property string $updated_at
@@ -19,6 +20,13 @@ class ExtraPrice extends Model
      * @var string
      */
     protected $table = 'extra_price';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     * 
+     * @var string
+     */
+    protected $keyType = 'integer';
 
     /**
      * @var array

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $drink_id
  * @property integer $drink_type_id
  * @property string $drink_name
- * @property string $drink_image
+ * @property string $drink_image_path
+ * @property string $drink_image_original_name
  * @property string $drink_describe
  * @property boolean $is_active
  * @property string $updated_at
@@ -43,7 +44,7 @@ class Drink extends Model
     /**
      * @var array
      */
-    protected $fillable = ['drink_type_id', 'drink_name', 'drink_image', 'drink_describe', 'is_active', 'updated_at', 'created_at'];
+    protected $fillable = ['drink_type_id', 'drink_name', 'drink_image_path', 'drink_image_original_name', 'drink_describe', 'is_active', 'updated_at', 'created_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

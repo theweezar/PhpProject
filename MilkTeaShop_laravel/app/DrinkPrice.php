@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property integer $id
  * @property integer $drink_id
  * @property int $drink_size
  * @property integer $drink_price
@@ -20,6 +21,13 @@ class DrinkPrice extends Model
      * @var string
      */
     protected $table = 'drink_price';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     * 
+     * @var string
+     */
+    protected $keyType = 'integer';
 
     /**
      * @var array

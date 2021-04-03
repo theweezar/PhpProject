@@ -31,13 +31,26 @@ use App\Http\Controllers\ImageController;
 Route::get('/register',[ClientController::class,'register']);
 Route::get('/',[DrinkController::class,'render']);
 Route::get('/setup',[SetupController::class,'setup']);
+// Drink Section
 Route::get('/drink',[DrinkController::class,'render']);
 Route::get('/drink/drinkform',[DrinkController::class,'render_form_insert']);
 Route::get('/drink/drinkform/{drink_id}',[DrinkController::class,'render_form_update']);
-Route::post('/drink/update/{drink_id}',[DrinkController::class,'update']);
 Route::post('/drink/insert',[DrinkController::class,'insert']);
+Route::post('/drink/update/{drink_id}',[DrinkController::class,'update']);
+// ========================
+
+// Extra Section
 Route::get('/extra',[ExtraController::class,'render']);
 Route::get('/extra/extraform',[ExtraController::class,'render_form']);
+Route::get('/extra/extraform/{extra_id}',[ExtraController::class,'render_form']);
 Route::post('/extra/insert',[ExtraController::class,'insert']);
+Route::post('/extra/update/{extra_id}',[ExtraController::class,'insert']);
+// ========================
+
+// Order Section
+// ========================
+
+// Nofitication Section 
+// ========================
 // Route::get('/storage/img/{filename}',[ImageController::class,'display_image']);
 Route::get('test',[DatabaseTestingController::class,'test']);

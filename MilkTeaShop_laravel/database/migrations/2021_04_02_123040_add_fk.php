@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\DrinkType;
+use App\ExtraType;
 
 class AddFk extends Migration
 {
@@ -77,6 +79,7 @@ class AddFk extends Migration
             $table->foreign('nofi_type_id')->references('nofi_type_id')->on('nofitication_type')->onUpdate('cascade')
             ->onDelete('cascade');
         });
+        $this->setup();
     }
 
     /**
@@ -87,5 +90,29 @@ class AddFk extends Migration
     public function down()
     {
         //
+    }
+
+    public function setup(){
+        try {
+            $list_drink_type = array('Milk Tea','Soda','Ice cream','Milk shake');
+            foreach ($list_drink_type as $index => $type_name) {
+                # code...
+                DrinkType::create([
+                    'drink_type_name' => $type_name
+                ]);
+            }
+
+            $list_extra_type = array('Topping','Food');
+            foreach ($list_extra_type as $index => $type_name) {
+                # code...
+                ExtraType::create([
+                    'extra_type_name' => $type_name
+                ]);
+            }
+            return "Setup successfully";
+        } catch (Exception $e) {
+            //throw $th;
+            return "Setup failed";
+        }
     }
 }

@@ -14,6 +14,7 @@ class CreateDrinkPriceTable extends Migration
     public function up()
     {
         Schema::create('drink_price', function (Blueprint $table) {
+            $table->id()->autoIncrement();
             $table->unsignedBigInteger('drink_id');
             $table->integer('drink_size');
             $table->unsignedBigInteger('drink_price')->nullable();

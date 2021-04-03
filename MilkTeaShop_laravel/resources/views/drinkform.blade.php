@@ -87,7 +87,7 @@ method="POST">
     <div class="col-sm-3">Image preview</div>
     <div class="col-sm-9">
       <img id="image-preview" 
-      src="{{$drink['drink_image'] !== null ? url('storage/img',$drink['drink_image']):'' }}" 
+      src="{{$drink['drink_image_path'] !== null ? url('storage/img',$drink['drink_image_path']):'' }}" 
       width="100%" height="auto" alt="" srcset="">
     </div>
   </div>
