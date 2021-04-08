@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $password
  * @property string $phone_number
  * @property string $avatar
+ * @property string $remember_token
  * @property string $updated_at
  * @property string $created_at
  * @property ClientAddress[] $clientAddresses
@@ -44,7 +45,7 @@ class Client extends Model
     /**
      * @var array
      */
-    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone_number', 'avatar', 'updated_at', 'created_at'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password', 'phone_number', 'avatar', 'remember_token', 'updated_at', 'created_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -42,7 +42,7 @@ class DrinkController extends Controller
             }
             
             // tiếp theo insert table drink trước
-            Drink::create([
+            $new_drink = Drink::create([
                 "drink_name" => trim($request->input('drink_name')),
                 "drink_image_path" => $path,
                 "drink_image_original_name" => $file_original_name,
@@ -51,13 +51,13 @@ class DrinkController extends Controller
                 "is_active" => $request->input('is_active') !== null ? true:false
             ]);
             // sau đó lấy cái id mới nhất ra
-            $new_drink_id = Drink::orderBy('created_at','desc')->take(1)->get()[0]['drink_id'];
+            // $new_drink_id = Drink::orderBy('created_at','desc')->take(1)->get()[0]['drink_id'];
             
             $list_price = array($request->input('price_size_s'), $request->input('price_size_m'), $request->input('price_size_l'));
             // Thêm giá theo id mới nhất
             foreach ($list_price as $index => $price) {
                 DrinkPrice::create([
-                    "drink_id" => $new_drink_id,
+                    "drink_id" => $new_drink['drink_id'],
                     "drink_size" => $index + 1,
                     "drink_price" => $price
                 ]);

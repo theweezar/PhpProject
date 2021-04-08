@@ -28,7 +28,10 @@ use App\Http\Controllers\ImageController;
  * Dưới này là cách khai báo route để gọi đến 1 class Controller, tham biến thứ 2 là method của Controller đó
  */
 
-Route::get('/register',[ClientController::class,'register']);
+Route::get('/register',[ClientController::class,'render_register_form']);
+Route::post('/register',[ClientController::class,'register']);
+Route::get('/login',[ClientController::class,'render_login_form']);
+Route::post('/login',[ClientController::class,'login']);
 Route::get('/',[DrinkController::class,'render']);
 Route::get('/setup',[SetupController::class,'setup']);
 // Drink Section

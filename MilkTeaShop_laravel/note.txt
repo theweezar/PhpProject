@@ -4,6 +4,7 @@ Deploy app => php artisan serve
 Create a controller => "php artisan make:controller <name>"
 Create a model => "php artisan make:model <name>"
 Make migration file => "php artisan make:migration <name>"
+Make factory file => "php artisan make:factory ClientFactory --model=<model name>"
 
 
 clone model from database => https://github.com/krlove/eloquent-model-generator
@@ -13,6 +14,7 @@ clone model from database => https://github.com/krlove/eloquent-model-generator
 
 config debug mode => config/app.php
 config database => config/database.php (database, username, password)
+config authencation table => config/auth.php (provider)
 
 Laravel Blade php
 | url() vs route(): url() là hiển thị đường link, route() là vừa hiển thị mà vừa truy cập theo dynamic

@@ -19,8 +19,9 @@ class CreateClientTable extends Migration
             $table->string('last_name',50);
             $table->string('email',100)->unique();
             $table->string('password',1024);
-            $table->string('phone_number',15);
+            $table->string('phone_number',15)->unique();
             $table->string('avatar',1024)->nullable();
+            $table->rememberToken();
             $table->dateTime('updated_at');
             $table->dateTime('created_at')->useCurrent();
         });
