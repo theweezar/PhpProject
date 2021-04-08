@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $extra_id
  * @property integer $extra_type_id
  * @property string $extra_name
- * @property string $extra_image
+ * @property string $extra_image_path
  * @property string $extra_image_original_name
  * @property string $extra_describe
  * @property boolean $is_active
@@ -45,7 +45,7 @@ class Extra extends Model
     /**
      * @var array
      */
-    protected $fillable = ['extra_type_id', 'extra_name', 'extra_image', 'extra_image_original_name', 'extra_describe', 'is_active', 'updated_at', 'created_at'];
+    protected $fillable = ['extra_type_id', 'extra_name', 'extra_image_path', 'extra_image_original_name', 'extra_describe', 'is_active', 'updated_at', 'created_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

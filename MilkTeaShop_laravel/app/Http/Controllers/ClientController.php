@@ -21,6 +21,7 @@ class ClientController extends Controller
     }
 
     public function register(Request $request){
+        // xác thực các input có đúng hay ko
         $request->validate(array(
             'first_name' => 'required',
             'last_name' => 'required',
@@ -34,6 +35,7 @@ class ClientController extends Controller
             return back()->with('re_password_failed','Wrong Re-password');
         }
         else{
+            // xác thực password và re_password hoàn thành thì hash password và lưu vào database
             $hashed_password = Hash::make($request->input('password'));
             $new_client = Client::create([
                 'first_name' => $request->input('first_name'),
@@ -47,13 +49,17 @@ class ClientController extends Controller
     }
 
     public function login(Request $request){
+
+        // Xác thực 2 input
         $request->validate(array(
             'email' => 'required|email', // make sure the email is an actual email
             'password' => 'required|alphaNum|min:5|max:32'
         ));
 
+        // Xác thực hoàn thành thì truy xuât theo email trước
         $client = Client::where('email','=',$request->input('email'))->first();
 
+        // Nếu có client thì kiểm tra tiếp hash password, nếu sai thì quay lại
         if (!$client){
             return back()->with('status','Wrong password or email');
         }
@@ -65,5 +71,9 @@ class ClientController extends Controller
                 return back()->with('status','Wrong password or email');
             }
         }
+    }
+
+    public function logout(Request $request){
+        
     }
 }

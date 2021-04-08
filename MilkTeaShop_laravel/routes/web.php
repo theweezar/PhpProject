@@ -27,14 +27,15 @@ use App\Http\Controllers\ImageController;
 /**
  * Dưới này là cách khai báo route để gọi đến 1 class Controller, tham biến thứ 2 là method của Controller đó
  */
-
+// Client Section
 Route::get('/register',[ClientController::class,'render_register_form']);
 Route::post('/register',[ClientController::class,'register']);
 Route::get('/login',[ClientController::class,'render_login_form']);
 Route::post('/login',[ClientController::class,'login']);
-Route::get('/',[DrinkController::class,'render']);
-Route::get('/setup',[SetupController::class,'setup']);
+Route::get('/logout',[ClientController::class,'logout']);
+// =======================
 // Drink Section
+Route::get('/',[DrinkController::class,'render']);
 Route::get('/drink',[DrinkController::class,'render']);
 Route::get('/drink/drinkform',[DrinkController::class,'render_form_insert']);
 Route::get('/drink/drinkform/{drink_id}',[DrinkController::class,'render_form_update']);
@@ -44,13 +45,14 @@ Route::post('/drink/update/{drink_id}',[DrinkController::class,'update']);
 
 // Extra Section
 Route::get('/extra',[ExtraController::class,'render']);
-Route::get('/extra/extraform',[ExtraController::class,'render_form']);
-Route::get('/extra/extraform/{extra_id}',[ExtraController::class,'render_form']);
+Route::get('/extra/extraform',[ExtraController::class,'render_form_insert']);
+Route::get('/extra/extraform/{extra_id}',[ExtraController::class,'render_form_update']);
 Route::post('/extra/insert',[ExtraController::class,'insert']);
 Route::post('/extra/update/{extra_id}',[ExtraController::class,'insert']);
 // ========================
 
 // Order Section
+
 // ========================
 
 // Nofitication Section 

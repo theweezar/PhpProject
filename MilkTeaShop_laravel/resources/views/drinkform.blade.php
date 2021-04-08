@@ -167,7 +167,7 @@ method="POST">
     const price_size_m = document.getElementById('price_size_m')
     const price_size_l = document.getElementById('price_size_l')
 
-    if (drink_name.value.trim().length == 0){
+    if (escape(drink_name.value.trim()).length == 0){
       alert('drink_name is a blank')
     }
     else if (escape(drink_describe.value.trim()).length == 0){
