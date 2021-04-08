@@ -7,6 +7,9 @@ use App\Http\Controllers\ExtraController;
 use App\Http\Controllers\DatabaseTestingController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ApiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +54,12 @@ Route::post('/extra/insert',[ExtraController::class,'insert']);
 Route::post('/extra/update/{extra_id}',[ExtraController::class,'insert']);
 // ========================
 
-// Order Section
+// API Section
+Route::get('api/drink/type/{drink_type_id}/page/{page}',[ApiController::class,'get_drinks']);
+// ========================
 
+// Order Section
+// Route::get('/order',[OrderController::class,'render_shop']);
 // ========================
 
 // Nofitication Section 
