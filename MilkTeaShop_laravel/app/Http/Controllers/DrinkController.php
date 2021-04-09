@@ -125,4 +125,8 @@ class DrinkController extends Controller
 
         return redirect('/drink');
     }
+
+    public function get_image_drink(Request $request, $image_name){
+        
+    }
 }

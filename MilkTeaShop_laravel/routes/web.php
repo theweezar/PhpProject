@@ -36,6 +36,8 @@ Route::post('/register',[ClientController::class,'register']);
 Route::get('/login',[ClientController::class,'render_login_form']);
 Route::post('/login',[ClientController::class,'login']);
 Route::get('/logout',[ClientController::class,'logout']);
+Route::get('/profile',[ClientController::class,'profile']);
+Route::get('/addaddress',[ClientController::class,'add_address']);
 // =======================
 // Drink Section
 Route::get('/',[DrinkController::class,'render']);
@@ -44,6 +46,7 @@ Route::get('/drink/drinkform',[DrinkController::class,'render_form_insert']);
 Route::get('/drink/drinkform/{drink_id}',[DrinkController::class,'render_form_update']);
 Route::post('/drink/insert',[DrinkController::class,'insert']);
 Route::post('/drink/update/{drink_id}',[DrinkController::class,'update']);
+Route::get('/drink/getimage/{image_name}',[DrinkController::class,'get_image_drink']);
 // ========================
 
 // Extra Section
@@ -55,7 +58,10 @@ Route::post('/extra/update/{extra_id}',[ExtraController::class,'insert']);
 // ========================
 
 // API Section
-Route::get('api/drink/type/{drink_type_id}/page/{page}',[ApiController::class,'get_drinks']);
+Route::get('api/drink/type/{drink_type_id}/page/{page}/ordertable/{table}/by/{by}/mode/{mode}',[ApiController::class,'get_drinks']);
+Route::get('api/extra/type/{extra_type_id}/',[ApiController::class,'get_extra']);
+Route::get('api/drink/popular',[ApiController::class,'get_popular_drink']);
+// Route::get('api/drink/love/client/{client_id}')
 // ========================
 
 // Order Section

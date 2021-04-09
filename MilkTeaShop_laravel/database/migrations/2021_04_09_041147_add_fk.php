@@ -79,6 +79,14 @@ class AddFk extends Migration
             $table->foreign('nofi_type_id')->references('nofi_type_id')->on('nofitication_type')->onUpdate('cascade')
             ->onDelete('cascade');
         });
+
+        Schema::table('drink_love', function(Blueprint $table){
+            $table->foreign('client_id')->references('client_id')->on('client')->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('drink_id')->references('drink_id')->on('drink')->onUpdate('cascade')
+            ->onDelete('cascade');
+        });
+        
         $this->setup();
     }
 
