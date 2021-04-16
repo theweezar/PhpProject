@@ -21,7 +21,11 @@ class ClientController extends Controller
     }
 
     public function render_login_form(Request $request){
-        return view('login');
+        $token = csrf_token();
+        return [
+            "_token" => $token
+        ];
+        // return view('login');
     }
 
     public function render_register_form(Request $request){
@@ -96,6 +100,7 @@ class ClientController extends Controller
     }
 
     public function profile(Request $request){
+        // Đầu tiên, phải kiểm tra token của client để tránh bị lỗi csrf
         // $remember_token 
         if ($request->input('remember_token') != null){
             
