@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/app/Layout.php';
+include $_SERVER['DOCUMENT_ROOT'].'/init.php';
 Layout::start('test');
 ?>
 
