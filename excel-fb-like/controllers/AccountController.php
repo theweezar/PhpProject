@@ -106,7 +106,19 @@ class AccountController {
     }
 
     public function logout(Request $req, Response $res) {
+        $rurl = Session::get('isadmin') ? '1':'0';
         var_dump(Session::all());
         Session::destroy();
+        $res->redirect(Url::build('login', array(
+            'rurl' => $rurl
+        )));
+    }
+
+    public function renderFormChangePassword(Request $req, Response $res) {
+
+    }
+
+    public function changePassword(Request $req, Response $res) {
+        
     }
 }

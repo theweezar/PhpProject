@@ -42,7 +42,7 @@ $message = isset($viewData['message']) ? $viewData['message'] : '';
                                             <?php echo strcmp($rurl, '1') == 0 ? 'Đăng nhập Admin' : 'Đăng nhập Fbreiplex' ?>
                                         </h1>
                                     </div>
-                                    <form action="<?php echo Url::build('login') ?>" method="POST" class="user">
+                                    <form action="<?php echo Url::build('/login') ?>" method="POST" class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="username"
                                                 name="username" aria-describedby="username"

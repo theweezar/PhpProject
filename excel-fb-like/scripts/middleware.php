@@ -3,7 +3,7 @@
 function validateAdmin(Request $req, Response $res, Next $next) {
     $validate = Session::get('logged') && Session::get('isadmin') ? true : false;
     if (!$validate) {
-        $res->redirect(Url::build('login', array(
+        $res->redirect(Url::build('/login', array(
             'rurl' => 1
         )));
     } else {
@@ -12,7 +12,14 @@ function validateAdmin(Request $req, Response $res, Next $next) {
 }
 
 function validateGuest(Request $req, Response $res, Next $next) {
-    return Session::get('logged') && !Session::get('isadmin') ? true : false;
+    $validate = Session::get('logged') && !Session::get('isadmin') ? true : false;
+    if (!$validate) {
+        $res->redirect(Url::build('/login', array(
+            'rurl' => 0
+        )));
+    } else {
+        $next->execute($req, $res);
+    }
 }
 
 function validateLogged(Request $req, Response $res, Next $next) {
@@ -20,6 +27,6 @@ function validateLogged(Request $req, Response $res, Next $next) {
     if (!$validate) {
         $next->execute($req, $res);
     } else {
-        $res->redirect(Url::build(Session::get('isadmin') ? 'admin' : 'customer'));
+        $res->redirect(Url::build(Session::get('isadmin') ? '/admin' : '/customer'));
     }
 }

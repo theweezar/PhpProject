@@ -16,12 +16,11 @@ function submitFormInsertPost() {
             url: url,
             data: self.serialize()
         }).done(function(response) {
-            var res = JSON.parse(response);
-            console.log(res);
+            console.log(response);
             self.prepend(`
                 <div class="alert-section">
-                    <div class="alert alert-${res.success ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
-                        ${res.message}
+                    <div class="alert alert-${response.success ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
+                        ${response.message}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -32,9 +31,12 @@ function submitFormInsertPost() {
             $('input#postlink').val('');
             $('input#likes').val('');
             $('input#comments').val('');
-            if (res.success && res.post) {
+            $('.current-likes').text(response.afterLikes);
+            $('.current-comments').text(response.afterComments);
+            $('input[name="csrfToken"]').val(response.csrfToken.value);
+            if (response.success && response.post) {
                 var postTable = $('table#dataTable').DataTable();
-                var post = res.post;
+                var post = response.post;
                 postTable.row.add([
                     post.created_at,
                     post.postname,
@@ -67,17 +69,21 @@ function activateCustomerPackage() {
         var self = $(this);
         var url = self.data('url');
         var id = self.data('key');
+        var csrfToken = $('input[name="csrfToken"]').val();
         $.ajax({
             url: url,
             type: 'post',
-            data: {id: id}
+            data: {
+                id: id, 
+                csrfToken: csrfToken
+            }
         }).done(function(response) {
-            var res = JSON.parse(response);
-            console.log(res);
-            if (res.success) {
-                $('td#likeAmount').text(res.likes);
-                $('td#commentAmount').text(res.comments);
+            console.log(response);
+            if (response.success) {
+                $('td#likeAmount').text(response.likes);
+                $('td#commentAmount').text(response.comments);
                 $('button#success-alert-btn').trigger('click');
+                $('input[name="csrfToken"]').val(response.csrfToken.value);
             }
         }).fail(function(error) {
             console.error(error.responseText);

@@ -92,7 +92,7 @@ class Server {
                                 $this->callController($lastCall, $req, $res);
                                 break;
                             default:
-                                $res->render('error.php');
+                                throw new Exception("Page not found", 404);
                                 break;
                         }
                     } else {
