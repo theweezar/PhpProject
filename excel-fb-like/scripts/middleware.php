@@ -24,7 +24,7 @@ function validateGuest(Request $req, Response $res, Next $next) {
 
 function validateLogged(Request $req, Response $res, Next $next) {
     $validate = Session::get('logged') ? true : false;
-    if (!$validate) {
+    if ($validate) {
         $next->execute($req, $res);
     } else {
         $res->redirect(Url::build(Session::get('isadmin') ? '/admin' : '/customer'));

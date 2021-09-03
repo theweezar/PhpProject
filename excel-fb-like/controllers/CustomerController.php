@@ -116,6 +116,11 @@ class CustomerController {
     }
 
     public function renderHistory(Request $req, Response $res) {
-        
+        $db = new DatabaseHelpers();
+        $histories = $db->getHistory(Session::get('userId'));
+        $db->close();
+        $res->render('guest/history.php', array(
+            'histories' => $histories
+        ));
     }
 }

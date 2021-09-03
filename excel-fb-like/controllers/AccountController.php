@@ -115,10 +115,56 @@ class AccountController {
     }
 
     public function renderFormChangePassword(Request $req, Response $res) {
-
+        $res->render('changePassword.php', array(
+            'csrfToken' => array(
+                'name' => 'csrfToken',
+                'value' => Session::get('csrfToken')
+            )
+        ));
     }
 
     public function changePassword(Request $req, Response $res) {
-        
+        if (Input::validate('oldpassword', 'required') && Input::validate('newpassword', 'required')
+        && Input::validate('confirmpassword', 'required')) {
+            $oldpassword = Input::get('oldpassword');
+            $newpassword = Input::get('newpassword');
+            $confirmpassword = Input::get('confirmpassword');
+            $db = new DatabaseHelpers();
+            $dbUser = $db->validateLogin(array(
+                'username' => Session::get('username'),
+                'password' => $oldpassword
+            ));
+
+            if (!isset($dbUser)) {
+                $status = array(
+                    'success' => false,
+                    'message' => 'Sai mật khẩu cũ'
+                );
+            } else if (strcmp($newpassword, $confirmpassword) !== 0) {
+                $status = array(
+                    'success' => false,
+                    'message' => 'Mật khẩu xác nhận sai'
+                );
+            } else if ($db->changePassword(array(
+                'username' => Session::get('username'),
+                'password' => $confirmpassword
+            ))) {
+                $status = array(
+                    'success' => true,
+                    'message' => 'Đổi mật khẩu thành công'
+                );
+            } else {
+                $status = array(
+                    'success' => false,
+                    'message' => 'Đổi mật khẩu thất bại'
+                );
+            }
+            $db->close();
+        } else {
+            $status = array(
+                'success' => false,
+                'message' => 'Vui lòng nhập đầy đủ thông tin'
+            );
+        }
     }
 }
