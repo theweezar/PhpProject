@@ -1,7 +1,8 @@
 <?php
 
 class AdminController {
-    public function checkTicket(Request $req, Response $res) {
+    public function renderCustomerList(Request $req, Response $res) {
+        echo "renderCustomerList";
 
     }
 }

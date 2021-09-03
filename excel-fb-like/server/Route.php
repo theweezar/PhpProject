@@ -3,19 +3,19 @@
 class Route {
     public static $routes = array();
 
-    public static function get($uri, $callback) {
+    public static function get($uri, ...$chains) {
         $uri = substr($uri, 0, 1) == '/' ? $uri : '/'.$uri;
-        self::$routes[$uri] = array(
+        self::$routes['GET'.$uri] = array(
             'method' => 'GET',
-            'callback' => $callback
+            'chains' => $chains
         );
     }
 
-    public static function post($uri, $callback) {
+    public static function post($uri, ...$chains) {
         $uri = substr($uri, 0, 1) == '/' ? $uri : '/'.$uri;
-        self::$routes[$uri] = array(
+        self::$routes['POST'.$uri] = array(
             'method' => 'POST',
-            'callback' => $callback
+            'chains' => $chains
         );
     }
 }

@@ -10,4 +10,8 @@ class Response {
         http_response_code($response_code);
         echo json_encode($json);
     }
+
+    public function redirect(string $location) {
+        header('Location: '.$location);
+    }
 }
