@@ -124,17 +124,21 @@ class AccountController {
     }
 
     public function changePassword(Request $req, Response $res) {
-        if (Input::validate('oldpassword', 'required') && Input::validate('newpassword', 'required')
-        && Input::validate('confirmpassword', 'required')) {
-            $oldpassword = Input::get('oldpassword');
-            $newpassword = Input::get('newpassword');
-            $confirmpassword = Input::get('confirmpassword');
+        $validate = $req->validate(array(
+            'oldpassword' => ['required'],
+            'newpassword' => ['required'],
+            'confirmpassword' => ['required']
+        ));
+        $status = null;
+        if ($validate['valid']) {
+            $oldpassword = $req->params['oldpassword'];
+            $newpassword = $req->params['newpassword'];
+            $confirmpassword = $req->params['confirmpassword'];
             $db = new DatabaseHelpers();
             $dbUser = $db->validateLogin(array(
                 'username' => Session::get('username'),
                 'password' => $oldpassword
             ));
-
             if (!isset($dbUser)) {
                 $status = array(
                     'success' => false,
@@ -166,5 +170,12 @@ class AccountController {
                 'message' => 'Vui lòng nhập đầy đủ thông tin'
             );
         }
+        $res->render('changePassword.php', array(
+            'status' => $status,
+            'csrfToken' => array(
+                'name' => 'csrfToken',
+                'value' => Session::get('csrfToken')
+            )
+        ));
     }
 }

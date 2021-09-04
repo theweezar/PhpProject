@@ -1,5 +1,9 @@
 <?php
 $token = $viewData['csrfToken'];
+$status = null;
+if (isset($viewData['status'])) {
+    $status = $viewData['status'];
+}
 Layout::start('Đăng ký tài khoản');
 ?>
 

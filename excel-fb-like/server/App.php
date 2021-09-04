@@ -6,15 +6,19 @@ require(ROOT.'/controllers/CustomerController.php');
 require(ROOT.'/scripts/middleware.php');
 require(ROOT.'/scripts/csrfProtection.php');
 
-Route::get('/', function(Request $req, Response $res) {
-    $res->redirect(Url::build('/login', array(
-        'rurl' => 0
-    )));
+/**
+ * Testing Section
+ */
+
+Route::get('testing', function(Request $req, Response $res) {
+    echo Url::abs('');
 });
 
-Route::get('error', function(Request $req, Response $res) {
-    $params = $req->getParams();
-    $res->render('error.php', $params);
+/**
+ * Account Section
+ */
+Route::get('/', function(Request $req, Response $res) {
+    $res->redirect('customer');
 });
 
 Route::get('login', 'validateLogged', 'csrfGenerateToken', function(Request $req, Response $res) {
@@ -48,9 +52,9 @@ Route::get('admin/customerhistory', 'validateAdmin', [AdminController::class, 'r
 
 Route::post('admin/activate', 'validateAdmin', 'csrfValidateToken', 'csrfGenerateToken', [AdminController::class, 'activateCustomer']);
 
-Route::get('changepassword', 'validateAdmin', 'csrfGenerateToken', [AccountController::class, 'renderFormChangePassword']);
+Route::get('changepassword', 'validateLogged', 'csrfGenerateToken', [AccountController::class, 'renderFormChangePassword']);
 
-Route::post('changepassword', 'validateAdmin', 'csrfValidateToken', 'csrfGenerateToken', [AccountController::class, 'changePassword']);
+Route::post('changepassword', 'validateLogged', 'csrfValidateToken', 'csrfGenerateToken', [AccountController::class, 'changePassword']);
 
 /**
  * Customer Section

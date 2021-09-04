@@ -2,6 +2,7 @@
 
 class Request {
     public $params;
+    public $path;
     
     public function __construct() {
         $params = array();

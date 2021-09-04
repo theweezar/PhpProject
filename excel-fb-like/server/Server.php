@@ -16,7 +16,16 @@ class Server {
     public function route() {
         require(ROUTE);
         require(APP);
-        $this->execute(Route::$routes);
+        $req = new Request();
+        $res = new Response();
+        try {
+            $this->execute(Route::$routes, $req, $res);
+        } catch (Exception $e) {
+            $res->render('error.php', array(
+                'statusCode' => $e->getCode(),
+                'message' => $e->getMessage()
+            ));
+        }
     }
 
     /**
@@ -29,7 +38,7 @@ class Server {
         if (file_exists($controllerFile)) {
             $controller = new $controllerName;
             if (!method_exists($controller, $methodName)){
-                throw new Exception("Controller not found", 500);
+                throw new Exception("Method not found", 500);
             }
             else {
                 try {
@@ -50,13 +59,17 @@ class Server {
      * Call a function stored in route
      */
     private function callFunction(object $callback, Request $req, Response $res) {
-        call_user_func($callback, $req, $res);
+        try {
+            call_user_func($callback, $req, $res);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), 500);
+        }
     }
 
     /**
      * Parse URL, remove everthing after character '?'
      */
-    private function parseUrl() {
+    private function parseUri() {
         if (strpos(URI, '?')) {
             $url = explode('?', filter_var(URI, FILTER_SANITIZE_URL));
             return $url[0];
@@ -67,12 +80,11 @@ class Server {
     /**
      * Start server
      */
-    private function execute(array $routes) {
-        $req = new Request();
-        $res = new Response();
-        $uri = METHOD.$this->parseUrl();
-        if (isset($routes[$uri])) {
-            $route = $routes[$uri];
+    private function execute(array $routes, Request $req, Response $res) {
+        $path = METHOD.$this->parseUri();
+        if (isset($routes[$path])) {
+            $route = $routes[$path];
+            $req->path = $path;
             // Check request method if it is valid
             if (METHOD == $route['method']) {
                 $chains = $route['chains'];
@@ -96,7 +108,7 @@ class Server {
                                 break;
                         }
                     } else {
-                        throw new Exception("Middleware process if not completed", 500);
+                        throw new Exception("Middleware chains not completed", 500);
                     }
                 }
             } else {

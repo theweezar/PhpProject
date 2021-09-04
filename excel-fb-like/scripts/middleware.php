@@ -24,9 +24,21 @@ function validateGuest(Request $req, Response $res, Next $next) {
 
 function validateLogged(Request $req, Response $res, Next $next) {
     $validate = Session::get('logged') ? true : false;
-    if ($validate) {
-        $next->execute($req, $res);
+    if (!$validate) {
+        // If users not logged and they're trying to access login, this middleware will allow them to access login page
+        if ($req->path == 'GET/login') {
+            $next->execute($req, $res);
+        } else {
+            $res->redirect(Url::build('/login', array(
+                'rurl' => $req->params['rurl']
+            )));
+        }
     } else {
-        $res->redirect(Url::build(Session::get('isadmin') ? '/admin' : '/customer'));
+        // If users logged and they're trying to access login, this middleware will redirect them to work page
+        if ($req->path == 'GET/login') {
+            $res->redirect(Url::build(Session::get('isadmin') ? '/admin' : '/customer'));
+        } else {
+            $next->execute($req, $res);
+        }
     }
 }

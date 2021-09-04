@@ -2,7 +2,7 @@
 
 class Url {
     public static function abs(string $path) {
-        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/$path";
+        return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http").'://'.$_SERVER['HTTP_HOST'].'/'.$path;
         // return "https://fb.reiplex.com/".$path;
     }
 
