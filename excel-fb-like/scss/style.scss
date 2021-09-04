@@ -1,0 +1,126 @@
+@import './sb-admin-2.scss';
+@import './mixins';
+
+.btn, input {
+    &:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+}
+
+.p-0 {
+    padding: 0!important;
+}
+
+.m-0 {
+    padding: 0!important;
+}
+
+.register-form-wrapper {
+    padding: 5px 10px;
+
+    form {
+        width: 100%;
+
+        @include media-breakpoint-up(lg) {
+            width: 75%;
+        }
+    }
+}
+
+.customer-list-wrapper {
+    table {
+        th {
+            text-align: center;
+        }
+
+        tr {
+            &:hover {
+                background-color: aliceblue;
+                cursor: pointer;
+            }
+        }
+    }
+
+    ul {
+        .nav-item {
+            margin-bottom: 0.5rem;
+
+            .title {
+                min-width: 42%;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .active-off {
+        color: red !important;
+    }
+}
+
+.customer-detail-wrapper {
+    .nav-item {
+        b {
+            display: inline-block;
+            min-width: 40%;
+        }
+
+        padding-bottom: 1rem;
+    }
+
+    .button-box {
+        .button-item {
+            // @include flex(50%);
+            @include make-custom-col(50%, 4px);
+            
+            a, button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.post-list-wrapper {
+    .post-list-table {
+
+        tr {
+            td {
+                &:nth-child(1) {
+                    text-align: center;
+                }
+                &:nth-child(4), &:nth-child(5) {
+                    text-align: right;
+                }
+            }
+        }
+
+        .link {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    ul {
+        .nav-item {
+            margin-bottom: 0.5rem;
+
+            .title {
+                min-width: 42%;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.post-form-insert-wrapper {
+    form {
+        width: 100%;
+
+        @include media-breakpoint-up(lg) {
+            width: 75%;
+        }
+    }
+}

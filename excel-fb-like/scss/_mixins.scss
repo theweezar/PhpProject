@@ -1,0 +1,15 @@
+@mixin flex($width-percentage) {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 $width-percentage;
+    flex: 0 0 $width-percentage;
+    max-width: $width-percentage;
+}
+
+@mixin make-custom-col($width-percentage, $col-padding) {
+    @include flex($width-percentage);
+
+    position: relative;
+    width: 100%;
+    padding-left: $col-padding;
+    padding-right: $col-padding;
+}

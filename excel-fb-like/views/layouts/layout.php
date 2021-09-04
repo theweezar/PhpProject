@@ -67,6 +67,11 @@
                         <i class="fa fa-fw fa-user" aria-hidden="true"></i>
                         <span>Đăng ký tài khoản</span>
                     </a>
+
+                    <a class="nav-link" href="<?php echo Url::build('/admin/package');?>">
+                        <i class="fa fa-fw fa-cube" aria-hidden="true"></i>
+                        <span>Đăng ký gói</span>
+                    </a>
                     <?php
                 } ?>
                 <?php if (!Session::get('isadmin')) {

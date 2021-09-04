@@ -56,6 +56,10 @@ Route::get('changepassword', 'validateLogged', 'csrfGenerateToken', [AccountCont
 
 Route::post('changepassword', 'validateLogged', 'csrfValidateToken', 'csrfGenerateToken', [AccountController::class, 'changePassword']);
 
+Route::get('admin/package', 'validateAdmin', 'csrfGenerateToken', [AdminController::class, 'rederFormRegisterPackage']);
+
+Route::post('admin/package', 'validateAdmin', 'csrfValidateToken', 'csrfGenerateToken', [AdminController::class, 'registerPackage']);
+
 /**
  * Customer Section
  */

@@ -1,5 +1,6 @@
 <?php
 
+// define('ENV', 'production');
 define('ENV', 'development');
 define('SESSION', $_SERVER['DOCUMENT_ROOT'].'/server/Session.php');
 define('URL', $_SERVER['DOCUMENT_ROOT'].'/server/Url.php');

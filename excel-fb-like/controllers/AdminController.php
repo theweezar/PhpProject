@@ -72,4 +72,17 @@ class AdminController {
             $db->close();
         }
     }
+
+    public function rederFormRegisterPackage(Request $req, Response $res) {
+        $res->render('admin/registerPackage.php', array(
+            'csrfToken' => array(
+                'name' => 'csrfToken',
+                'value' => Session::get('csrfToken')
+            )
+        ));
+    }
+
+    public function registerPackage(Request $req, Response $res) {
+
+    }
 }
