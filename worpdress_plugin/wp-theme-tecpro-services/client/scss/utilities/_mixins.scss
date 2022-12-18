@@ -1,0 +1,38 @@
+@mixin flex($value) {
+    flex: 0 0 $value;
+    max-width: $value;
+}
+
+@mixin hiddenWhenInitializingSlick {
+    display: none;
+
+    &.slick-initialized {
+        display: block;
+    }
+}
+
+@mixin gradient($direction, $list) { 
+    background: -webkit-linear-gradient($direction, $list);
+    background: -moz-linear-gradient($direction, $list);
+    background: -o-linear-gradient($direction, $list);
+    background: linear-gradient($direction, $list);  
+}
+
+@mixin textOverflowEllipsis($width, $line) {
+    display: -webkit-box;
+    max-height: $width;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@mixin cardWhiteboxShadow {
+    background: $white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@mixin colorMaskImage {
+    background-position: center center;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,9 @@
+.course-box {
+    height: 200px;
+    overflow-y: scroll;
+    background-color: $white;
+
+    .option {
+        @include applyWhenSelected();
+    }
+}

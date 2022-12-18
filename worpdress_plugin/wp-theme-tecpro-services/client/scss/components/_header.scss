@@ -1,0 +1,291 @@
+.main-logo {
+    img {
+        width: 100px;
+        height: auto;
+    }
+}
+
+.header-promo-wrapper {
+    background-color: $mainBlue;
+
+    .header-promo-container {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .header-promo-callout {
+        color: $white;
+    }
+}
+
+.header-social-wrapper {
+    .nav-item.social-item {
+        a {
+            display: block;
+            padding: 0.5rem;
+        }
+
+        .social-logo {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .social-menu-label {
+        color: $platinum;
+        text-align: center;
+    }
+}
+
+.header-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .header-wrapper {
+        @include media-breakpoint-up(lg) {
+            padding: 0 15px;
+        }
+
+        .main-logo {
+            @include flex(150px);
+
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}
+
+.header-navigation-wrapper {
+    a {
+        color: rgba($color: $black, $alpha: 0.55);
+        display: block;
+        padding: 0.5rem 0.75rem;
+
+        &:hover,
+        &:focus {
+            color: $black;
+            text-decoration: none;
+        }
+    }
+
+    .header-navigation {
+        .menu-item.active {
+            a {
+                color: $black;
+            }
+        }
+    }
+}
+
+.header-searchbox-wrapper {
+    .fa {
+        color: rgba($color: $black, $alpha: 0.55);
+    }
+}
+
+.header-group {
+
+    .action-btn {
+        text-align: center;
+
+        a.btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto 20px;
+            border: 2px solid $mainBlue;
+            border-radius: 25px;
+            font-weight: bold;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            line-height: normal;
+
+            @include media-breakpoint-up(lg) {
+                width: 125px;
+                margin: 0;
+            }
+
+            &.login-btn {
+                background-color: $white;
+                color: $mainBlue;
+                margin-top: 20px;
+            }
+
+            &.register-btn {
+                background-color: $mainBlue;
+                color: $white;
+            }
+        }
+    }
+
+    .header-container {
+        .action-btn {
+            a.btn {
+                width: 110px;
+                margin: 0;
+                padding: 0.375rem;
+    
+                &.login-btn {
+                    margin-top: 0;
+                }
+            }
+
+            &.login,
+            &.register {
+                margin-right: 15px;
+            }
+        }
+    }
+}
+
+.search-box-wrapper {
+    .searchform {
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .wrapper {
+            border: 2px solid $mainBlue;
+            padding-left: 8px;
+        }
+
+        input[type="submit"] {
+            display: none;
+        }
+
+        input[name="s"] {
+            width: 100%;
+            border: 0;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 8px;
+            height: auto;
+        }
+
+        .search-label {
+            margin-bottom: 0;
+            color: $mainBlue;
+        }
+    }
+}
+
+#right-sidebar {
+    position: relative;
+
+    .right-sidebar-wrapper {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background-color: $white;
+        z-index: 1050;
+        left: 100%;
+        transition: 0.5s;
+    }
+
+    .close-right-sidebar {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+
+        .close-right-sidebar-btn {
+            color: $mainBlue;
+            padding: 0;
+            font-size: $fontSize24;
+        }
+    }
+
+    .main-logo-mobile {
+        padding-top: 15px;
+        text-align: center;
+    }
+
+    .divide-line {
+        height: 1px;
+        width: 75%;
+        border-top: 1px solid $platinum;
+        margin: 15px auto;
+    }
+
+    .header-navigation-wrapper {
+        a {
+            font-size: $fontSize20;
+            font-weight: bold;
+            color: $black;
+            display: block;
+            width: 200px;
+            text-align: center;
+        }
+    }
+
+    .header-navigation-mobile {
+        li.menu-item {
+            margin-bottom: 15px;
+
+            &.active {
+                a {
+                    color: $mainBlue;
+                    background-color: $lightBlue;
+                }
+            }
+        }
+    }
+}
+
+body.menu-opened {
+    overflow: hidden;
+
+    #right-sidebar {
+        .right-sidebar-wrapper {
+            left: 0;
+            transition: 0.5s;
+        }
+    }
+}
+
+.locale-switcher {
+    .dropdown-toggle {
+        background-color: transparent;
+        color: $black;
+        border: 0;
+    }
+
+    .dropdown-menu {
+        min-width: auto;
+        width: 100%;
+
+        .dropdown-item {
+            padding: 0.25rem 0.75rem;
+        }
+    }
+}
+
+.locale-switcher-box {
+    width: fit-content;
+    
+    // common
+    img {
+        max-width: 24px;
+    }
+
+    i {
+        font-size: 14px;
+        font-weight: 200;
+    }
+
+    .locale-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    .locale-item {
+        $superLightGray: rgba(181, 181, 181, 0.401);
+        list-style: none;
+        padding: 0;
+
+        &.active {
+            display: none;
+        }
+        &:hover {
+            background-color: $superLightGray;
+        }
+    }
+}

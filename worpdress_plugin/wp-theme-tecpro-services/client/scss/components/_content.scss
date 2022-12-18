@@ -1,0 +1,7 @@
+.text-ellipsis-line-4th {
+    @include textOverflowEllipsis(250px, 4);
+}
+
+.text-ellipsis-line-2th {
+    @include textOverflowEllipsis(100px, 2);
+}

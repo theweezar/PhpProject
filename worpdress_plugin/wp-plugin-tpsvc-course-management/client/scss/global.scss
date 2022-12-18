@@ -1,0 +1,240 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import 'utilities/variables';
+@import 'utilities/mixins';
+@import 'category/category';
+@import 'spinner';
+
+#wpwrap {
+    background-color: whitesmoke;
+}
+
+#wpcontent {
+    padding: 0 20px;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+button,
+input,
+textarea,
+.btn {
+    border-radius: 0;
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+.cm-page-title {
+    margin: 25px 0;
+
+    h2 {
+        font-size: $fontSize24;
+        margin-bottom: 0;
+    }
+}
+
+.cm-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    border-radius: 5px;
+
+    thead {
+        tr {
+            background-color: $ultramarineBlue;
+            color: $white;
+            font-size: $fontSize14;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+        }
+    }
+
+    tbody {
+        tr {
+            background-color: $white;
+
+            &:nth-of-type(even) {
+                background-color: $cultured;
+            }
+        }
+
+        td {
+            padding: 0 15px;
+            font-size: $fontSize14;
+            line-height: normal;
+        }
+    }
+
+    &.course-dashboard {
+        thead {
+            .course-id {
+                max-width: 250px;
+            }
+        }
+
+        tbody {
+            .course-id {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 250px;
+            }
+        }
+    }
+
+    .action {
+        a.btn {
+            text-decoration: none;
+            padding-left: 0;
+        }
+
+        .btn-delete {
+            color: $red;
+        }
+    }
+}
+
+.cm-form-wrapper {
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+        width: 50%;
+    }
+}
+
+.cm-form {
+    width: 100%;
+
+    .form-group {
+        margin-bottom: 8px;
+        width: 100%;
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: $fontSize14;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            margin-bottom: 4px;
+            border-radius: 0;
+            background-color: $white;
+            line-height: normal;
+            font-size: $fontSize14;
+            height: auto;
+        }
+
+        .invalid-message {
+            color: $red;
+        }
+
+        &.invalid {
+            label {
+                color: $red;
+            }
+
+            .form-control {
+                border: 1px solid $red;
+            }
+        }
+    }
+}
+
+.modal {
+    .modal-footer {
+        .btn {
+            min-width: 120px;
+        }
+    }
+}
+
+.header {
+    .header-navigation {
+        .dropdown-menu {
+            font-size: $fontSize14;
+
+            a {
+                color: $darkOceanBlue;
+            }
+        }
+    }
+}
+
+#media-file-picker {
+    .media-tree {
+        height: 400px;
+        overflow-y: scroll;
+
+        .media-tree-item {
+            @include applyWhenSelected();
+
+            cursor: pointer;
+            font-size: $fontSize14;
+            margin: 0;
+
+            &.is-dir {
+                color: var(--primary);
+            }
+        }
+    }
+}
+
+// Custom media page
+.table-wrapper {
+    font-size: $fontSize14;
+
+    .media-table {
+        width: 100%;
+
+        th {
+            padding: 0;
+        }
+
+        tbody {
+            td {
+                padding: 0;
+
+                &:nth-child(2) {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .file-checkbox {
+            width: 3rem;
+        }
+
+        .file-size {
+            width: 100px;
+        }
+
+        .file-action {
+            width: 150px;
+        }
+
+        .media-preview-trigger {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .table-body {
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+}

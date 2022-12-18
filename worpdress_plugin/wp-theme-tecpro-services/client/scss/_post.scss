@@ -1,0 +1,70 @@
+.post-container {
+    max-width: 720px;
+
+    .post-figure {
+        max-height: 800px;
+        overflow: hidden;
+
+        img {
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        figcaption {
+            font-style: italic;
+            font-size: $fontSize14;
+        }
+    }
+
+    .post-created-date {
+        font-size: $fontSize12;
+        font-style: italic;
+        font-weight: bold;
+        color: $platinum;
+    }
+
+    .post-subject {
+        font-size: $fontSize24;
+        font-weight: bold;
+    }
+    
+    .post-content {
+        font-size: $fontSize16;
+
+        @include media-breakpoint-up(lg) {
+            font-size: $fontSize20;
+        }
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-weight: bold;
+        color: $darkOceanBlue;
+    }
+
+    h1.post-title {
+        font-size: $fontSize30;
+
+        @include media-breakpoint-up(lg) {
+            font-size: $fontSize36;
+        }
+    }
+
+    h3 {
+        font-size: $fontSize20;
+
+        @include media-breakpoint-up(lg) {
+            font-size: $fontSize30;
+        }
+    }
+
+    h4 {
+        font-size: $fontSize16;
+        font-weight: 600;
+
+        @include media-breakpoint-up(lg) {
+            font-size: $fontSize20;
+        }
+    }
+}

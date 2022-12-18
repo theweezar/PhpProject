@@ -1,0 +1,199 @@
+.footer-group {
+    background-color: $lightGray;
+
+    .widget-row {
+        margin: 0;
+        padding: 40px 0;
+
+        .widget-col {
+            &:nth-child(n + 2) {
+                margin-top: 40px;
+
+                @include media-breakpoint-up(md) {
+                    margin-top: 0;
+                }
+            }
+
+            &:nth-child(n + 3) {
+                @include media-breakpoint-up(md) {
+                    margin-top: 40px;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    .widget-section {
+        color: $white;
+    }
+
+    .widget-label {
+        font-size: $fontSize16;
+        margin-bottom: 1.25rem;
+    }
+
+    .widget-text {
+        font-size: $fontSize14;
+    }
+
+    .email-subscription-wrapper {
+        margin-bottom: 15px;
+
+        h4 {
+            font-size: $fontSize24;
+            font-weight: bold;
+        }
+
+        @include media-breakpoint-up(lg) {
+            border-style: dashed;
+            border-top: 0;
+            border-right: 0;
+            border-bottom: 0;
+            padding-left: 40px;
+        }
+    }
+
+    .email-subscription-form {
+        .form-group {
+            border: 2px solid $black;
+            display: flex;
+            align-items: center;
+            padding-right: 8px;
+        }
+
+        input[name="email-subscription"] {
+            background-color: transparent;
+            border: none;
+        }
+
+        .fa-envelope-o {
+            font-size: $fontSize32;
+        }
+    }
+
+    .footer-copyright-wrapper {
+        padding: 1rem 0;
+        background-color: $raisinBlack;
+
+        .footer-copyright {
+            text-align: center;
+            color: $white;
+            font-size: $fontSize14;
+        }
+    }
+}
+
+#mobile-footer-widget {
+    .custom-dropdown-menu {
+        border-top: 1px solid $black;
+        padding: 15px 0;
+
+        @include media-breakpoint-up(lg) {
+            border-top: none;
+            padding: 0;
+        }
+
+        .custom-dropdown-trigger {
+            font-weight: bold;
+            margin-bottom: 8px;
+
+            @include media-breakpoint-up(lg) {
+                font-size: $fontSize20;
+            }
+
+            > h4 {
+                font-size: $fontSize24;
+                font-weight: bold;
+            }
+
+            .icon-arrow {
+                margin-top: -5px;
+
+                .fa {
+                    font-size: $fontSize20;
+                }
+            }
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+
+            .menu-item {
+                margin-bottom: 5px;
+            }
+
+            a {
+                color: $black;
+            }
+        }
+
+        .menu-footer-link-company-container {
+            .menu {
+                height: 0;
+                overflow-y: hidden;
+                transition: 0.2s;
+
+                &.expand {
+                    height: auto;
+                    overflow-y: auto;
+                    transition: 0.2s;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    height: auto;
+                    overflow-y: auto;
+                }
+            }
+        }
+    }
+
+    .footer-contact {
+        h4 {
+            font-size: $fontSize24;
+            font-weight: bold;
+        }
+
+        .contact-item {
+            .contact-item-label {
+                display: inline-block;
+                color: $skyBlue;
+                width: 20px;
+            }
+
+            a {
+                color: $black;
+            }
+        }
+
+        ~ .widget_nav_menu {
+            .widgettitle {
+                font-size: $fontSize24;
+                font-weight: bold;
+
+                ~ div {
+                    margin-top: 1rem;
+                }
+            }
+
+            ul.menu {
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: 0;
+                margin-bottom: 0;
+                list-style: none;
+
+                .social-item {
+                    padding: 0 8px;
+
+                    &:nth-child(1) {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+    }
+}

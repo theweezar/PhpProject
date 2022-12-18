@@ -1,0 +1,26 @@
+img {
+    width: 100%;
+    height: auto;
+}
+
+.container {
+    @include media-breakpoint-up(xml) {
+        max-width: 1340px;
+    }
+}
+
+button,
+.btn,
+input {
+
+    &:focus,
+    &:active {
+        box-shadow: none !important;
+        outline: none;
+    }
+}
+
+html,
+body {
+    font-family: $primaryFont, sans-serif;
+}

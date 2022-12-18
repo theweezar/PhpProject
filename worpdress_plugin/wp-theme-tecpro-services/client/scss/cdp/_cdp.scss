@@ -1,0 +1,353 @@
+.cdp-box {
+    padding: 20px 0;
+    font-size: $fontSize12;
+
+    @include media-breakpoint-up(lg) {
+        font-size: $fontSize14;
+    }
+
+    // Common
+    .list-group-items {
+        margin-bottom: 0;
+    }
+
+    .main-section {
+        &:first-child {
+            margin-top: 0px;
+        }
+
+        margin-top: 20px;
+    }
+
+    .cdp-section {
+        margin-top: 10px;
+    }
+
+    .cdp-sub-section {
+        margin-top: 10px;
+
+        @include media-breakpoint-up(lg) {
+            margin-top: 30px;
+        }
+    }
+
+    .card-white-box-shadow {
+        @include media-breakpoint-up(lg) {
+            @include cardWhiteboxShadow;   
+        }
+    }
+
+    .title {
+        font-size: $fontSize20;
+        font-weight: 700;
+    }
+
+    .gradient-button {
+        @include gradient(left, $gradient-list-blue);
+        color: $white;
+        font-weight: 600;
+        font-size: $fontSize18;
+        width: 100%;
+        padding: 10px 0;
+        margin-top: 15px;
+    }
+
+    .pricing-item {
+        max-width: max-content;
+
+        .due-date {
+            color: $mainBlue;
+            h4 {
+                font-weight: 900;
+            }
+        }
+
+        .pricing {
+            margin: 0;
+            padding: 10px;
+            border: 5px dashed $mainBlue;
+            text-align: right;
+
+            @include media-breakpoint-up(lg) {
+                background-color: $white;
+            }
+        }
+
+        .new-price {
+            color: $mainBlue;
+            font-weight: 600;
+        }
+
+        .old-price {
+            color: $platinum;
+            text-decoration: line-through;
+        }
+
+        .time-left {
+            color: $red;
+            font-weight: 600;
+            font-size: $fontSize14;
+        }
+    }
+
+    .see-more-btn {
+        text-decoration: none;
+    }
+    // Specific
+    .course-preview-container {
+        width: 100%;
+        margin-bottom: 20px;
+
+        .course-pricing-box {
+            @include media-breakpoint-up(lg) {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                flex-direction: column;
+                padding-right: 5px;
+            }
+
+            .pricing-item {
+                text-align: center;
+                width: 100%;
+                max-width: 330px;
+            }
+            
+            .buy-action-btn-box {
+                width: 100%;
+                max-width: 330px;
+            }
+        }
+
+        .course-image-box {
+            .course-img {
+                min-width: 100%;
+                min-height: 200px;
+
+                @include media-breakpoint-up(lg) {
+                    height: 100%;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                img {
+                    @include media-breakpoint-up(lg) {
+                        position: absolute;
+                        height: 100%;
+                        width: unset;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+            }
+        }
+
+        .course-info-box {
+            .title-box {
+                margin-top: 10px;
+                text-align: justify;
+
+                @include media-breakpoint-up(lg) {
+                    margin-top: 0;
+                    max-width: 450px;
+                }
+            }
+
+            .title {
+                span {
+                    font-size: $fontSize24;
+                }
+            }
+
+            .author {
+                color: $platinum;
+                font-style: italic;
+            }
+        }
+
+        .rating-box {
+            margin-top: 10px;
+            width: 100%;
+            
+            @include media-breakpoint-up(lg) {
+                max-width: 450px;
+            }
+
+            .rating-star-box {
+                padding: 0;
+                text-align: left;
+                align-self: flex-end;
+
+                .rating-stars {
+                    color: $mainBlue;
+                }
+            }
+
+            .student-rating-box {
+                padding: 0;
+                text-align: right;
+            }
+        }
+
+        .line {
+            width: 100%;
+            height: 4px;
+            text-align: left;
+
+            @include gradient(left, $gradient-list-blue);
+            
+            @include media-breakpoint-up(lg) {
+                display: none;
+            }
+        }
+
+    }
+
+    .course-primary-container {
+        @include media-breakpoint-up(lg) {
+            width: 70%;
+            max-width: 900px;
+            background-color: $white;
+        }
+        
+        .course-goal-box {
+            .list-item {
+                &:first-child {
+                    margin-top: 0;
+                }
+                margin-top: 5px;
+            }
+        }
+
+        .course-instructors-box {
+            .instructor {
+                padding: 10px;
+                margin: 10px 0;
+                max-width: 180px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .instructor-image {
+                    margin-bottom: 10px;
+                    border-radius: 50%;
+                    width: 100%;
+                    max-width: 120px;
+                    overflow: hidden;
+
+                    img {
+                        object-fit: cover;
+                    }
+                }
+
+                .instructor-name,
+                .instructor-description {
+                    text-align: center;
+                }
+
+                .instructor-description {
+                    font-size: $fontSize10;
+                    color: $platinum;
+                    font-weight: 400;
+                }
+            }
+        }
+
+        .course-benefit-box {
+            .logo-box {
+                margin-top: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                @include media-breakpoint-up(lg) {
+                    justify-content: flex-start;
+                }
+            }
+
+            .logo {
+                max-width: 80px;
+                margin-right: 20px;
+            }
+
+            .content-image {
+                img {
+                    @include media-breakpoint-up(lg) {
+                        max-width: 350px;
+                    }
+                }
+            }
+
+            .paragraph {
+                @include media-breakpoint-up(lg) {
+                    line-height: 30px;
+                }
+            }
+        }
+
+        .course-pricing-box {
+            .pricing-info {
+                text-align: center;
+
+                @include media-breakpoint-up(lg) {
+                    text-align: right;
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                display: flex;
+                align-items: flex-end;
+                flex-direction: column;
+
+                .foot {
+                    width: 300px;
+                }
+    
+                .foot-btn {
+                    width: 300px;
+                }
+            }
+        }
+    }
+
+    .course-extra-container {
+        flex-direction: column;
+        align-items: center;
+
+        .course-extra-box {
+            min-width: 300px;
+            width: 100%;
+            padding: 0 1rem;
+
+            @include media-breakpoint-up(lg) {
+                margin-left: 30px;
+                padding: 30px; 
+            }
+
+            .content {
+                .fa {
+                    width: 30px;
+                    text-align: center;
+                }
+            }
+
+            .learning-methods {
+                margin-top: 20px;
+
+                h5 {
+                    font-weight: 700;
+                }
+
+                .methods {
+                    font-size: $fontSize14;
+                }
+
+                .online {
+                    color: $green;
+                }
+
+            }
+        }
+    }
+}

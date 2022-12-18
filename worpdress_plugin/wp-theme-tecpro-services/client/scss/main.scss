@@ -1,0 +1,114 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~animate.css';
+@import 'utilities/fonts';
+@import 'utilities/variables';
+@import 'utilities/mixins';
+@import 'utilities/custom';
+@import 'thirdParty/slick';
+@import 'components/widgets';
+@import 'components/header';
+@import 'components/footer';
+@import 'components/scrollbar';
+@import 'components/content';
+@import 'components/common';
+@import 'components/404';
+@import 'courses/courseTile';
+@import 'login/login';
+@import 'cdp/cdp';
+@import 'clp/clp';
+@import 'home/home';
+@import 'post';
+
+.main-group {
+    .homepage-banner-wrapper {
+        .homepage-banner {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        section {
+            position: relative;
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .config-content {
+                text-align: center;
+                font-size: $fontSize24;
+                color: $white;
+            }
+        }
+
+        .homepage-banner-sidebar {
+            @include hiddenWhenInitializingSlick();
+        }
+
+        .slick-dots {
+            bottom: 1rem;
+        }
+    }
+
+    .popular-section {
+        margin-bottom: 60px;
+
+        .popular-course-slick {
+            @include hiddenWhenInitializingSlick();
+        }
+
+        .popular-title {
+            font-size: $fontSize24;
+            font-weight: bold;
+        }
+
+        .popular-slick-item {
+            .course-tile {
+                margin: auto;
+            }
+        }
+    }
+
+    .skill-interest-content {
+        margin-bottom: 120px;
+
+        .skill-interest-title {
+            font-size: $fontSize24;
+            font-weight: bold;
+        }
+
+        .wp-block-group {
+            .wp-block-group__inner-container {
+                width: 240px;
+                height: auto;
+                margin: auto;
+
+                > p.skill-interest-detail {
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    max-height: 100px;
+                }
+
+                > h4 {
+                    font-weight: bold;
+                }
+
+                .wp-block-button__link {
+                    background-color: $mainBlue;
+                    padding: 0.5rem 1rem;
+                }
+            }
+        }
+    }
+}
